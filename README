@@ -1,0 +1,33 @@
+README file for the coursework code and text during Michal Grochmal's studies
+at the Birkbeck University of London
+
+Copyright (C) 2013 Michal Grochmal
+
+For each course and module the directory structure groups together assignments
+and exercises for a given subject.  In good *BSD/*ix standard the directory
+names are as short as possible, therefore if you are looking for a specific
+subject you shall navigate using the README files present in good part of the
+directories.
+
+The coursework text is distributed mostly under Creative Commons
+Attribution-ShareAlike 3.0 Unported, whilst the code is distributed mostly
+under GPL version 3 or later.  For the full description of the licenses look
+into the COPYING file.  Pieces of text or code have different copyright due to
+different manner of submission or the lack of submission into the university
+repositories.
+
+As a rule you shall identify the copyright of the files in the base directory
+by the COPYING file in that directory, as well as any files in directories on a
+lower level that do not contain a COPYING file itself.  If a lower level
+directory contains a COPYING file then this file is valid for this directory
+and any lower level directories henceforth instead of the base directory
+COPYING file.  This rule is recursive, therefore if a third COPYING file is
+encountered when browsing directories downward it becomes valid for the current
+directory and all subsequent directories.
+
+A special case to the distribution are directories entitled "third_party",
+these may contain original or modified files entitled to the work of people
+that are not me (Michal Grochmal).  The COPYING file in these directories
+references the people whose work result in these and protects the distribution
+rights of their work.
+
