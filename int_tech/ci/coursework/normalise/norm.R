@@ -1,4 +1,7 @@
-# Normalisation procedure
+# Normalisation procedure for all 6 training and testing sets.  All 16 data
+# columns are reduced to values between 0 and 1.  As a side effect the 17th
+# column containing values 0 and 255 is altered to contain 0 and 1 values,
+# respectively.
 
 filens  <- c("trn", "tst")
 frames  <- c(1,2,3,4,5,6)
