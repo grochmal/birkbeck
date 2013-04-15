@@ -1,30 +1,43 @@
 % Script running the coursework experiments,
 % all networks are created, tranined and finally evaluated.
 
-trn1_full = load('../third_party/2trn.norm.ssv');
-trn1 = (trn1_full(:, 1:16))';
-trn1_out = (trn1_full(:,17));
-diag = zeros(2,200);
-diag(1, find(trn1_out)) = 1;
-diag(2, find(trn1_out-1)) = 1;
+clear all;  % for GNU Octave it shall be 'clear -all'
 
-net = feedforwardnet(45, 'trainrp');
-net.layers{1}.transferFcn = 'logsig';
-net.trainParam.epochs = 12000;
-net.trainParam.goal = 1e-6;
-net.trainParam.max_fail = 120;
-net.trainParam.showWindow = false;
-net.trainParam.showCommandLine = false;
-netc = configure(net, trn1, diag);
-neti = init(netc);
-[nett, tr] = train(neti, trn1, diag);
-
-% this must be changed to cmply wih the coursework
-output = round(nett(trn1));
-right = zeros(1, 300);
-for i = 1:300
-  if min(output(:,i) == diag(:,i))
-    right(i) = 1;
-  end
+function hdlst = iterate_nets(nfiles, trns, dgtrns, tst, dgtst)
+    hdlst = 5:5:55;
+    for i = nfiles
+	for h = hdlst
+	    fprintf('Run nets for frame %i with %i hidden nodes\n', i, h);
+	    res = run_experiments(i, h, trns, dgtrns, tst, dgtst);
+	end
+    end
 end
+
+function [trns, dgtrns, tst, dgtst] = load_data(nfiles)
+    tstfl  = [];
+    trnfls = [];
+    path   = '../third_party/';
+    for i = nfiles
+	trnfls(:,:,i) = load(strcat(path, int2str(i), 'trn.norm.ssv'));
+	tstfl = [tstfl; load(strcat(path, int2str(i), 'tst.norm.ssv'))];
+    end
+    tst    = tstfl(:,1:16)';
+    outtst = tstfl(:,17)';
+    dgtst  = [];
+    dgtst(1, find(outtst)  ) = 1;
+    dgtst(2, find(outtst-1)) = 1;
+    trns   = [];
+    dgtrns = [];
+    for i = nfiles
+	trns(:,:,i) = trnfls(:,1:16,i)';
+	out         = trnfls(:,17,i)';
+	dgtrns(1, find(out),   i) = 1;
+	dgtrns(2, find(out-1), i) = 1;
+    end
+end
+
+load_files = 1:6;
+[trns, dgtrns, tst, dgtst] = load_data(load_files);
+run_files  = 1:6;  %  in case of few failed experiments change this
+hdlst = iterate_nets(run_files, trns, dgtrns, tst, dgtst);
 

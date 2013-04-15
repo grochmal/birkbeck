@@ -1,4 +1,4 @@
-# The R version for the analysis.m file (it runs faster)
+# The R version for the data_analysis.m file (it runs faster)
 
 filens <- c("trn.ssv", "tst.ssv")
 frames <- c(1,2,3,4,5,6)
