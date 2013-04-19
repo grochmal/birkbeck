@@ -1,0 +1,16 @@
+Appendix F: Resources on Creative Commons Attribution-ShareAlike 3.0 and other
+GNU GPL compatible licenses
+
+The license under which this work is delivered can be found under
+http://creativecommons.org/licenses/by-sa/3.0, although the full details about
+this license and other similar ones can be found at http://creativecommons.org
+A discussion on the purpose of the creative commons licenses is available at
+http://creativecommons.org/about
+
+Another good discussion about copyleft licenses is on
+https://www.gnu.org/licenses/licenses.html, and the list of currently
+recognized copyleft licenses at: https://www.gnu.org/licenses/license-list.html
+Finally a discussion about the reason that such copyright (copyleft) licenses
+are beneficial for the eduction system can be found under
+http://www.gnu.org/education/education.html
+

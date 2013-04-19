@@ -1,0 +1,22 @@
+Appendix E: Resources on R and GNU Octave
+
+R is a programming language for analysis and manipulation of statistical data
+(Maltoff, 2011).
+
+R is available for download from the Imperial College London at
+http://cran.ma.imperial.ac.uk or from other mirrors, which can be found under
+http://cran.r-project.org/mirrors.html.  A good, freely available, resource for
+understanding R is the introduction to R manual available on the R
+documentation at: http://cran.r-project.org/doc/manuals/r-release/R-intro.html
+
+GNU octave is a command line interface for solving linear and non-linear
+numerical problems (Hanses, 2011).  It is mostly compatible with Matlab (GNU,
+2013).  In this coursework the Matlab code was written and tested under GNU
+Octave before being run in the laboratories providing the Neural Network Matlab
+Toolbox.
+
+Resources on GNU octave can be obtained from the GNU website on
+http://www.gnu.org/software/octave.  The download is freely available at
+http://www.gnu.org/software/octave/download.html and the Octave manual (see
+Eaton, 2007) can be found at http://www.gnu.org/software/octave/doc/interpreter
+

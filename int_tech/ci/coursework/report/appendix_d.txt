@@ -1,0 +1,33 @@
+Appendix D: Copyright and Deed of Assignment
+
+This work is licensed under a Creative Commons Attribution-ShareAlike 3.0
+Unported license.  The full text of the license can be found under:
+http://creativecommons.org/licenses/by-sa/3.0
+
+Copyright (C) 2013 Michal Grochmal
+
+In accordance to the section 11: Exploitation of the coursework outputs of the
+coursework assignment the coursework output is Copylefted.  This means that
+the Copyright of the work is extended to any person receiving the work,
+including the College.
+
+The two statements mentioned in the coursework assignment are fulfilled by the
+license under which the work is distributed.  The first statement: "if a
+student, in the course of studies, produces any original works (including
+computer software) which may be commercially exploitable, the College shall be
+entitled to the copyright in such works and shall use its best endeavours to
+secure royalties." is fulfilled by the fact that the college receive the
+copyright of the work, just as any other person or institution that receives a
+copy of the work.
+
+The second statement refers to the use of the Deed of Assignment for the
+assignment of the rights of copy or patent to any work that might prove
+potentially valuable.  The fulfilment of the Deed of Assignment is inherited
+from the license of the work: as the rights of copy are provided to the College
+(as for any other person or institution that receives a copy of the work) and
+as patents for software are not applicable in the European Union.
+
+Form more information on Copyleft licenses and how these effect the Copyright
+of a work see Appendix F: Resources on Creative Commons Attribution-ShareAlike
+3.0 and other GNU GPL compatible licenses.
+
