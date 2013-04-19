@@ -27,6 +27,10 @@ from the license of the work: as the rights of copy are provided to the College
 (as for any other person or institution that receives a copy of the work) and
 as patents for software are not applicable in the European Union.
 
+The original text of this document, the code for the experiments and the
+results obtained can be downloaded from the following public location:
+http://github.com/grochmal/birkbeck/tree/master/int_tech/ci/coursework
+
 Form more information on Copyleft licenses and how these effect the Copyright
 of a work see Appendix F: Resources on Creative Commons Attribution-ShareAlike
 3.0 and other GNU GPL compatible licenses.
