@@ -1,0 +1,25 @@
+Table 1: Neural network training by number of hidden nodes
+
+        TP  FN    TN     FP  acc         epochs  error
+hdn_5   0   34.5  265.5  0   0.885       222     61.1671745
+hdn_10  0   34.5  265.5  0   0.885       345     60.6604045
+hdn_15  0   34.5  265.5  0   0.885       432.5   60.6080805
+hdn_20  0   34.5  265    0   0.885       514     61.2022185
+hdn_25  0   34.5  265    0   0.885       580.5   60.1377595
+hdn_30  0   34.5  264    0   0.88333333  588.5   59.8270195
+hdn_35  0   34.5  264    0   0.88333333  558     59.9702495
+hdn_40  0   34.5  264    0   0.88333333  529.5   59.5647755
+hdn_45  0   34.5  264    0   0.88333333  522.5   59.8083695
+hdn_50  0   34    263.5  0   0.88333333  542     59.7895895
+hdn_55  0   34.5  264    0   0.88333333  537.5   59.648561
+
+Legend:
+hdn_10 - Using 10 neurons in the hidden layer
+TP     - True Positives
+FN     - False Negatives
+TN     - True Negatives
+FP     - False Positives
+acc    - Overall accuracy of the network
+epochs - Number of epochs needed to train the network
+error  - The sum of squared errors between desired and obtained output
+

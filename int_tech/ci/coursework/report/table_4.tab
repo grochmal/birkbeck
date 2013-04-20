@@ -1,0 +1,21 @@
+Table 4: Generalisation of the network by frames
+
+         TP    FN      TN       FP       acc          error
+frame_1  0     2794    19532    0        0.87485443   4848.25835
+frame_2  0     2794    19532    0        0.87485443   4923.54485
+frame_3  0     2794    19532    0        0.87485443   4884.85625
+frame_4  0     2794    19523.5  8.5      0.874563285  4799.19645
+frame_5  70.5  2723.5  19362    170      0.870442535  4862.0451
+frame_6  0     2794    19532    0        0.87485443   5015.9483
+frame_7  2096  698     9421.5   10110.5  0.51646063   11477.6605
+
+Legend:
+frame_4 - Statistics from the 4th frame
+TP      - True Positives
+FN      - False Negatives
+TN      - True Negatives
+FP      - False Positives
+acc     - Overall accuracy of the network
+epochs  - Number of epochs needed to train the network
+error   - The sum of squared errors between desired and obtained output
+

@@ -1,0 +1,11 @@
+2. Findings
+
+the given the 6 frames and using 6 experiments
+extending to 11 experiments
+
+tables, these 6 frames are not a practical solution for diagnosis
+
+frame 7, best behaviour but still not acceptable
+
+bestoving frame 7, PCE
+

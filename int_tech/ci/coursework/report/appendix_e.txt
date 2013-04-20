@@ -1,7 +1,8 @@
 Appendix E: Resources on R and GNU Octave
 
 R is a programming language for analysis and manipulation of statistical data
-(Maltoff, 2011).
+(Maltoff, 2011).  It is the GNU implementation and extension of the S
+statistical language conceptualized in the AT&T labs (R-project, 2012).
 
 R is available for download from the Imperial College London at
 http://cran.ma.imperial.ac.uk or from other mirrors, which can be found under

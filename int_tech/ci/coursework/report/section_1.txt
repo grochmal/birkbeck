@@ -1,0 +1,12 @@
+1. Methods used
+
+1.1 Descisions on how to build the neural networks (normalisation)
+
+1.2 The learning algorith used (weight decay, rprop learning rate)
+
+describe each network in training and testing
+
+frame 7
+
+further statistical analysis (in R)
+
