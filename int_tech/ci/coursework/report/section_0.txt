@@ -5,3 +5,12 @@ college email: mgroch01@dcs.bbk.ac.uk (it redirects to the former anyway)
 
 Introduction
 
+This work is the result of the coursework assignment from the Computational
+Intelligence module during the Spring term of 2013, on the Birkbeck University
+of London.  It discusses the classification of colonoscopy video frames for
+the purpose of discovering abnormal textures, this way helping in the
+diagnosis of colon cancer.  As required by the coursework, the approach taken
+is to use artificial neural networks to perform the classification.  Many
+network configurations where tested and the comparison between these is
+discussed throughout this work.
+
