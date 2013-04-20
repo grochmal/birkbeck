@@ -1,45 +1,74 @@
+Matlab website
+##############
 
-Wikipedia, Rprop article,
-  available at http://en.wikpedia.org/wiki/Rprop
-  (last acessed on 2013-04-11)
-
-Mathworks, Neural Network Toolbox Function List,
+(MathWorks Functions, 2013) MathWorks, Neural Network Toolbox Function List,
   available at http://www.mathworks.co.uk/help/nnet/functionlist.html
   (last accessed on 2013-04-11)
 
-Beale M, Hagan M, Demuth H; 2013,
-  Neural Network Toolbox User's Guide
-
-Magoulas G, Computation Intelligence laboratory session sheets,
-   Computational Intelligence module during Spring 2013
-
-Mathworks, Rprop NN training,
+(MathWorks Rprop, 2013) MathWorks, Rprop NN training
   available at http://mathworks.com/matlabcentral/fileexchange/31445-rprop
   (last accessed on 2013-04-11)
 
-Mathworks, function reference,
-  available at http://www.mathworks.co.uk/help/matlab/functions.html
-  (last accessed on 2013-04-14)
+# Not used
+#(MathWorks Function Reference, 2013) MathWorks, function reference
+#  available at http://www.mathworks.co.uk/help/matlab/functions.html
+#  (last accessed on 2013-04-14)
+
+NN Toolbox
+##########
+
+(Beale, 2013) Beale M, Hagan M, Demuth H
+  Neural Network Toolbox User's Guide R2012a
+  MathWorks, 2013
+
+From the course
+###############
+
+(Magoulas, 2013) Magoulas G
+   Computation Intelligence laboratory session sheets
+   Computational Intelligence module during Spring 2013
 
 Programming Books
 #################
 
-Eaton, Bateman, Hauberg
+(Eaton, 2007) Eaton, J; Bateman, D; Hauberg, S
   GNU Octave Version 3.0.1 Manual
   Soho Books, 2007
 
-Hansen
+(Hansen, 2011) Hansen, J
   GNU Octave Beginner's Guide
   Packt, 2011
 
-Maltoff
+(Maltoff, 2011) Maltoff, N
   The Art of R Programming
   No Starch Press, 2011
 
 AI Book
 #######
 
-Negnevitsky
+(Negnevitsky, 2011) Negnevitsky, M
   Artificial Intelligence, Chapters 6
   Pearson, 2011
+
+Statistic Article
+#################
+
+(Koenker, 2001) Koenker, R; Hallock, K
+  Quantile Regression
+  Journal of Economic Perspectives, 2001
+
+Websites
+########
+
+(R-proj, 2013) The R project for Statistical Computing
+  available at http://www.r-project.org
+  (last accessed on 2013-04-16)
+
+(GNU, 2013) The GNU project and the Free Software Foundation
+  available at http://www.gnu.org and at http://www.fsf.org
+  (last accessed on 2013-04-16)
+
+(CC, 2013) Creative Commons
+  availabel at http://creativecommons.org
+  (last accessed on 2013-04-16)
 
