@@ -1,4 +1,4 @@
-Table 1: Neural network training by number of hidden nodes
+Table 1: Neural networks performance by number of hidden nodes
 
         TP  FN    TN     FP  acc         epochs  error
 hdn_5   0   34.5  265.5  0   0.885       222     61.1671745

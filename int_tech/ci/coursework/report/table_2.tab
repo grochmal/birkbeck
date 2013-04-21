@@ -1,4 +1,4 @@
-Table 2: Generalisation of the network by number of hidden nodes
+Table 2: Generalisation of the networks by number of hidden nodes
 
         TP  FN    TN     FP  acc         error
 hdn_5   0   2794  19532  0   0.87485443  4918.15695

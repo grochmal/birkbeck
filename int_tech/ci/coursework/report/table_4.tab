@@ -1,4 +1,4 @@
-Table 4: Generalisation of the network by frames
+Table 4: Generalisation of the networks by frames
 
          TP    FN      TN       FP       acc          error
 frame_1  0     2794    19532    0        0.87485443   4848.25835

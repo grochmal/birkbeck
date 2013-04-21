@@ -1,112 +1,120 @@
 2. Findings
 
 Accuracy of the neural networks had proven to be good on the test data set,
-but the networks became biased towards normal patterns.  This proposal is
-discussed below, together with possible solutions to perform a better
+but the networks became biased towards normal patterns.  Furthermore the
+accuracy have little meaning when the networks are biased, as in such case the
+accuracy depends on the test dataset and not on the networks.  This proposal
+is discussed below, together with possible solutions to perform a better
 classification.
 
 2.1 The networks on the 6 provided frames
 
 As presented in section 1.2 the networks were setup for early stopping, which
-hold their possibility of overtraining.  On the other hand, it also holds
-the networks from achieving 97% accuracy.  The purpose of the networks is to
-provide diagnosis on unknown cases, therefore generalisation is more important
-than accuracy and it is then acceptable trade off to have a lover accuracy on
-the training set to have good generalisation.  Unfortunately this theory do
-not prove itself on the 6 proposed datasets for the networks, as we will see
-further.
+held their possibility of overtraining.  On the other hand, it also held the
+networks from achieving 97% accuracy.  The purpose of the networks resulting
+from the experiments is to provide diagnosis on unknown cases, therefore
+generalisation is more important than accuracy and it is then an acceptable
+trade off to have a lover accuracy on the training set to get a good
+generalisation on unknown cases.  Unfortunately this theory do not prove
+itself on the 6 proposed datasets for the networks, as we will see further.
 
 For various numbers of hidden nodes a set of 100 networks was trained and
 tested, for each frame provided.  This resulted originally into 3600 trained
-networks.  Each set of 100 networks was processed statistically, by taking the
-median of the values from all 100 runs, to appear as on network.  These
+networks.  Each of the 100 networks was tested and the results were processed
+statistically, by taking the median of the values from all 100 runs.  These
 networks were then compared based on the number of hidden nodes by merging the
 networks from each frame, using again the median.
 
-During the experiments with the number of hidden nodes extending from 5 to 55
-in steps of 10 no big changes to the networks can be seen, see Table 1.  Even
-by increasing the granularity of the number of hidden nodes into steps of 5 no
-big changes in the performance of the networks can be seen.  Based on the
-training set the only major difference between the networks is that the
-smaller networks can be trained faster, the accuracy and error are very
-similar for all the networks.
+During the experiments described above, with the number of hidden nodes
+extending from 5 to 55 in steps of 10 no big changes to the networks
+performance could be seen, see Table 1.  Even by increasing the granularity of
+the number of hidden nodes into steps of 5, and therefore the number of
+networks grew to 6600, no big changes in the performance of the networks were
+seen.  Based on the training sets, the only major difference between the
+networks is that the smaller networks were trained faster, as the accuracy and
+error were very similar across all the networks.
 
 Table 1
 
-Most importantly, in a statistical analysis based on the median, still Table
-1, the networks are unable to find any true positives (successfully recognised
-abnormal patterns) or false positives (unsuccessfully recognised normal
-patterns).  In other words, the networks are unable find abnormal (positive)
-patterns and the high accuracy, above 88%, is caused only by the fact that in
-the training data there are many more negative patterns than positive ones.
+Most importantly, in a statistical analysis based on the median, we are still
+looking at Table 1, the networks were unable to find any true positives
+(successfully recognised abnormal patterns) or false positives (unsuccessfully
+recognised normal patterns).  In other words, the networks were unable find
+abnormal (positive) patterns and the high accuracy, above 88%, was caused only
+by the fact that in the training data there are many more negative patterns
+than positive ones.
 
-During the testing, Table 2, the situation do not improve.  Although, the
-accuracy drops a little and the error is higher the networks only identify
-positive patterns by sheer luck.  The accuracy is again caused by the bigger
-number of negative patterns in the test data and the higher error is caused by
-the amount of data (the error function is a sum after all).
+During the testing, Table 2, the situation did not improve.  Although the
+accuracy dropped just a little the error was higher, but this was only caused
+by the bigger number of samples in the testing set (the error function is a
+sum after all).  Again, the networks only identified positive patterns by
+sheer luck and the high accuracy was only caused by the bigger number of
+negative than positive patterns.
 
 Table 2.
 
 Although these networks have high accuracy they completely miss their purpose:
-helping in diagnosing colon cancer (CancerQuest, 2013).  In diagnosis positive
-patterns are much more important than negative ones.  Diagnostic methods have
-a degree of failure, but it is less harmful for a method to point that a
-patient not having a condition has it (false positive) than pointing that a
-patient with the condition do not have it (false negative).  This is because a
-false positive shall be submitted to other diagnostic methods to confirm his
-condition, or in this case fail to confirm.  But a false negative will not be
-submitted any more tests probably causing his condition to aggravate
-(Petticrew, 2000 and Hofvind, 2004).
+helping in diagnosing colon cancer.  In diagnosis positive patterns are much
+more important than negative ones (CancerQuest, 2013).  All diagnostic methods
+have a certain degree of failure, but in these possible failures it is less
+harmful for a method to point that a patient not having the condition has it
+(false positive) than pointing that a patient with the condition do not have
+it (false negative).  This is because a false positive patient shall be
+submitted to other diagnostic methods to confirm his condition, or in this
+case fail to confirm.  But a false negative will not be submitted to any more
+tests and this will probably cause his condition to aggravate (Petticrew, 2000
+and Hofvind, 2004).
 
-Current setup of the networks have good accuracy but pitiful practical
+The current setup of the networks have good accuracy but pitiful practical
 performance, in the next section we will try to improve this practical
-performance by changing the dataset used to train the network.  It is
-important to note that the data presented in the tables are the medians of a
-set of runs of 100 networks, whilst we could use the mean instead it would
-only provide us with noisier statistics.
+performance by changing the dataset used to train the networks.  Both
+experiments use the median for statistical comparison of the runs of 100
+networks, whilst we could use the mean instead it would only provide us with
+noisier statistics.
 
 2.2 A better dataset for training
 
 Returning to the fact that a neural network is only as good as the data used
 to train it (Negnevitsky, 2011), a better neural network shall be trained if
 the data used have more abnormal (positive) cases.  To achieve this a 7th
-frame was created from the 6 frames given, at random an equal number of
-positive and negative samples were chosen.  The 7th frame have 50% abnormal
-samples whilst all other 6 frames have less than 20%.
+frame was created from the 6 frames given: at random, an equal number of
+positive and negative samples were chosen from these 6 frames.  The 7th frame
+have 50% abnormal samples whilst all other 6 frames have less than 20%.
 
 As previously a set of 100 networks was trained on this frame for each set of
-hidden nodes.  Although the interesting comparison of these networks is not
-between the number of hidden nodes but against the networks run on the other 6
-frames.  We see this comparison between frames in Table 3.
+hidden nodes.  Although, the interesting comparison of the networks trained on
+the 7th frame is not between the number of hidden nodes but against the
+networks run on the other 6 frames.  We see this comparison between frames in
+Table 3.
 
 Table 3.
 
 Looking at the accuracy, training time and sum of squared errors for the
-trained network on frame 7 it appears inferior to the networks on the first 6
-frames: it's accuracy is much lower, the training time is longer and the error
-is big.  But from the practical point of view in using this network for
-diagnosis it is superior to the network on the frames 1 to 6.  The network
-trained on frame 7 can recognise positive (abnormal) patterns.  The number of
-true positives and true negatives is also bigger than the number of false
-positives and false negatives, therefore we can say that the network actually
-recognises the patterns instead of being biased towards the most common
-pattern in the dataset.
+trained networks on frame 7 these appear inferior to the networks on the first
+6 frames: it's accuracy is much lower, the training time is longer and the
+error is big.  But from the practical point of view when using the frame 7
+networks for diagnosis they are superior to the networks of the frames 1 to 6.
+The networks trained on frame 7 can recognise positive (abnormal) patterns.
+The number of true positives and true negatives is also bigger than the number
+of false positives and false negatives, therefore we can suggest that the
+network actually recognises the patterns instead of being biased towards the
+most common pattern in the dataset.
 
-During the testing the generalisation of the network on the 7th frame do not
-perform so well, see Table 4.  The high number of false positives indicates
-that this network is slightly biased towards abnormal patterns, the low
-accuracy, as well, do not provide good reasons to use this network.  On the
-other hand, the network still performs much better than the networks on the
-other 6 frames and the little number of false negatives that the network
-presents is one of the most important for a diagnosis help.
+During the testing, the generalisation of the networks trained on the 7th
+frame do not perform so well, see Table 4.  The high number of false positives
+indicates that these networks are slightly biased towards abnormal patterns,
+the low accuracy, as well, do not suggest a good quality for these networks.
+On the other hand, the frame 7 networks still performs much better than the
+networks on the other 6 frames and the little number of false negatives that
+the frame 7 networks presents is one of the most important factors for a good
+diagnosis help.
 
 Table 4.
 
-Although the network trained on the 7th frame do not perform extremely well,
-it proves the initial point saying that the networks trained on the first 6
-frames are biased towards normal patterns.  And it proves that the reason for
-the high accuracy of the networks on the first 6 frames is only possible
-because the data in the frames and in the testing set have many more negative
-cases than positive ones.
+Although the networks trained on the 7th frame do not perform extremely well,
+it proves the initial point by suggesting that the networks trained on the
+first 6 frames are biased towards normal patterns.  And it proves that the
+high accuracy of the networks on the first 6 frames is only possible because
+the data in the frames and in the testing set have many more negative cases
+than positive ones.
 

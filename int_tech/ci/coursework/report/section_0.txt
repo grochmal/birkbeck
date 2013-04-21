@@ -11,6 +11,6 @@ of London.  It discusses the classification of colonoscopy video frames for
 the purpose of discovering abnormal textures, this way helping in the
 diagnosis of colon cancer.  As required by the coursework, the approach taken
 is to use artificial neural networks to perform the classification.  Many
-network configurations where tested and the comparison between these is
-discussed throughout this work.
+network configurations were tested and the comparison between these
+configurations is discussed throughout this work.
 

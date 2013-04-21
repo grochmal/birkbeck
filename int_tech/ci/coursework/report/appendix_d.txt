@@ -8,30 +8,30 @@ Copyright (C) 2013 Michal Grochmal
 
 In accordance to the section 11: Exploitation of the coursework outputs of the
 coursework assignment the coursework output is Copylefted.  This means that
-the Copyright of the work is extended to any person receiving the work,
-including the College.
+the Copyright of the work is extended to any person or institution in
+possession of a copy of the work, including the College.
 
 The two statements mentioned in the coursework assignment are fulfilled by the
 license under which the work is distributed.  The first statement: "if a
 student, in the course of studies, produces any original works (including
 computer software) which may be commercially exploitable, the College shall be
 entitled to the copyright in such works and shall use its best endeavours to
-secure royalties." is fulfilled by the fact that the college receive the
+secure royalties." is fulfilled by the fact that the College receive the
 copyright of the work, just as any other person or institution that receives a
 copy of the work.
 
 The second statement refers to the use of the Deed of Assignment for the
-assignment of the rights of copy or patent to any work that might prove
+assignment of the rights of copy and/or patent for any work that might prove
 potentially valuable.  The fulfilment of the Deed of Assignment is inherited
-from the license of the work: as the rights of copy are provided to the College
-(as for any other person or institution that receives a copy of the work) and
-as patents for software are not applicable in the European Union.
+from the license of the work: as the rights of copy are provided to the
+College (as for any other person or institution that receives a copy of the
+work) and as patents for software are not applicable in the European Union.
 
 The original text of this document, the code for the experiments and the
 results obtained can be downloaded from the following public location:
 http://github.com/grochmal/birkbeck/tree/master/int_tech/ci/coursework
 
-Form more information on Copyleft licenses and how these effect the Copyright
+Form more information on Copyleft licenses and how these affect the Copyright
 of a work see Appendix F: Resources on Creative Commons Attribution-ShareAlike
 3.0 and other GNU GPL compatible licenses.
 

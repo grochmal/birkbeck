@@ -2,27 +2,28 @@ Appendix E: Resources on R and GNU Octave
 
 R is a programming language for analysis and manipulation of statistical data
 (Maltoff, 2011).  It is the GNU implementation and extension of the S
-statistical language conceptualized in the AT&T labs (R-project, 2012).  The
-version of R used for the coursework was 2.15, the latest version of R 2.x
-supported at the time of writing.  The newly released R 3.0 is still in
+statistical language conceptualized at the AT&T labs (R-project, 2012).  The
+version of R used for the coursework was 2.15, which is the latest version of
+R 2.x supported at the time of writing.  The newly released R 3.0 is still in
 testing phase and shall not be used to run the script in this coursework.
 
 R is available for download from the Imperial College London at
 http://cran.ma.imperial.ac.uk or from other mirrors, which can be found under
-http://cran.r-project.org/mirrors.html.  A good, freely available, resource for
-understanding R is the introduction to R manual available on the R
+http://cran.r-project.org/mirrors.html.  A good, freely available, resource
+for understanding R is the introduction to R manual available on the R
 documentation at: http://cran.r-project.org/doc/manuals/r-release/R-intro.html
 
 GNU octave is a command line interface for solving linear and non-linear
 numerical problems (Hansen, 2011).  It is mostly compatible with Matlab (GNU,
 2013).  In this coursework the Matlab code was written and tested under GNU
-Octave before being run in the laboratories providing the Neural Network Matlab
-Toolbox.  The GNU Octave version used was 3.4, and the Matlab programming
-environment and packages were used at the version present at the Birckbeck
-College laboratories.
+Octave before being run in the laboratories that posses Matlab and Neural
+Network Matlab Toolbox copies.  The GNU Octave version used was 3.4, and the
+Matlab programming environment and packages were used at the version present
+at the Birckbeck College laboratories.
 
 Resources on GNU octave can be obtained from the GNU website on
 http://www.gnu.org/software/octave.  The download is freely available at
 http://www.gnu.org/software/octave/download.html and the Octave manual (see
-Eaton, 2007) can be found at http://www.gnu.org/software/octave/doc/interpreter
+Eaton, 2007) can be found at
+http://www.gnu.org/software/octave/doc/interpreter
 

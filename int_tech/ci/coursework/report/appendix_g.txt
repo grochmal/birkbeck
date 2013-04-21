@@ -4,32 +4,34 @@ As this text is not a formal article but a coursework I will digress some
 ungrounded opinions in this section.  In an informal way, the points below
 describe some of the decisions done during the course of preparing this text.
 
-1. I have focused the coursework on solving the classification problem, another
-possible focus could have been the detailed description of the neural networks
-built in the experiments.  This choice is more practical and makes the
-coursework miss some descriptions but it opens space for further work very
-clearly, as opposite to the descriptive choice which would not allow space for
-much speculation.
+1. I have focused the coursework on solving the classification problem,
+another possible focus could have been the detailed description of the neural
+networks built in the experiments.  This choice of focus is more practical
+than theoretical and makes the coursework miss some descriptions but it opens
+space for further work very clearly, as opposite to the descriptive choice
+which would not allow space for much speculation.
 
-2. Even trying to go forward as much as I could in the direction of solving the
-problem I haven't even got to the networks described in the lecture-7:
+2. Even trying to go forward as much as I could in the direction of solving
+the problem I have not even got to the networks described in the lecture-7:
 evolutionary computing (on slide 17).  The networks annotated there have much
-better accuracy, although as noted on the same lecture: some problems are too
-difficult to solve by normal optimisation procedures.
+better accuracy, although they accuracy is still not good enough.  As noted on
+the same lecture: some problems are too difficult to solve by normal
+optimisation procedures.
 
 3. On the same direction of thought (focus on solving the problem) I have not
-exhaustively described the Matlab NN Toolbox parameters used.  For example, the
-default output processing and configuring the networks to run without showing
-the training window were left out of the report.
+exhaustively described the Matlab NN Toolbox parameters used.  For example,
+the default output processing and configuring the networks to run without
+showing the training window were left out of the report.
 
-4. In the ASCII files with the results from the networks I made a big mistake.
-When coding the confusion matrix I considered the normal pattern as 1 0 and the
-abnormal pattern as 0 1 but when coding the network I did the opposite.  I
-corrected this in the statistics and tables but the ASCII files described by
-the coursework have exchanged columns.  In the end, I didn't had the time to
-repeat all the experiments to get this right.
+4. In the ASCII files with the results from the testing of the networks I made
+a big mistake.  When coding the confusion matrix I considered the normal
+pattern as 1 0 and the abnormal pattern as 0 1 but when coding the network I
+did the opposite.  I corrected this in the statistics and tables but the ASCII
+files described by the coursework have exchanged columns.  In the end, I
+didn't had the time to repeat all the experiments to get this right.
 
 5. In the conclusion I had to decide between PCA and network ensembles to
 suggest a possible way of improvement.  Suggesting both would make the
-conclusion too long, and I chosen PCA because I had a better reference for it.
+conclusion too long, and I ave chosen PCA because I had a better reference for
+it.
 

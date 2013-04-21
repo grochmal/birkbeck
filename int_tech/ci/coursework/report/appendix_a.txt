@@ -9,18 +9,18 @@ using the code.
 The bulk of the coursework uses the Matlab Neural Network Toolbox to run the
 necessary neural networks.  Where the use of the toolbox was not necessary
 scripts are written in R.  R is the GNU implementation and extension of the S
-statistical language conceptualised in the AT&T labs (R-project, 2013).  For
+statistical language conceptualised at the AT&T labs (R-project, 2013).  For
 more information about obtaining a copy of the R language and using it please
 read Appendix E: Resources on R and GNU Octave.
 
 Each part of the procedure described in Section 1: Methods used have it's own
-division of code.  Respectively with the section 1, you can find the data
+division of code.  Respectively with the section 1: you can find the data
 analysis for normalisation and the normalisation itself in the directory
 entitled normalisation;  the creation of the 7th frame for the extra network
 is done in the etc directory;  the nnetworks directory contains the automated
 procedure for running the neural networks using the NN Toolbox;  and the
 statistics directory contains the code to generate the final results presented
-in the tables of Section 2: Findings.  The directory thrid_party contains the
+in the tables of Section 2: Findings.  The directory third_party contains the
 original and normalized data files provided for the coursework.  Finally, the
 directory results contains the measures over the neural networks ran.  Also,
 the directory report contains the files used to create this document.
@@ -35,8 +35,8 @@ Rscript norm.R
 The Matlab files (terminating in .m) are compatible with GNU Octave, although
 GNU Octave do not provide the Neural Network Toolbox and will fail to run the
 scripts that depend on this toolbox.  To run these files you can either point
-Matlab to the directory containing the file and run the file inside Matlab, or
-run it from the command line by executing "matlab -r".  For example, to run the
+Matlab to the directory containing the file and run it inside Matlab, or run
+it from the command line by executing "matlab -r".  For example, to run the
 file data_analysis.m you can run:
 
 matlab -r data_analysis

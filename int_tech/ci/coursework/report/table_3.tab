@@ -1,4 +1,4 @@
-Table 3: Neural network comparison by training frame
+Table 3: Neural networks comparison by training frame
 
          TP  FN    TN     FP  acc         epochs  error
 frame_1  0   41    259    0   0.86333333  648.5   70.5948145

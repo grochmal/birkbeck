@@ -4,25 +4,25 @@ The original set of experiments proven to be inadequate for the practical
 problem of colonoscopy cancer diagnosis.  The networks constructed have high
 accuracy but this is only because of the majority of normal patterns in the
 datasets.  These networks are biased towards normal patterns and are
-practically unable to recognise any abnormal patterns.  As well, if these
-networks were to be deployed to analyse real world data their accuracy would
-not decline, as there are few people with colon cancer compared to the people
+practically unable to recognise any abnormal pattern.  If these networks were
+to be deployed to analyse real world data their accuracy would not decline, as
+there are few people with colon cancer compared to the number of people
 without colon cancer.  But this misses the purpose of the networks in helping
 diagnosis of cancer, a tool that will always respond with a normal pattern is
-practically the same as not having the tool at all.
+practically the same as not having no tool at all.
 
 On the constructed 7th frame, that contains the same amount of normal and
 abnormal patterns, the networks trained produced better results.  Although the
 results are not satisfactory because of a high error and low accuracy of the
-networks, the results on the 7th frame are a step forward towards finding a
+networks the results on the 7th frame are a step forward towards finding a
 reliable way of classifying colon cancer cases based on video frames.  A
-suggested approach to improve the 7th frame dataset to be possible to train
-better networks on it would be to perform PCA (Principal Component Analysis).
-PCA does a dimensionality reduction of the data (Pearson, 1901 cited in
-Negnevitsky, 2011) and will remove the less important features of the data in
-favor of the most important ones.  This less important data features might
-cause more noise than being helpful in the classification, removing them might
-help the networks trained on the data.  Of course, the network architecture
-would need to change slightly to receive input from data with reduced
+suggested approach to improve the 7th frame dataset to train better networks
+would be to perform PCA (Principal Component Analysis).  PCA does a
+dimensionality reduction of the data (Pearson, 1901 cited in Negnevitsky,
+2011) and will remove the less important features of the data in favor of the
+most important ones.  These less important data features might cause more
+noise than being helpful in the classification, removing them might help the
+accuracy of the networks trained on the data.  Of course, the networks
+architecture would need to change to receive input from data with reduced
 dimensionality.
 

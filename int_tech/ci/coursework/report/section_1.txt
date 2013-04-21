@@ -1,101 +1,110 @@
 1. Methods used
 
 The artificial neural networks to perform the classification of colonoscopy
-video frames were build using the Matlab Neural Network Toolbox.  Although, to
+video frames were built using the Matlab Neural Network Toolbox.  Although, to
 construct a good neural network it takes much more than a toolbox with neural
 network functions.  As said by Negnevitsky (2011) the neural network is only
 as good as the data used to train it, therefore the procedures to select the
 correct data and tame it to be suitable to train a neural network are as
-important as the use of the network itself.  These procedures as well as the
-construction of the neural networks itself is described below.
+important as the use of the network itself.  The procedures used to tame the
+data as well as the construction of the neural networks itself are described
+below.
 
 1.1 Decisions before building the neural networks
 
 Data need to be prepared before beginning to build a neural network (Beale,
-2013).  The data in the frames provided was not normalised, but it could be
-divided into 5 different patters.  In each of the provided sample vectors with
-17 columns it hold that: the first 4 columns contain values between 0 and 1,
-the following 4 columns values between 0 and 6, the next 4 columns values
-between 0 and 1, then next 4 columns with values between 859 and 13 165 724
-and the last column is the desired output that provides values of either 0 or
-255.  It is clear that the last column is normalised from 0 and 255 values to
-0 and 1 values, but the remaining 16 columns that form the input vector need a
-more complex procedure.
+2013).  The data in the frames provided was not normalised, but the samples
+could be divided into 5 different parts according to its values.  In each of
+the provided sample vectors with 17 columns it hold that: the first 4 columns
+contain values between 0 and 1, the following 4 columns values between 0 and
+6, the next 4 columns values between 0 and 1, then next 4 columns hold values
+between 859 and 13 165 724 and the last column is the desired output that
+provides values of either 0 or 255.  The normalisation for the last column was
+clear: from the 0 and 255 values we obtained 0 and 1 values.  But the
+remaining 16 columns that form the input vector needed a more complex
+procedure.
 
 Although Matlab can normalise the data on the input to the neural network
 (Beale, 2013), it would normalise each input vector separately.  With each
 vector normalised separately the last 4 columns would have more impact on the
 result than all other columns of the sample together, in other words we would
 be practically ignoring most of the sample features.  Instead, the
-normalisation shall happen between the samples, where each column of the
-sample is normalized to values between 0 and 1 by dividing all column values
-by the maximum value in that column.  In the normalisation procedure it is
-important that the normalised values keep the same distribution as the
-unnormalized values (Koenker, 2001), this is achieved by the normalisation
-described above.
+normalisation needed to happen between the samples.  Also, in a normalisation
+procedure it is important that the normalised values keep the same
+distribution as the unnormalized values (Koenker, 2001), this is achieved by
+following normalisation.  Each feature column of the samples (same column in
+each sample) was normalized to values between 0 and 1 by dividing all column
+values by the maximum value in that column.
 
-With the data normalised the networks could be constructed using the NN
+With the data normalised, the networks could be constructed using the NN
 Toolbox.  The selected training algorithm was Rprop, because of it's reliable
 speed even when the network size increases (MathWorks Rprop, 2013).  The
 networks were constructed with one hidden layer and the number of neurons in
-this layer was varied during the experiments.  Given the fact that the data
-was normalised between 0 and 1 the input function was set to accept data
-between 0 and 1, instead of normalising it to be between -1 and 1 as per
-default (Beale, 2013).  Also, the hidden layer was assigned with the
-log-sigmoid transfer function outputting values between 0 and 1 in the same
-way as it's input.
+this layer was varied during the experiments.  The input layer contained 16
+neurons, one for each value in the sample vector, and the output layer
+contained 2 neurons, 1 for each pattern to be classified.  Given the fact that
+the data was normalised between 0 and 1 the input function was set to accept
+data between 0 and 1, instead of normalising it to be between -1 and 1 as per
+Matlab default (Beale, 2013).  Also, the hidden layer was assigned to use the
+log-sigmoid activation function outputting values between 0 and 1 in the same
+manner as its input.
 
 1.2 Learning of the networks
 
 Rprop (resilient backpropagation) used as the training algorithm was
-configured with the default generalisation feature of the Toolbox, the early
-stopping algorithm (Beale, 2013).  In the early stopping algorithm part of the
-training data is divided into a validation set, which is monitored whether
-it's performance improves during training.  When the validation set do not
-improve over many epochs the training is interrupted.  To ensure that the
-network will most probably stop because of the validation set the number of
+configured with the default feature of the Toolbox to prevent overtraining,
+the early stopping algorithm (Beale, 2013).  In the early stopping algorithm
+part of the training data is selected into a validation set, which is
+monitored whether it's performance improves during training.  When the
+validation set do not improve over many epochs the training is interrupted.
+To ensure that the network will most probably stop because of this validation
+set, and not from other causes that could stop the training: the number of
 maximum epochs was increased to 12 000, the error goal set very low (1e-6) and
 batch training was used.  With the network configured in this manner the
-number of epochs over which the validation set must stay without improvement
-could be increased to 120, a high value for this parameter.
+number of epochs over which the validation set must stay without performance
+improvement could be increased to 120, which is a high value for this
+parameter.
 
 The batch training method was done by using the Toolbox train function (Beale,
 2013), this training implementation is faster than concurrent training in
-Matlab (Beale, 2013).  Within training, a better speed (without affecting the
-results) was achieved when weight decay was used.  Therefore in the
-experiments the weight decay function from the Toolbox, 'msereg', was used
-(MathWorks Functions, 2013).  Finally, the output layer for a patter
-recognition network is normally assigned a tan-sigmoid transfer function
-(Beale, 2013), as was done in the networks in the experiments.
+Matlab (Beale, 2013).  During training a better speed (without affecting the
+results) was achieved when weight decay was used, therefore in the experiments
+the weight decay function from the Toolbox, 'msereg', was used (MathWorks
+Functions, 2013).  Finally, the output layer for a pattern recognition network
+is normally assigned a tan-sigmoid transfer function (Beale, 2013), the same
+was done in the networks in the experiments.
 
 Testing of what the networks learned was done by using the confusion matrix
 (Magoulas, 2013) and by calculating the sum of squared errors (Negnevitsky,
 2011) from the output vector.  The values of the sum of squared errors give a
-good estimate of network quality when generated on the output vector from the
-training set and a good estimate of network generalisation when generated on
-the output vector from the testing set.  Due to technical difficulties the
-output files from the networks do not present the data in the form as
-requested in the coursework, the first 4 columns in the files shall contain:
-successfully recognised normal patters, unsuccessfully recognised normal
-patterns, successfully recognised abnormal patters and unsuccessfully
-recognised abnormal patters.  Instead the order of these columns is as follows:
-successfully recognised abnormal patterns, unsuccessfully recognised abnormal
-patterns, successfully recognised normal patterns and unsuccessfully recognised
-normal patterns.
+good estimate of the network quality when generated on the output vector from
+the training set and a good estimate of the network generalisation when
+generated on the output vector from the testing set.
 
 1.3 Running the networks and performing further analysis
 
-The networks were by automated scripts.  Instead of the proposed 5 to 55
-increasing by 10 neurons hidden nodes networks the increase has been done by 5
-neurons, the reason for this procedure is discussed in section 2. Findings.
-Also an extra frame 7th was created from the 6 frames proposed, this frame
-contains the same amount of normal and abnormal frames.  The reason for
-creating this 7th frame is discussed as well in section 2. Findings.  Testing
-of all frames, including the 7th extra frame, was performed over the entire
-test dataset.
+Each experiment was composed of running 100 networks with a different number
+of hidden nodes, this was repeated over each of the training frames.  Due to
+technical difficulties the output files from the networks do not present the
+data in the form as requested in the coursework, the first 4 columns in the
+files shall contain: successfully recognised normal patters, unsuccessfully
+recognised normal patterns, successfully recognised abnormal patters and
+unsuccessfully recognised abnormal patters.  Instead the order of these
+columns is as follows: successfully recognised abnormal patterns,
+unsuccessfully recognised abnormal patterns, successfully recognised normal
+patterns and unsuccessfully recognised normal patterns.
 
-Input data analysis, normalisation check and simple statistical analysis were
-performed by tools written in the R language (R-proj, 2013).  These tools were
-written as part of the coursework and are presented together with this
-document.
+The networks were run by automated scripts.  The number of hidden nodes in
+each experiment was 5 to 55 in steps of 5, instead of the proposed 5 to 55
+increasing by 10 neurons at each step.  The reason for this procedure is
+discussed in section 2. Findings.  Also, an extra 7th frame was created from
+the 6 frames proposed, this frame contains the same amount of normal and
+abnormal samples.  The reason for creating this 7th frame is discussed as well
+in section 2. Findings.  Testing of all frames, including the 7th extra frame,
+was performed over the entire test dataset.
+
+Input data analysis, normalisation, normalisation checks and simple
+statistical analysis were performed by tools written in the R language
+(R-proj, 2013).  These tools were written as part of the coursework and are
+presented together with this document.
 
