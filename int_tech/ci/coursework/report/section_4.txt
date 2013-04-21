@@ -1,4 +1,64 @@
 4. Bibliography
 
-taken frm draft_biliography at some point
+(Beale, 2013) Beale M, Hagan M, Demuth H
+  Neural Network Toolbox User's Guide R2012a
+  MathWorks, 2013
+
+(CancerQuest, 2013) Cancer Quest, Section Summary: Diagnosis and Detection
+  available at http://www.cancerquest.org/detection-diagnosis-summary.html
+  (last accessed on 2013-04-16)
+
+(CC, 2013) Creative Commons
+  available at http://creativecommons.org
+  (last accessed on 2013-04-16)
+
+(Eaton, 2007) Eaton J, Bateman D, Hauberg S
+  GNU Octave Version 3.0.1 Manual
+  Soho Books, 2007
+
+(GNU, 2013) The GNU project and the Free Software Foundation
+  available at http://www.gnu.org and at http://www.fsf.org
+  (last accessed on 2013-04-16)
+
+(Hansen, 2011) Hansen J
+  GNU Octave Beginner's Guide
+  Packt, 2011
+
+(Hofvind, 2004) Hofvind S, Thoresen S, Tretli S
+  The cumulative risk of a false-positive recall in the Norwegian
+  Breast Cancer Screening Program
+  Wiley, 2004
+
+(Koenker, 2001) Koenker R, Hallock K
+  Quantile Regression
+  Journal of Economic Perspectives, 2001
+
+(Magoulas, 2013) Magoulas G
+   Computation Intelligence laboratory session sheets
+   Computational Intelligence module during Spring 2013
+
+(Maltoff, 2011) Maltoff N
+  The Art of R Programming
+  No Starch Press, 2011
+
+(MathWorks Functions, 2013) MathWorks, Neural Network Toolbox Function List
+  available at http://www.mathworks.co.uk/help/nnet/functionlist.html
+  (last accessed on 2013-04-11)
+
+(MathWorks Rprop, 2013) MathWorks, Rprop NN training
+  available at http://mathworks.com/matlabcentral/fileexchange/31445-rprop
+  (last accessed on 2013-04-11)
+
+(Negnevitsky, 2011) Negnevitsky M
+  Artificial Intelligence, Chapters 6 and 10
+  Pearson, 2011
+
+(Petticrew, 2000) Petticrew M, Sowden A, Lister-Sharp D, Wright K
+  False-negative results in screening programmes: systematic
+  review of impact and implications
+  University of Manchester, 2000
+
+(R-proj, 2013) The R project for Statistical Computing
+  available at http://www.r-project.org
+  (last accessed on 2013-04-16)
 

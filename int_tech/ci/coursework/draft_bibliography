@@ -1,7 +1,7 @@
-Matlab website
+Matlab Website
 ##############
 
-(MathWorks Functions, 2013) MathWorks, Neural Network Toolbox Function List,
+(MathWorks Functions, 2013) MathWorks, Neural Network Toolbox Function List
   available at http://www.mathworks.co.uk/help/nnet/functionlist.html
   (last accessed on 2013-04-11)
 
@@ -21,7 +21,7 @@ NN Toolbox
   Neural Network Toolbox User's Guide R2012a
   MathWorks, 2013
 
-From the course
+From the Course
 ###############
 
 (Magoulas, 2013) Magoulas G
@@ -31,34 +31,54 @@ From the course
 Programming Books
 #################
 
-(Eaton, 2007) Eaton, J; Bateman, D; Hauberg, S
+(Eaton, 2007) Eaton J, Bateman D, Hauberg S
   GNU Octave Version 3.0.1 Manual
   Soho Books, 2007
 
-(Hansen, 2011) Hansen, J
+(Hansen, 2011) Hansen J
   GNU Octave Beginner's Guide
   Packt, 2011
 
-(Maltoff, 2011) Maltoff, N
+(Maltoff, 2011) Maltoff N
   The Art of R Programming
   No Starch Press, 2011
 
 AI Book
 #######
 
-(Negnevitsky, 2011) Negnevitsky, M
-  Artificial Intelligence, Chapters 6
+(Negnevitsky, 2011) Negnevitsky M
+  Artificial Intelligence, Chapters 6 and 10
   Pearson, 2011
 
 Statistic Article
 #################
 
-(Koenker, 2001) Koenker, R; Hallock, K
+(Koenker, 2001) Koenker R, Hallock K
   Quantile Regression
   Journal of Economic Perspectives, 2001
 
-Websites
-########
+Medical Articles
+################
+
+(Hofvind, 2004) Hofvind S, Thoresen S, Tretli S
+  The cumulative risk of a false-positive recall in the Norwegian
+  Breast Cancer Screening Program
+  Wiley, 2004
+
+(Petticrew, 2000) Petticrew M, Sowden A, Lister-Sharp D, Wright K
+  False-negative results in screening programmes: systematic
+  review of impact and implications.
+  University of Manchester, 2000
+
+Cancer Website
+##############
+
+(CancerQuest, 2013) Cancer Quest, Section Summary: Diagnosis and Detection
+  available at http://www.cancerquest.org/detection-diagnosis-summary.html
+  (last accessed on 2013-04-16)
+
+Programming and Licenses Websites
+#################################
 
 (R-proj, 2013) The R project for Statistical Computing
   available at http://www.r-project.org
@@ -69,6 +89,6 @@ Websites
   (last accessed on 2013-04-16)
 
 (CC, 2013) Creative Commons
-  availabel at http://creativecommons.org
+  available at http://creativecommons.org
   (last accessed on 2013-04-16)
 

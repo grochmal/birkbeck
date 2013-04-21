@@ -49,14 +49,15 @@ the amount of data (the error function is a sum after all).
 Table 2.
 
 Although these networks have high accuracy they completely miss their purpose:
-helping in diagnosing colon cancer.  In diagnosis positive patterns are much
-more important than negative ones.  Diagnostic methods have a degree of
-failure, but it is less harmful for a method to point that a patient not
-having a condition has it (false positive) than pointing that a patient with
-the condition do not have it (false negative).  This is because a false
-positive shall be submitted to other diagnostic methods to confirm his
+helping in diagnosing colon cancer (CancerQuest, 2013).  In diagnosis positive
+patterns are much more important than negative ones.  Diagnostic methods have
+a degree of failure, but it is less harmful for a method to point that a
+patient not having a condition has it (false positive) than pointing that a
+patient with the condition do not have it (false negative).  This is because a
+false positive shall be submitted to other diagnostic methods to confirm his
 condition, or in this case fail to confirm.  But a false negative will not be
-submitted any more tests probably causing his condition to aggravate.
+submitted any more tests probably causing his condition to aggravate
+(Petticrew, 2000 and Hofvind, 2004).
 
 Current setup of the networks have good accuracy but pitiful practical
 performance, in the next section we will try to improve this practical
