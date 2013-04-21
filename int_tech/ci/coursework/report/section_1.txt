@@ -81,7 +81,7 @@ patterns, successfully recognised abnormal patters and unsuccessfully
 recognised abnormal patters.  Instead the order of these columns is as follows:
 successfully recognised abnormal patterns, unsuccessfully recognised abnormal
 patterns, successfully recognised normal patterns and unsuccessfully recognised
-abnormal patterns.
+normal patterns.
 
 1.3 Running the networks and performing further analysis
 
