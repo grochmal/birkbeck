@@ -28,16 +28,16 @@ Although Matlab can normalise the data on the input to the neural network
 (Beale, 2013), it would normalise each input vector separately.  With each
 vector normalised separately the last 4 columns would have more impact on the
 result than all other columns of the sample together, in other words we would
-be practically ignoring most of the sample features.  Instead, the
-normalisation needed to happen between the samples.  Also, in a normalisation
-procedure it is important that the normalised values keep the same
-distribution as the unnormalized values (Koenker, 2001), this is achieved by
-following normalisation.  Each feature column of the samples (same column in
-each sample) was normalized to values between 0 and 1 by dividing all column
-values by the maximum value in that column.
+be practically ignoring most of the sample features.  The normalisation needed
+to happen between the samples instead.  Also, it is important in a
+normalisation procedure that the normalised values keep the same distribution
+as the unnormalized values (Koenker, 2001), this is achieved by following
+normalisation.  Each feature column of the samples (same column in each
+sample) was normalized to values between 0 and 1 by dividing all column values
+by the maximum value in that column.
 
 With the data normalised, the networks could be constructed using the NN
-Toolbox.  The selected training algorithm was Rprop, because of it's reliable
+Toolbox.  The selected training algorithm was Rprop, because of its reliable
 speed even when the network size increases (MathWorks Rprop, 2013).  The
 networks were constructed with one hidden layer and the number of neurons in
 this layer was varied during the experiments.  The input layer contained 16
@@ -55,8 +55,8 @@ Rprop (resilient backpropagation) used as the training algorithm was
 configured with the default feature of the Toolbox to prevent overtraining,
 the early stopping algorithm (Beale, 2013).  In the early stopping algorithm
 part of the training data is selected into a validation set, which is
-monitored whether it's performance improves during training.  When the
-validation set do not improve over many epochs the training is interrupted.
+monitored whether its performance improves during training.  When the
+validation set does not improve over many epochs the training is interrupted.
 To ensure that the network will most probably stop because of this validation
 set, and not from other causes that could stop the training: the number of
 maximum epochs was increased to 12 000, the error goal set very low (1e-6) and
@@ -89,7 +89,7 @@ technical difficulties the output files from the networks do not present the
 data in the form as requested in the coursework, the first 4 columns in the
 files shall contain: successfully recognised normal patters, unsuccessfully
 recognised normal patterns, successfully recognised abnormal patters and
-unsuccessfully recognised abnormal patters.  Instead the order of these
+unsuccessfully recognised abnormal patters.  Instead, the order of these
 columns is as follows: successfully recognised abnormal patterns,
 unsuccessfully recognised abnormal patterns, successfully recognised normal
 patterns and unsuccessfully recognised normal patterns.

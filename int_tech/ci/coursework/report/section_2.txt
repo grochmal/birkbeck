@@ -25,31 +25,31 @@ statistically, by taking the median of the values from all 100 runs.  These
 networks were then compared based on the number of hidden nodes by merging the
 networks from each frame, using again the median.
 
-During the experiments described above, with the number of hidden nodes
-extending from 5 to 55 in steps of 10 no big changes to the networks
-performance could be seen, see Table 1.  Even by increasing the granularity of
-the number of hidden nodes into steps of 5, and therefore the number of
-networks grew to 6600, no big changes in the performance of the networks were
-seen.  Based on the training sets, the only major difference between the
-networks is that the smaller networks were trained faster, as the accuracy and
-error were very similar across all the networks.
+During the experiments described above, no big changes to the networks
+performance could be seen for the number of hidden nodes extending from 5 to
+55 in steps of 10, see Table 1.  Even by increasing the granularity of the
+number of hidden nodes into steps of 5, and therefore the number of networks
+grew to 6600, no big changes in the performance of the networks were seen.
+Based on the training sets the only major difference between the networks is
+that the smaller networks were trained faster, as the accuracy and error were
+very similar across all the networks.
 
 Table 1
 
-Most importantly, in a statistical analysis based on the median, we are still
-looking at Table 1, the networks were unable to find any true positives
+Most importantly, in a statistical analysis based on the median (we are still
+looking at Table 1) the networks were unable to find any true positives
 (successfully recognised abnormal patterns) or false positives (unsuccessfully
 recognised normal patterns).  In other words, the networks were unable find
 abnormal (positive) patterns and the high accuracy, above 88%, was caused only
 by the fact that in the training data there are many more negative patterns
 than positive ones.
 
-During the testing, Table 2, the situation did not improve.  Although the
-accuracy dropped just a little the error was higher, but this was only caused
-by the bigger number of samples in the testing set (the error function is a
-sum after all).  Again, the networks only identified positive patterns by
-sheer luck and the high accuracy was only caused by the bigger number of
-negative than positive patterns.
+During the testing, Table 2, the situation did not improve.  The accuracy
+dropped just a little and the error was higher, but this was only caused by
+the bigger number of samples in the testing set (the error function is a sum
+after all).  Again, the networks only identified positive patterns by sheer
+luck and the high accuracy was only caused by the bigger number of negative
+than positive patterns.
 
 Table 2.
 
@@ -69,7 +69,7 @@ The current setup of the networks have good accuracy but pitiful practical
 performance, in the next section we will try to improve this practical
 performance by changing the dataset used to train the networks.  Both
 experiments use the median for statistical comparison of the runs of 100
-networks, whilst we could use the mean instead it would only provide us with
+networks, whilst we could use the mean instead, it would only provide us with
 noisier statistics.
 
 2.2 A better dataset for training
@@ -82,17 +82,16 @@ positive and negative samples were chosen from these 6 frames.  The 7th frame
 have 50% abnormal samples whilst all other 6 frames have less than 20%.
 
 As previously a set of 100 networks was trained on this frame for each set of
-hidden nodes.  Although, the interesting comparison of the networks trained on
-the 7th frame is not between the number of hidden nodes but against the
-networks run on the other 6 frames.  We see this comparison between frames in
-Table 3.
+hidden nodes.  The interesting comparison of the networks trained on the 7th
+frame is not between the number of hidden nodes but against the networks run
+on the other 6 frames.  We see this comparison between frames in Table 3.
 
 Table 3.
 
 Looking at the accuracy, training time and sum of squared errors for the
-trained networks on frame 7 these appear inferior to the networks on the first
-6 frames: it's accuracy is much lower, the training time is longer and the
-error is big.  But from the practical point of view when using the frame 7
+trained networks on frame 7, these appear inferior to the networks on the
+first 6 frames: its accuracy is much lower, the training time is longer and
+the error is big.  But from the practical point of view when using the frame 7
 networks for diagnosis they are superior to the networks of the frames 1 to 6.
 The networks trained on frame 7 can recognise positive (abnormal) patterns.
 The number of true positives and true negatives is also bigger than the number
@@ -102,9 +101,9 @@ most common pattern in the dataset.
 
 During the testing, the generalisation of the networks trained on the 7th
 frame do not perform so well, see Table 4.  The high number of false positives
-indicates that these networks are slightly biased towards abnormal patterns,
-the low accuracy, as well, do not suggest a good quality for these networks.
-On the other hand, the frame 7 networks still performs much better than the
+indicates that these networks are slightly biased towards abnormal patterns;
+as well, the low accuracy do not suggest a good quality of these networks.  On
+the other hand, the frame 7 networks still performs much better than the
 networks on the other 6 frames and the little number of false negatives that
 the frame 7 networks presents is one of the most important factors for a good
 diagnosis help.

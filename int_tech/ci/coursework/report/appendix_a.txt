@@ -13,7 +13,7 @@ statistical language conceptualised at the AT&T labs (R-project, 2013).  For
 more information about obtaining a copy of the R language and using it please
 read Appendix E: Resources on R and GNU Octave.
 
-Each part of the procedure described in Section 1: Methods used have it's own
+Each part of the procedure described in Section 1: Methods used have its own
 division of code.  Respectively with the section 1: you can find the data
 analysis for normalisation and the normalisation itself in the directory
 entitled normalisation;  the creation of the 7th frame for the extra network
