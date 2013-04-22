@@ -31,7 +31,7 @@ The original text of this document, the code for the experiments and the
 results obtained can be downloaded from the following public location:
 http://github.com/grochmal/birkbeck/tree/master/int_tech/ci/coursework
 
-Form more information on Copyleft licenses and how these affect the Copyright
+For more information on Copyleft licenses and how these affect the Copyright
 of a work see Appendix F: Resources on Creative Commons Attribution-ShareAlike
 3.0 and other GNU GPL compatible licenses.
 
