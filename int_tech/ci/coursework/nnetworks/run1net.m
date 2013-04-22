@@ -14,11 +14,11 @@ function [ epochs,         ...
     net.trainParam.max_fail        = 120;
     net.trainParam.showWindow      = false;
     net.trainParam.showCommandLine = true;
-	net.trainParam.show            = 60;
+    net.trainParam.show            = 60;
     netc = configure(net, trn, dgtrn);
     neti = init(netc);
-	neti.inputs{1}.processParams{2}.ymin  =  0;
-	neti.outputs{2}.processParams{2}.ymin = -1;
+    neti.inputs{1}.processParams{2}.ymin  =  0;
+    neti.outputs{2}.processParams{2}.ymin = -1;
     [nett, tr] = train(neti, trn, dgtrn);
     epochs        = tr.num_epochs;
     restrn        = nett(trn);

@@ -1,5 +1,5 @@
 % Script running the coursework experiments,
-% all networks are created, tranined and finally evaluated.
+% all networks are created, trained and finally evaluated.
 
 clear all;  % for GNU Octave it shall be 'clear -all'
 
