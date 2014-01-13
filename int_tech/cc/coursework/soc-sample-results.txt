@@ -1,0 +1,18 @@
+THIS FILE IS UNIX ENCODED IF YOU DO NOT SEE NEWLINES CONVERT IT
+
+Running the PageRank algorithm (`pgrank_stripes.py') over the `soc-sample.txt'
+file gives the following results:
+
+"0"	300.63595555174908
+"59"	284.69940656573038
+"30"	269.59648352146178
+"61"	229.98197442524977
+"34"	226.04386594196782
+"27"	223.2487480474264
+"18"	222.74103384579908
+"74"	221.07128029154046
+"12"	214.75424520354701
+"31"	206.34802555291026
+
+The unity these results are normalised to is unity = 10000.
+

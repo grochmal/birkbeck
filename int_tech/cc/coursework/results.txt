@@ -1,0 +1,73 @@
+THIS FILE IS UNIX ENCODED IF YOU DO NOT SEE NEWLINES CONVERT IT
+
+Name: Michal Grochmal
+Module: Cloud Computing
+Date: 2012-01-12
+
+Q1. Which 10 word are most likely to be said immediately after the word "my",
+i.e., with the highest conditional probability P(w'|w="my")?  Please list them
+in descending order.
+
+The result of this question can be replicated by running the script
+`condprob_stripes.py' and it is the following:
+
+"dear|my"	0.14791154791154792
+"own|my"	0.047174447174447173
+"father|my"	0.032923832923832927
+"mother|my"	0.022604422604422605
+"brother|my"	0.019656019656019656
+"life|my"	0.01891891891891892
+"word|my"	0.018673218673218674
+"heart|my"	0.016216216216216217
+"dearest|my"	0.015970515970515971
+"sister|my"	0.015970515970515971
+
+It was achieved with a run in Amazon EMR with 3 m1.small instances.
+
+------------------------------------------------------------
+
+Q2. Which 10 users have the highest PageRank scores in this social network?
+(in the Epinions who-trust-whom social network)  Please list them in descending
+ordr.
+
+Following results can be replicated by running the `pgrank_stripes.py' script.
+If attempting to replicate the results it is important to configure the EMR
+cluster to use big machines, as using the default m1.small machines will take
+the job too much time to complete (that is, if it is actually possible to
+complete the job on such small instances).
+
+"18"	38218.090233723931
+"737"	28556.445944317842
+"118"	18893.103315558474
+"1719"	17716.868104016023
+"40"	17208.2318877486
+"136"	17099.533771353854
+"143"	16692.305668436624
+"790"	16361.173652445532
+"725"	14032.744736327846
+"401"	13878.968259246132
+
+These results are normalised to unity = 7587900 (number of nodes * initial page
+rank value in each node), This is done to escape possible floating point
+precision problems.  To achieve the results as if 1 was assigned to each node
+these results shall be divided by 75879.  Or as a more interesting way of
+looking at these results to achieve the probability of a random crawl arriving
+at any of those nodes (a normalised PageRank) we shall divide these results
+by 7587900, as shown below:
+
+"18"	0.0050367150639470644
+"737"	0.0037634188569061061
+"118"	0.0024898988278125008
+"1719"	0.0023348842372746112
+"40"	0.002267851696483691
+"136"	0.002253526505535636
+"143"	0.0021998584151658065
+"790"	0.0021562189344147302
+"725"	0.0018493581539461307
+"401"	0.0018290921413363556
+
+There is a more extensive discussion about the possible problems with floating
+point numbers precision in the doc strings (and comments) of the
+`pgrank_stripes.py' script.  The report.txt document contains the intricacies
+of the different sizes of instances used to run this task.
+

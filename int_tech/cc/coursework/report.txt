@@ -1,0 +1,81 @@
+THIS FILE IS UNIX ENCODED IF YOU DO NOT SEE NEWLINES CONVERT IT
+
+Name: Michal Grochmal
+Module: Cloud Computing
+Date: 2012-01-12
+
+Task Summary
+------------
+
+I have used the python module mrjob (mapreduce job) that can be found at:
+http://pythonhosted.org/mrjob/ .  The module allows to concatenate multiple
+MapReduce jobs together and configure each of the jobs separately.  Thanks to
+that the discussion of how many map and reduce tasks are used for each job is
+in the comments (in the code) next to the configuration.  Much of the
+discussion about the design of the map reduce algorithms can also be found in
+the comments and doc strings.  Yet, here is a small summary of the tasks.
+
+The first task ran for about 20 minutes on AWS using a very modest
+configuration, three m1.small instances.  The debugging of this task on a
+local configuration was very simple.
+
+PageRank (the second task) was much more interesting.  A MapReduce job over
+the 75k nodes could not be run locally so for debugging I have selected all
+edges that link nodes from 0 to 99 (the sample used can be found in the
+subdirectory `extra_files').  After testing this locally I have debugged it
+on EMR.  The EMR configuration for this task was to use 1 m1.small machine as
+the master node and 6 c1.medium machines.  This task ran on EMR for about half
+an hour.  Details of the configuration for this tasks (debug over a sample of
+100 nodes) and other tasks can be found in the configuration file for the
+mrjob module called `mrjob.conf' (also found in the `extra_files'
+subdirectory).
+
+After running the sample job (100 nodes) over many iterations of the PageRank
+algorithm I found that the page rank value in the problem is decreasing.
+Technically speaking the probability mass is being reduced.  In the literature
+I have found that the redistribution of the lost mass was a solution for this
+issue, yet it requires each iteration of the PageRank algorithm to be formed
+from two MapReduce jobs instead of one.
+
+Applying the redistribution of the lost probability mass the sample problem
+converged to stable values.  10 iterations over the small sample are more than
+enough for it to converge.  In the previously described configuration (one
+m1.small master and six c1.medium slave instances) this task runs for a little
+less than half an hour.
+
+Being sure that the algorithm works on the sample problem I started a job of
+30 PageRank iterations over the entire graph (75k nodes).  The EMR
+configuration for this task needed to be increased:  I used the one m1.small
+master and six m1.large instances.  This tasks returned after almost 2 hours
+with results.  30 iterations shall be enough to converge to correct results,
+yet I wanted to test it.
+
+To test the results from the previous experiment I increased the iterations to
+50 and the EMR configuration to use c1.xlarge instances.  This experiment ran
+for more than 2 hours and produced exactly the same results as the experiment
+with 30 iterations.  Therefore we can say that the PageRank had already
+converged in the 30 iteration experiment.
+
+Statistical Purposes Only
+-------------------------
+
+It took me about 6 full days to complete this coursework.  The main issue was
+that I started by using the "pairs" approach (instead of "stripes") but I had
+big issues to configure the partitioner.  Using Hadoop streaming (mrjob uses
+hadoop streaming to perform the tasks) you cannot write your own partitioner
+so you need to use the ones prepackaged with hadoop.  To make things worse
+mrjob and EMR have a very different idea of hadoop compatibility, therefore
+options that worked for mrjob local environment (or with hadoop 0.x) did not
+work in EMR (with hadoop 1.x).  Shortly after I started running the jobs on
+EMR I found out that it is almost impossible to debug them.
+
+After struggling with hadoop compatibility for the first 3 days I rewritten
+both tasks using the "stripes" approach and wiped all the partitioner
+configuration.  Not depending on the partitioner anymore it was possible to
+debug locally what runs on EMR.  From there it was a walk in the park.
+
+Thanks to the struggle with the partitioner I had little time to write this
+report and check code documentation, there might be some typos here and there.
+
+It was fun.
+
