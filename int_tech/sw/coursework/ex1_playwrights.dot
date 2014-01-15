@@ -1,0 +1,18 @@
+digraph {
+    rankdir=LR;
+    {rank=same; Playwright Poet Drama Poem}
+    Shakespear [style="filled" color="darkgreen" fillcolor="aquamarine"];
+    Playwright [style="filled" color="darkgreen" fillcolor="aquamarine"];
+    Poet       [style="filled" color="darkgreen" fillcolor="aquamarine"];
+    Hamlet     [style="filled" color="darkgreen" fillcolor="aquamarine"];
+    Sonet96    [style="filled" color="darkgreen" fillcolor="aquamarine"];
+    Drama      [style="filled" color="darkgreen" fillcolor="aquamarine"];
+    Poem       [style="filled" color="darkgreen" fillcolor="aquamarine"];
+    Shakespear -> Playwright [label="rdf:type" color="blue" fontcolor="blue"];
+    Shakespear -> Poet       [label="rdf:type" color="blue" fontcolor="blue"];
+    Shakespear -> Hamlet     [label="wrote" color="blue" fontcolor="blue"];
+    Shakespear -> Sonet96    [label="wrote" color="blue" fontcolor="blue"];
+    Hamlet  -> Drama [label="rdf:type" color="blue" fontcolor="blue"];
+    Sonet96 -> Poem  [label="rdf:type" color="blue" fontcolor="blue"];
+}
+

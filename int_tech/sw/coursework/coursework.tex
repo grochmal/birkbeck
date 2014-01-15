@@ -1,0 +1,57 @@
+\documentclass[a4paper,12pt]{article}
+
+%\usepackage{syntonly}
+%\syntaxonly
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+\title{Coursework for the Semantic Web module}
+\author{Michal Grochmal
+  $<$\href{mailto:grochmal@member.fsf.org}{grochmal@member.fsf.org}$>$
+}
+\date{\today}
+
+\usepackage[pdftex,colorlinks=true]{hyperref}
+
+\begin{document}
+\maketitle
+
+\section[Queation 1]{Answer to question 1}
+\subsection[Describe]{Describe in English the contents of the document}
+\begin{itemize}
+
+\item[] \emph{Hamlet} is a \emph{drama}.
+
+\item[] \emph{Sonet96} is a \emph{poem}.
+
+\item[] \emph{"wrote"} is a poperty (role) which has domain \emph{writter} and
+range \emph{literary\_content}.
+
+\item[] \emph{poem} is a concept.
+
+\item[] \emph{drama} is a concept.
+
+\item[] \emph{Shakespear} wrote \emph{Hamlet} and wrote \emph{Sonet96}.
+\emph{Shakespear} is a \emph{playwright}.
+
+\end{itemize}
+
+\newpage
+\subsection[Draw]{Draw the graph representation of the doument}
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=\textwidth]{ex1_playwrights}
+\caption{Graph representation of the RDF document}
+\label{shakespear}
+\end{figure}
+Figure \ref{shakespear} shows the graph representation.
+
+\subsection[RDF/S]{Represent the following in RDF/S}
+
+\end{document}
+
