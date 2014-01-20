@@ -8,7 +8,7 @@ EPS    = epstopdf
 EPSOUT = -o
 LTFS   = coursework.aux coursework.out coursework.log \
          coursework.idx coursework.ilg coursework.ind
-IMGS   = ex1_playwrights.pdf
+IMGS   = ex1_playwrights.pdf ex2_bob.pdf ex4_dwarf.pdf
 
 all: coursework.pdf
 

@@ -9,6 +9,7 @@
 
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{fancyvrb}  % Verbatim instead of verbatim
 
 \title{Coursework for the Semantic Web module}
 \author{Michal Grochmal
@@ -19,30 +20,30 @@
 \usepackage[pdftex,colorlinks=true]{hyperref}
 
 \begin{document}
+\VerbatimFootnotes
 \maketitle
 
-\section[Queation 1]{Answer to question 1}
+\section[Question 1]{Answer to question 1}
 \subsection[Describe]{Describe in English the contents of the document}
 \begin{itemize}
+\item[]\emph{Hamlet} is a \emph{drama}.
 
-\item[] \emph{Hamlet} is a \emph{drama}.
+\item[]\emph{Sonet96} is a \emph{poem}.
 
-\item[] \emph{Sonet96} is a \emph{poem}.
+\item[]\emph{"wrote"} is a property (role) which has domain \emph{writer} and
+range \emph{literary\_content}.  Or in simpler words: Anything that
+\emph{wrote} something is a \emph{writer} and that something it wrote is a
+piece of \emph{literary\_content}.
 
-\item[] \emph{"wrote"} is a poperty (role) which has domain \emph{writter} and
-range \emph{literary\_content}.
+\item[]\emph{poem} is a concept.
 
-\item[] \emph{poem} is a concept.
+\item[]\emph{drama} is a concept.
 
-\item[] \emph{drama} is a concept.
-
-\item[] \emph{Shakespear} wrote \emph{Hamlet} and wrote \emph{Sonet96}.
-\emph{Shakespear} is a \emph{playwright}.
-
+\item[]\emph{Shakespear}, who is a \emph{Poet}, wrote \emph{Hamlet} and wrote
+\emph{Sonet96}.  \emph{Shakespear} is a \emph{playwright} as well.
 \end{itemize}
 
-\newpage
-\subsection[Draw]{Draw the graph representation of the doument}
+\subsection[Draw]{Draw the graph representation of the document}
 \begin{figure}[!htp]
 \centering
 \includegraphics[width=\textwidth]{ex1_playwrights}
@@ -52,6 +53,425 @@ range \emph{literary\_content}.
 Figure \ref{shakespear} shows the graph representation.
 
 \subsection[RDF/S]{Represent the following in RDF/S}
+
+"Poets and playwrights are writers." can easily be represented in RDF.  Using
+turtle syntax we have:
+\begin{Verbatim}[samepage=true]
+:Poet        rdf:type  :Writer .
+:Playwright  rdf:type  :Writer .
+\end{Verbatim}
+
+"Poets write poems; playwrights write dramas." can be represented in RDF.  We
+can transliterate it to two separate statements:  "Poets write poems.
+Playwrights write dramas", and write it down in turtle syntax:
+\begin{Verbatim}[samepage=true]
+:Poet        :write  :Poem .
+:Playwright  :write  :Drama .
+\end{Verbatim}
+
+"Poets do not write RDF documents." \emph{Cannot} be represented in RDF/S as it
+needs the complement (negation) operator.  i.e. in description logic it would
+look like this: $Poet \sqsubseteq \forall write . \neg RDFDocument$.  And this
+cannot be represented in RDF.
+
+\section[Question 2]{Answer to question 2}
+
+\subsection[Turtle]{Represent the information in turtle}
+\begin{Verbatim}[samepage=true]
+_b  rdf:type   :Person .
+_b  :hasEmail  :bob@somewhere.uk .
+_b  :playsGolfWith  _s .
+_s  :isSpouseOf     _r .
+_b  :isColleagueOf  _r .
+_r  :hasEmail  :rob@elsewhere.uk .
+_r  :hasEmail  :rob@somewhere.it .
+\end{Verbatim}
+
+\subsection[Graph]{Draw the graph representation}
+Figure \ref{bobslife} shows the graph representation for this information.
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=\textwidth]{ex2_bob}
+\caption{Representation of Bob's life}
+\label{bobslife}
+\end{figure}
+
+\subsection[DL]{Represent the information using DL}
+To represent this information in description logic (form a knowledge base)
+logic we can use an empty \emph{Tbox} and the following \emph{ABox}:
+\begin{align*}
+                    b &: Person\\
+(b, bob@somewhere.uk) &: hasEmail\\
+(r, rob@elsewhere.uk) &: hasEmail\\
+(r, rob@somewhere.it) &: hasEmail\\
+               (b, r) &: isColleagueOf\\
+               (b, s) &: playsGolfWith\\
+               (s, r) &: isSpouseOf
+\end{align*}
+
+\section[Question 3]{Answer to question 3}
+
+\subsection[Turtle]{Represent in RDF/S triples using turtle}
+"Document 1 has been created by Paul on 29 November 2013." can be represented
+as:
+\begin{Verbatim}[samepage=true]
+:Document1  :createdBy  :Paul .
+:Document1  :createdOn  :2013-11-29 .
+\end{Verbatim}
+
+"Document 2 and document 3 have been created by the same (unknown) author." can
+be represented as:
+\begin{Verbatim}[samepage=true]
+:Document2  :createdBy  _a .
+:Document3  :createdBy  _a .
+\end{Verbatim}
+
+"Document 3 says that document 1 has been published by W3C." can be represented
+as\footnote{We could add the \verb|:Document1  :publishedBy  :W3C| triple to
+this representation.  But it is interpretation dependent, as some authors add
+this triplet explicitly whilst others leave it implicit in the \emph{subject,
+predicate and object} roles.}:
+\begin{Verbatim}[samepage=true]
+:Document3  :says  _s .
+_s  :subject    :Document1 .
+_s  :predicate  :publishedBy .
+_s  :object     :W3C .
+\end{Verbatim}
+
+\subsection[SPARQL]{Represent in SPARQL}
+We can represent the given query in the SPARQL syntax as:
+\begin{Verbatim}[samepage=true]
+SELECT ?a, ?d
+WHERE { x?  :createdBy  ?a .
+        x?  :createdOn  ?d .
+      }
+\end{Verbatim}
+
+\section[Question 4]{Answer to question 4}
+
+\subsection[RDF/S representation]{Represent in RDF/S if possible}
+\begin{itemize}
+\item[-]"John is a person." can be transliterated into "John is of type Person." and
+written in RDF triples as:
+\begin{Verbatim}[samepage=true]
+:John  rdf:type  :Person .
+\end{Verbatim}
+
+\item[-]"Mary is John’s mother." can be transliterated into "Mary is the\\
+mother of John." and written in RDF triples as:
+\begin{Verbatim}[samepage=true]
+:Mary  :motherOf  :John .
+\end{Verbatim}
+
+\item[-]"Persons are men and women." can be transliterated into "A Person is a man,
+also a Person is a woman." which can be written in RDF/S triples
+as\footnote{This is a very forceful way of transliterating that phrase, notably
+because we say that every person is a Man and a Woman at the same time.
+Another viable transliteration would be "A Person is either a Man or a Woman".
+Yet, this transliteration cannot be represented using RDF triples as we need
+the concept of disjoint classes, which is not present in RDF/S.}:
+\begin{Verbatim}[samepage=true]
+:Person  rdfs:subClassOf  :Man .
+:Person  rdfs:subClassOf  :Woman .
+\end{Verbatim}
+
+\item[-]"Men and women are persons." can be transliterated into "Men are Persons and
+Women are Persons." and written in RDF/S triplets as:
+\begin{Verbatim}[samepage=true]
+:Man    rdfs:subClassOf  :Person .
+:Woman  rdfs:subClassOf  :Person .
+\end{Verbatim}
+
+\item[-]"All fathers are parents." can be transliterated into "Every father is parent
+as well." and one form of writing that in RDF/S would be:
+\begin{Verbatim}[samepage=true]
+:fatherOf  rdfs:subPropertyOf  :parentOf .
+\end{Verbatim}
+
+\item[-]"Every mother is a woman." can be transliterated into "Something that is a
+mother of something is a Woman." and written in RDF/S triples as:
+\begin{Verbatim}[samepage=true]
+:motherOf  rdfs:domain  :Woman .
+\end{Verbatim}
+
+\item[-]"Every person has a mother." cannot be represented in RDF/S.  To represent this
+we need the concept of "exists" $(\exists)$ from Description Logic/OWL.
+
+\item[-]"John’s mother is a lecturer." can be transliterated into "John has a mother;
+John's mother is a Lecturer." and written in RDF triples as:
+\begin{Verbatim}[samepage=true]
+_m  :motherOf  :John .
+_m  rdf:type   :Lecturer .
+\end{Verbatim}
+
+\item[-]"Every person has two parents." cannot be represented in RDF/S.  To represent
+it we need the cardinality operators from extended DL and/or OWL 2.
+
+\item[-]"Lecturers’ daughters are lecturers." cannot be represented in RDF/S.  To
+represent this we need to intersect the class \emph{Lecturer} and the domain of
+\emph{fatherOf}, but we cannot do intersection in RDF/S.
+
+\item[-]"John and Sam have the same mother." can be transliterated into "Someone is
+mother of John and this same someone is mother of Sam." and written in RDF
+triples as:
+\begin{Verbatim}[samepage=true]
+_m  :motherOf  :John .
+_m  :motherOf  :Sam .
+\end{Verbatim}
+\end{itemize}
+
+\subsection[DL representation]{Represent as description logic}
+We define our knowledge base as an \emph{ABox} and a \emph{Tbox}, first we
+write the \emph{ABox}:
+\begin{align*}
+john         &: Person\\
+mary         &: Lecturer\\
+(mary, john) &: motherOf\\
+(mary, sam)  &: motherOf
+\end{align*}
+
+And the \emph{TBox} looks like this:
+\begin{align*}
+               Person &\sqsubseteq Man \sqcup Woman\\
+     Man \sqcap Woman &\sqsubseteq \emptyset\\
+                  Man &\sqsubseteq Person\\
+                Woman &\sqsubseteq Person\\
+\exists fatherOf.\top &\sqsubseteq \exists parentOf.\top\\
+\exists motherOf.\top &\sqsubseteq Woman\\
+               Person &\sqsubseteq \exists motherOf^-.\top\\
+Person &\sqsubseteq {}\leq2parentOf.\top {}\sqcap {}\geq2parentOf.\top\\
+\exists parentOf^-.Lecturer \sqcap Woman &\sqsubseteq Lecturer
+\end{align*}
+
+\subsection[Dwarf]{Represent the statement in RDF/S using reification}
+"the dwarf noticed that someone had eaten from its plate." can be represented,
+using the turtle, syntax as:
+\begin{Verbatim}[samepage=true]
+:Dwarf  :noticed  _s .
+_s  :subject    :Someone .
+_s  :predicate  :hadEatenFrom .
+_s  :object     :Plate .
+:Plate  :belongsTo  :Dwarf .
+\end{Verbatim}
+The Figure \ref{dwarf} represents this same statement using a graph.
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=\textwidth]{ex4_dwarf}
+\caption{Dwarf's perception}
+\label{dwarf}
+\end{figure}
+
+\section[Question 5]{Answer to question 5}
+
+\subsection[Publishing]{Ontology sketch for a publishing company}
+The accompanying \emph{.owl} file contains the full ontology in a format
+understood by proteg\'e.  In table \ref{sketch} we see a sketch of the
+ontology.
+\begin{table}[!htp]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+self-standing            & modifiers         & properties   & definables \\
+\hline \hline
+Publisher                & Title             & hasTitle     & Author     \\
+Person                   & ISBN              & hasISBN      & Editor     \\
+- Woman                  & PubCategory       & isInCategory & Manager    \\
+Publication              & - ScienceFiction  & hasAuthor    &\\
+- Book                   & - ComputerScience & editedBy     &\\
+- Journal                & PublicationForm   & printedIn    &\\
+Location                 & - PhysicalPub     & hasPubForm   &\\
+- Room                   & - DigitalPub      & published    &\\
+- - room123 (individual) &                   & worksAt      &\\
+                         &                   & authored     &\\
+                         &                   & edited       &\\
+\hline
+\end{tabular}
+\caption{Ontology sketch}
+\label{sketch}
+\end{table}
+
+We can define the definables as:
+\begin{description}
+\item[Author] in description logic can be seen as: $ Author \equiv Person\\
+\sqcap \exists authored.Publication $.  And in OWL functional syntax as:
+\begin{Verbatim}[samepage=true]
+EquivalentClasses(
+    Author
+    ObjectIntersectionOf(
+        Person
+        ObjectSomeValuesFrom(authored Publication)))
+\end{Verbatim}
+
+\item[Editor] in description logic can be seen as: $ Editor \equiv Person\\
+\sqcap \exists edited.Publication \sqcap \exists worksAt.Publisher $.  And in
+OWL functional syntax as:
+\begin{Verbatim}[samepage=true]
+EquivalentClasses(
+    Editor
+    ObjectIntersectionOf(
+        Person
+        ObjectSomeValuesFrom(edited Publication)
+        ObjectSomeValuesFrom(worksAt Publisher)))
+\end{Verbatim}
+
+\item[Manager] in description logic can be seen as: $ Manager \equiv Person\\
+\sqcap \exists worksAt.Publisher \sqcap \neg Editor $.  And in OWL functional
+syntax as:
+\begin{Verbatim}[samepage=true]
+EquivalentClasses(
+    Manager
+    ObjectIntersectionOf(
+        Person
+        ObjectSomeValuesFrom(worksAt Publisher)
+        ObjectComplementOf(Editor)))
+\end{Verbatim}
+\end{description}
+
+The properties can be described as follows:
+\begin{description}
+\item[hasTitle]: domain Publication, range Title, functional.  A publication
+have one title that distinguishes it from other publications, we are not
+considering translations in this ontology.
+
+\item[hasISBN]: domain Publication, range ISBN, functional.  An ISBN uniquely
+identifies a publication.
+
+\item[isInCategory]: domain Publication, range PubCategory.  The same
+publication can belong to many categories at the same time.  Say a drama and
+science fiction book.
+
+\item[hasAuthor]: domain Publication, range Author, inverse of authored.  One
+publication may be authored by more than one person.
+
+\item[editedBy]: domain Publication, range Editor, inverse of edited.  One
+publication can have several editors and the same editor will most probably
+edit many publications.
+
+\item[printedIn]: domain PhysicalPub, range Location, functional.  Only a
+publication that was published in a physical form is printed (digital copies
+are not printed), and every physical copy has been printed somewhere.
+
+\item[hasPubForm]: domain Publication, range PubForm.  The same publication can
+be published in many forms.  For example, a book can be published in physical
+form and digital form.
+
+\item[published]: domain Publisher, range Publication.  A publisher publishes
+many publications.
+
+\item[worksAt]: domain Person, range Publisher, functional.  Many people work
+at the same publisher.  We are not considering that someone might do two jobs,
+each in a different publisher, in the ontology.
+
+\item[authored]: domain Author, range Publication, inverse of hasAuthor.  Same
+author may write many publications.
+
+\item[edited]: domain Editor, range Publication, inverse of editedBy.  Same
+editor most likely edits many publications.
+\end{description}
+
+\subsection[Define classes]{Using the ontology define the classes}
+"Multiple-author book." can be transliterated into "A Book that has more than
+one Author." and is written in description logic as $ MultipleAuthorBook\\
+\equiv Book \sqcap {} \geq 2hasAuthor.Author $.  In OWL functional syntax it
+can be written as:
+\begin{Verbatim}[samepage=true]
+EquivalentClasses(
+    MultiAuthorBook
+    ObjectIntersectionOf(
+        Book
+        ObjectMinCardinality(2 hasAuthor)))
+\end{Verbatim}
+
+"Electronic publishing company for computer science." can be transliterated
+into "A Publisher that publishes only electronic publications, and those
+publications always fit in the computer science literary category.", this looks
+in description logic as:
+\begin{align*}
+ElecPubCompSc \equiv Publisher \sqcap \exists &publishes.(Publication\\
+                             &\sqcap \exists hasPubForm.DigitalPub\\
+                             &\sqcap \forall hasPubForm.DigitalPub\\
+                             &\sqcap \exists isInCategory.ComputerScience)\\
+                               \sqcap \forall &publishes.(Publication\\
+                             &\sqcap \exists hasPubForm.DigitalPub\\
+                             &\sqcap \forall hasPubForm.DigitalPub\\
+                             &\sqcap \exists isInCategory.ComputerScience)
+\end{align*}
+And in OWL functional syntax as:
+\begin{Verbatim}[samepage=true]
+EquivalentClasses(
+    ElecPubCompSc
+    ObjectIntersectionOf(
+        Publisher
+        ObjectSomeValuesFrom(
+            publishes
+            ObjectIntersectionOf(
+                Publication
+                ObjectSomeValuesFrom(hasPubForm DigitalPub)
+                ObjectAllValuesFrom(hasPubForm DigitalPub)
+                ObjectSomeValuesFrom(isInCategory ComputerScience)))
+        ObjectAllValuesFrom(
+            publishes
+            ObjectIntersectionOf(
+                Publication
+                ObjectSomeValuesFrom(hasPubForm DigitalPub)
+                ObjectAllValuesFrom(hasPubForm DigitalPub)
+                ObjectSomeValuesFrom(isInCategory ComputerScience)))))
+\end{Verbatim}
+
+"Science fiction book printed in room 123 and edited by a woman." can be
+transliterated into "A Book of category Science Fiction which has been printed
+in the specific room, room 123.  And this book has been edited by a Woman."  In
+description logic we can represent this as:
+\begin{align*}
+SfBookPr123EdFem \equiv Book &\sqcap \exists isInCategory.ScienceFiction\\
+                             &\sqcap \exists printedIn.(value(room123))\\
+                             &\sqcap \exists editedBy(Editor \sqcap Woman)
+\end{align*}
+And in OWL functional syntax as:
+\begin{Verbatim}[samepage=true]
+EquivalentClasses(
+    SfBookPr123EdFem
+    ObjectIntersectionOf(
+        Book
+        ObjectSomeValuesFrom(isInCategory ScienceFiction)
+        ObjectSomeValuesFrom(
+            printedIn
+            ObectHasValue(room123))
+        ObjectSomeValuesFrom(
+            editedBy
+            ObjectIntersectionOf(Editor Woman))))
+\end{Verbatim}
+
+\section[Question 6]{Answer to question 6}
+
+\subsection[DL equivalents]{Write down description logic equivalents}
+\begin{itemize}
+\item[-]\begin{Verbatim}[samepage=true]
+DisjointClasses(Animal Plant)
+\end{Verbatim}
+Is equivalent to: $ Animal \sqcap Plant \sqsubseteq \emptyset $
+
+\item[-]\begin{Verbatim}[samepage=true]
+ObjectPropertyDomain(eats Animal)
+\end{Verbatim}
+Is equivalent to: $ \exists eats.\top \sqsubseteq Animal $
+
+\item[-]\begin{Verbatim}[samepage=true]
+EquivalentClasses(Herbivore ObjectAllValuesFrom(eats Plant))
+\end{Verbatim}
+Is equivalent to: $ Herbivore \equiv \forall eats.Plant $
+
+\item[-]\begin{Verbatim}[samepage=true]
+EquivalentClasses(Carnivore ObjectAllValuesFrom(eats Animal))
+\end{Verbatim}
+Is equivalent to: $ Carnivore \equiv \forall eats.Animal $
+
+\item[-]\begin{Verbatim}[samepage=true]
+EquivalentClasses(CarnivorousPlant 
+                  ObjectIntersectionOf(Plant Carnivore))
+\end{Verbatim}
+Is equivalent to: $ CarnivorousPlant \equiv Plant \sqcap Carnivore $
+\end{itemize}
 
 \end{document}
 

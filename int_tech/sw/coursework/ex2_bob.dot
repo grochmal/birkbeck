@@ -1,0 +1,23 @@
+digraph {
+    rankdir=LR;
+    {rank=same; BobsEmail RobsEmailUK RobsEmailIT}
+    Bob [style="filled",color="darkgreen",fillcolor="aquamarine",label=""];
+    Person [style="filled",color="darkgreen",fillcolor="aquamarine"];
+    BobsEmail [style="filled",color="darkgreen"
+              ,fillcolor="aquamarine",shape="box",label="bob@somewhere.uk"];
+    RobsSpouse [style="filled",color="darkgreen"
+               ,fillcolor="aquamarine",label=""];
+    Rob [style="filled",color="darkgreen",fillcolor="aquamarine",label=""];
+    RobsEmailUK [style="filled",color="darkgreen"
+                ,fillcolor="aquamarine",shape="box",label="rob@elsewhere.uk"];
+    RobsEmailIT [style="filled",color="darkgreen"
+                ,fillcolor="aquamarine",shape="box",label="rob@somewhere.it"];
+    Bob -> Person      [label="rdf:type",color="navy",fontcolor="navy"];
+    Bob -> Rob         [label="isColleageOf",color="navy",fontcolor="navy"];
+    Bob -> BobsEmail   [label="hasEmail",color="navy",fontcolor="navy"];
+    Bob -> RobsSpouse  [label="playsGolfWith",color="navy",fontcolor="navy"];
+    RobsSpouse -> Rob  [label="isSpouseOf",color="navy",fontcolor="navy"];
+    Rob -> RobsEmailUK [label="hasEmail",color="navy",fontcolor="navy"];
+    Rob -> RobsEmailIT [label="hasEmail",color="navy",fontcolor="navy"];
+}
+
