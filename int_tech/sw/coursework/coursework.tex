@@ -8,6 +8,7 @@
 \usepackage{textcomp}
 
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{fancyvrb}  % Verbatim instead of verbatim
 
@@ -54,11 +55,11 @@ Figure \ref{shakespear} shows the graph representation.
 
 \subsection[RDF/S]{Represent the following in RDF/S}
 
-"Poets and playwrights are writers." can easily be represented in RDF.  Using
-turtle syntax we have:
+"Poets and playwrights are writers." can easily be represented in RDF/S.
+Using turtle syntax we have:
 \begin{Verbatim}[samepage=true]
-:Poet        rdf:type  :Writer .
-:Playwright  rdf:type  :Writer .
+:Poet        rdfs:subClassOf  :Writer .
+:Playwright  rdfs:subClassOf  :Writer .
 \end{Verbatim}
 
 "Poets write poems; playwrights write dramas." can be represented in RDF.  We
@@ -266,24 +267,24 @@ The Figure \ref{dwarf} represents this same statement using a graph.
 \subsection[Publishing]{Ontology sketch for a publishing company}
 The accompanying \emph{.owl} file contains the full ontology in a format
 understood by proteg\'e.  In table \ref{sketch} we see a sketch of the
-ontology.
+ontology.  In this sketch ontology \emph{room123} is an individual.
 \begin{table}[!htp]
 \centering
 \begin{tabular}{|l|l|l|l|}
 \hline
-self-standing            & modifiers         & properties   & definables \\
+self-standing        & modifiers         & properties   & definables  \\
 \hline \hline
-Publisher                & Title             & hasTitle     & Author     \\
-Person                   & ISBN              & hasISBN      & Editor     \\
-- Woman                  & PubCategory       & isInCategory & Manager    \\
-Publication              & - ScienceFiction  & hasAuthor    &\\
-- Book                   & - ComputerScience & editedBy     &\\
-- Journal                & PublicationForm   & printedIn    &\\
-Location                 & - PhysicalPub     & hasPubForm   &\\
-- Room                   & - DigitalPub      & published    &\\
-- - room123 (individual) &                   & worksAt      &\\
-                         &                   & authored     &\\
-                         &                   & edited       &\\
+Publisher            & Title             & hasTitle     & Author      \\
+Person               & ISBN              & hasISBN      & Editor      \\
+- Woman              & PubCategory       & isInCategory & Manager     \\
+Publication          & - ScienceFiction  & hasAuthor    & PhysicalPub \\
+- Book               & - ComputerScience & editedBy     & DigitalPub  \\
+- Journal            & PublicationForm   & printedIn    &\\
+Location             & - Physical        & hasPubForm   &\\
+- Room               & - Digital         & published    &\\
+- - room123 (indiv.) &                   & worksAt      &\\
+                     &                   & authored     &\\
+                     &                   & edited       &\\
 \hline
 \end{tabular}
 \caption{Ontology sketch}
@@ -325,6 +326,28 @@ EquivalentClasses(
         ObjectSomeValuesFrom(worksAt Publisher)
         ObjectComplementOf(Editor)))
 \end{Verbatim}
+
+\item[PhysicalPub] in description logic can be seen as: $ PhysicalPub \equiv\\
+Publication \sqcap \exists hasPubForm Physical $.  And in OWL functional syntax
+as:
+\begin{Verbatim}[samepage=true]
+EquivalentClasses(
+    PhysicalPub
+    ObjectIntersectionOf(
+        Publication
+        ObjectSomeValuesFrom(hasPubForm Physical)))
+\end{Verbatim}
+
+\item[DigitalPub] in description logic can be seen as: $ DigitalPub \equiv\\
+Publication \sqcap \exists hasPubForm Digital $.  And in OWL functional syntax
+as:
+\begin{Verbatim}[samepage=true]
+EquivalentClasses(
+    DigitalPub
+    ObjectIntersectionOf(
+        Publication
+        ObjectSomeValuesFrom(hasPubForm Digital)))
+\end{Verbatim}
 \end{description}
 
 The properties can be described as follows:
@@ -351,12 +374,13 @@ edit many publications.
 publication that was published in a physical form is printed (digital copies
 are not printed), and every physical copy has been printed somewhere.
 
-\item[hasPubForm]: domain Publication, range PubForm.  The same publication can
-be published in many forms.  For example, a book can be published in physical
-form and digital form.
+\item[hasPubForm]: domain Publication, range PublicationForm.  The same
+publication can be published in many forms.  For example, a book can be
+published in physical form and digital form.
 
-\item[published]: domain Publisher, range Publication.  A publisher publishes
-many publications.
+\item[published]: domain Publisher, range Publication, inverse functional.  A
+publisher publishes many publications, yet when the same material is published
+by another publisher it becomes a different publication.
 
 \item[worksAt]: domain Person, range Publisher, functional.  Many people work
 at the same publisher.  We are not considering that someone might do two jobs,
@@ -449,7 +473,7 @@ EquivalentClasses(
 \item[-]\begin{Verbatim}[samepage=true]
 DisjointClasses(Animal Plant)
 \end{Verbatim}
-Is equivalent to: $ Animal \sqcap Plant \sqsubseteq \emptyset $
+Is equivalent to: $ Animal \sqcap Plant \sqsubseteq \bot $
 
 \item[-]\begin{Verbatim}[samepage=true]
 ObjectPropertyDomain(eats Animal)
@@ -471,6 +495,457 @@ EquivalentClasses(CarnivorousPlant
                   ObjectIntersectionOf(Plant Carnivore))
 \end{Verbatim}
 Is equivalent to: $ CarnivorousPlant \equiv Plant \sqcap Carnivore $
+\end{itemize}
+
+\subsection[Hierarchy]{Hierarchy computed by proteg\'e}
+The table \ref{protege} shows the hierarchy after the original ontology is
+computed in proteg\'e and the hierarchy after the fixes done in the following
+sections.
+\begin{table}[!htp]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+original ontology             &
+after section \ref{fixforall} &
+after section \ref{fixdomain} \\
+\hline \hline
+Thing                & Thing              & Thing                \\
+- Animal             & - Animal           & - Animal             \\
+- Carnivore          & - Carnivore        & - Carnivore          \\
+- - CarnivorousPlant & - Herbivore        & - - CarnivorousPlant \\
+- - Plant            & - Plant            & - Herbivore          \\
+- Herbivore          & Nothing            & - Plant              \\
+- - CarnivorousPlant & - CarnivorousPlant & - - CarnivorousPlant \\
+- - Plant            &                    &\\
+\hline
+\end{tabular}
+\caption{Natural taxonomy ontology}
+\label{protege}
+\end{table}
+
+\subsection[Explain misbehaviour]{Explain plants' definition in the ontology}
+A \emph{Plant} do not eat anything in this model.  As the definition of
+\emph{Carnivore} $ (\forall eats.Animal) $ do not specify that the carnivore
+must actually eat something, a plant is a perfectly good example of a
+carnivore.  The analogous reasoning explains why a plant is a \emph{Herbivore},
+as the definition of herbivore do not specify that a member of it must eat
+something.
+
+\subsection[First fix]{How the problem can be fixed}
+\label{fixforall}
+The definition of both Carnivore and Herbivore shall specify that members of
+these classes must actually eat something.  The new definitions look like this:
+\begin{align*}
+Carnivore &\equiv \forall eats.Animal \sqcap \exists eats.Animal\\
+Herbivore &\equiv \forall eats.Plant  \sqcap \exists eats.Plant
+\end{align*}
+
+\subsection[Fixed ontology]{Another problem with the ontology}
+\label{fixdomain}
+Another problem with the ontology is that carnivorous plants cannot be defined.
+Carnivorous plants are plants that are carnivorous, i.e. that eat animals, but
+the definition of the domain of \emph{eats} do not allow plants to eat.  To fix
+this the restriction on the domain of \emph{eats} is removed from the ontology.
+The full ontology, after all fixes, can be found in accompanying \emph{.owl}
+file.
+
+\section[Question 7]{Answer to question 7}
+
+Consider the TBox $T$:
+\begin{align*}
+                 \neg A &\sqsubseteq \forall R.\neg B\\
+\exists R.(\exists R.C) &\sqsubseteq A \sqcup B
+\end{align*}
+And the interpretation $ I = (\Delta^I, \cdot^I) $:
+\begin{align*}
+\Delta^I &= \{a,b,c,d,e,f\}\\
+     A^I &= \{a,b,f\}\\
+     B^I &= \{b,d\}\\
+     C^I &= \{e\}\\
+     R^I &= \{(a,b),(a,c),(d,c),(c,e)\}
+\end{align*}
+
+\subsection[Model]{Is $I$ a model of $T$?}
+\label{itproof}
+For $I$ to be a model of $T$ the interpretation must satisfy both axioms in the
+TBox.  As for the first axiom:
+\begin{align*}
+        \neg A &\sqsubseteq \forall R.\neg B\\
+\neg \{a,b,f\} &\sqsubseteq \forall R.\neg \{b,f\}\\
+     \{c,d,e\} &\sqsubseteq \forall R.\{a,c,d,e\}\\
+     \{c,d,e\} &\sqsubseteq \{b,c,d,e,f\}
+\end{align*}
+Which is true.  The second axiom:
+\begin{align*}
+    \exists R.(\exists R.C) &\sqsubseteq A \sqcup B\\
+\exists R.(\exists R.\{e\}) &\sqsubseteq \{a,b,f\} \sqcup \{b,d\}\\
+            \exists R.\{c\} &\sqsubseteq \{a,b,d,f\}\\
+                    \{a,d\} &\sqsubseteq \{a,b,d,f\}
+\end{align*}
+Which is true as well.  As both axioms of TBox $T$ hold in the interpretation
+$I$ we can say that $I$ is a model of $T$.
+
+\subsection[Satisfiability]{Is $\exists R.(\exists R.A)$ unsatisfiable in $T$?}
+We first check whether the concept $ \exists R.(\exists R.A) $ is empty in $I$:
+\begin{align*}
+&\exists R.(\exists R.A)\\
+&\exists R.(\exists R.\{a,b,f\})\\
+&\exists R.(\{a\})\\
+&\emptyset
+\end{align*}
+Therefore $ \exists R.(\exists R.A) $ is empty in $I$.  Yet, for this concept
+to be unsatisfiable with respect to $T$ it must be unsatisfiable for all
+interpretations that model $T$.  If we can find an interpretation that models
+$T$ and in which $ \exists R.(\exists R.A) $ is not empty then this concept is
+satisfiable in $T$.  One such interpretation is:
+\begin{equation*}
+I' = I \cup \{ R = \{(a,a)\} \}
+\end{equation*}
+i.e. the same interpretation as $I$ but with an extra relation $aRa$.  The
+proof that this interpretation is a model of $T$ is exactly the same as the
+proof for the interpretation $I$ in section \ref{itproof}.  In the
+interpretation $I'$ the concept $ \exists R.(\exists R.A) $ is:
+\begin{align*}
+&\exists R.(\exists R.A)\\
+&\exists R.(\exists R.\{a,b,f\})\\
+&\exists R.(\{a\})\\
+&\{a\}
+\end{align*}
+Therefore there exists at least one interpretation that models $T$ and
+satisfies $ \exists R.(\exists R.A) $.  So it is not true that this concept is
+unsatisfiable with relation to $T$.
+
+\subsection[Consequence]{Is $ T \models C \sqsubseteq \forall R.A $?}
+We first check whether the axiom $ C \sqsubseteq \forall R.A $ is satisfied in
+$I$:
+\begin{align*}
+    C &\sqsubseteq \forall R.A\\
+\{e\} &\sqsubseteq \{b,e,f\}
+\end{align*}
+Therefore $ C \sqsubseteq \forall R.A $ is satisfiable in the interpretation
+$I$.  Yet, for this axiom to be a logical consequence of $T$ it needs to be
+satisfiable for all interpretations that model $T$.  If we have an
+interpretation that models $T$ but do not satisfy this axiom then it is not a
+logical consequence of $T$.  One such interpretation is:
+\begin{equation*}
+I'' = I \cup \{ C = \{d\} \}
+\end{equation*}
+i.e. the same relation as $I$ but where the individual $b$ belongs to the class
+$C$ (apart from other classes it might already belong).  The proof that this
+interpretation is a model of $T$ is exactly the same as the proof for the
+interpretation $I$ in section \ref{itproof}.  In the interpretation $I''$ the
+axiom $ C \sqsubseteq \forall R.A $ is:
+\begin{align*}
+      C &\sqsubseteq \forall R.A\\
+\{d,e\} &\sqsubseteq \{b,e,f\}
+\end{align*}
+Which is not true.  Therefore there exists at least on interpretation that
+models $T$ but do not satisfy the axiom $ C \sqsubseteq \forall R.A $.  So it
+is not true that $ T \models C \sqsubseteq \forall R.A $.
+
+\section[Question 8]{Answer to question 8}
+
+Consider the ABox $A$
+\begin{align*}
+(ron,claudia)   &: likes\\
+(ron,peter)     &: likes\\
+(claudia,peter) &: isNeighbourOf\\
+(peter,andrea)  &: isNeighbourOf\\
+claudia         &: Blond\\
+andrea          &: \neg Blond
+\end{align*}
+
+\subsection[Model]{Does $A$ have a model?}
+\label{roninterpretation}
+Yes we can build an interpretation that is a model of $A$, for example the
+interpretation $ I = (\Delta^I, \cdot^I) $:
+\begin{align*}
+       \Delta^I &= \{ron, claudia, peter, andrea\}\\
+        Blond^I &= \{claudia\}\\
+        likes^I &= \{(ron,claudia),(ron,peter)\}\\
+isNeighbourOf^I &= \{(claudia,peter),(peter,andrea)\}
+\end{align*}
+
+\subsection[Exists]{Is $ron$ an instance of the concept}
+\begin{equation*}
+\exists likes.(Blond \sqcap \exists isNeighbourOf. \neg Blond)
+\end{equation*}
+To check that $ron$ is an instance of this concept we need to see whether this
+is true for $ron$ in all interpretations that model the ABox $A$.  As in all
+interpretations that model the ABox $A$ will have the relations:
+\begin{equation*}
+likes = \{(ron,claudia),(ron,peter)\}
+\end{equation*}
+Where we know that $claudia$ is $Blond$, but we do not know whether $peter$ is
+$Blond$ or $\neg Blond$; we shall check if the concept is true for $peter$
+being $Blond$ and for $peter$ being $\neg Blond$:
+\begin{description}
+\item[peter is Blond:] In this case the concept is true because $ron$ likes
+$peter$.  $peter$ is $Blond$ and is $isNeighbourOf$ $andrea$, who is $\neg
+Blond$.
+
+\item[peter is not Blond:] In this case the concept is true because $ron$ likes
+$claudia$.  $claudia$ is $Blond$ and $isNeighbourOf$ $peter$, who is $\neg
+Blond$.
+\end{description}
+
+As in both cases the concept is true and that any interpretation that models
+$A$ must have one of these cases we can say that: it is true that $ron$ is an
+instance of the concept:
+\begin{equation*}
+\exists likes.(Blond \sqcap \exists isNeighbourOf. \neg Blond)
+\end{equation*}
+
+\subsection[For all]{Is ron an instance of the concept}
+\begin{equation*}
+\exists likes.(\exists isNeighbourOf.(\forall isNeighbourOf.Blond))
+\end{equation*}
+Once again, to check that $ron$ is an instance of this concept we need to see
+whether this is true for $ron$ in all interpretations that model the ABox $A$.
+
+Although this is true in the interpretation $I$ (defined in section
+\ref{roninterpretation}):  Where $ron$ $likes$ $peter$; $peter$ $isNeighbourOf$
+$andrea$; and $andrea$ has no neighbours, therefore all her/his neighbours are
+$Blond$.  The ABox $A$ (and description logic in general) uses an open world
+assumption, therefore any interpretation where $andrea$ has neighbours that are
+$\neg Blond$ still models $A$.
+
+As we can construct an interpretation that models the ABox $A$ and in this
+interpretation $andrea$ has a neighbour that is $\neg Blond$, in such
+interpretation the given concept is not true for $ron$.  From this we can say
+that $ron$ is not an instance of the concept:
+\begin{equation*}
+\exists likes.(\exists isNeighbourOf.(\forall isNeighbourOf.Blond))
+\end{equation*}
+
+\section[Question 9]{Answer to question 9}
+
+Consider the concepts:
+\begin{align*}
+C &\equiv \neg A \sqcap \exists R.A \sqcap \neg(\forall R.(A \sqcup \neg B))\\
+D &\equiv B \sqcap \exists R.(A \sqcap B) \sqcap \neg(\exists R.A)
+\end{align*}
+
+\subsection[NNF]{Transform the concepts into negation normal form}
+Transforming concept $C$:
+\begin{align*}
+\neg A \sqcap \exists R.A &\sqcap \neg(\forall R.(A \sqcup \neg B))\\
+\neg A \sqcap \exists R.A &\sqcap \exists R.\neg(A \sqcup \neg B)\\
+\neg A \sqcap \exists R.A &\sqcap \exists R.(\neg A \sqcap \neg \neg B)\\
+\neg A \sqcap \exists R.A &\sqcap \exists R.(\neg A \sqcap B)
+\end{align*}
+
+Transforming concept $D$:
+\begin{align*}
+B \sqcap \exists R.(A \sqcap B) &\sqcap \neg(\exists R.A)\\
+B \sqcap \exists R.(A \sqcap B) &\sqcap \forall R.\neg A
+\end{align*}
+
+\subsection[Concept C]{Is concept $C$ satisfiable?}
+\label{interpretationforc}
+A concept is satisfiable if we can construct an interpretation for it, let's
+try to construct an interpretation for concept $C$.  Lets call this
+interpretation $S$:
+\begin{align*}
+S_0 &= \{x : \neg A \sqcap \exists R.A \sqcap \exists  R.(\neg A \sqcap B)\}\\
+S_0 \to_\sqcap S_1 &= S_0 \cup \{ x : \neg A, x : \exists R.A
+                                , x : \exists R.(\neg A \sqcap B) \}\\
+S_1 \to_\exists S_2 &= S_1 \cup \{ x : \neg A, (x,y) : R, y : A
+                                 , x : \exists R.(\neg A \sqcap B) \}\\
+S_2 \to_\exists S_3 &= S_2 \cup \{ x : \neg A, (x,y) : R, y : A
+                                 , (x,z) : R, z : \neg A \sqcap B \}\\
+S_3 \to_\sqcap S_4 &= S_3 \cup \{ x : \neg A, (x,y) : R, y : A
+                                , (x,z) : R, z : \neg A, z : B \}
+\end{align*}
+
+From this we can write the interpretation $S$ as $ S = (\Delta^S, \cdot^S) $
+where:
+\begin{align*}
+\Delta^S &= \{x,y,z\}\\
+     A^S &= \{y\}\\
+     B^S &= \{z\}\\
+     R^S &= \{(x,y),(x,z)\}
+\end{align*}
+
+Since interpretation $S$ satisfies the concept $C$, concept $C$ is satisfiable.
+
+\subsection[Concept D]{Is concept $D$ satisfiable?}
+A concept is satisfiable if we can construct an interpretation for it, let's
+try to construct an interpretation for concept $D$.  Lets call this
+interpretation $I$:
+\begin{align*}
+I_0 &= \{x : B \sqcap \exists R.(A \sqcap B) \sqcap \forall R.\neg A\}\\
+I_0 \to_\sqcap I_1 &= I_0 \cup \{ x : B, x : \exists R.(A \sqcap B)
+                                , x : \forall R.\neg A\}\\
+I_1 \to_\exists I_2 &= I_1 \cup \{ x : B, (x,y) : R
+                                 , y : A \sqcap B, x : \forall R.\neg A\}\\
+I_2 \to_\sqcap I_3 &= I_2 \cup \{ x : B, (x,y) : R
+                                , y : A, y : B, x : \forall R.\neg A\}\\
+I_3 \to_\forall I_4 &= I_3 \cup \{ x : B, (x,y) : R
+                                 , y : A, y : B, y : \neg A\} &(contradiction!)
+\end{align*}
+
+The tableau method falls in a contradiction when trying to build an
+interpretation for concept $D$ (as both $ y : A $ and $ y : \neg A $ must be
+present in an interpretation).  Since we cannot build an interpretation for
+concept $D$ we can say that concept $D$ is unsatisfiable.
+
+\subsection[Subsumption]{Check if subsumption $C \sqsubseteq D$ holds}
+For the the subsumption $ C \sqsubseteq D $ to be true it must hold that for
+all interpretations $I$: $ C^I \subseteq D^I $ is true.  There is no limitation
+on the form of the interpretations $I$ as we are not checking the subsumption
+against a TBox (although we could say we are checking the subsumption w.r.t an
+empty TBox).
+
+If it is true that $ C^I \subseteq D^I \mid \forall I$ then the concept $ C
+\sqcap \neg D $ must be unsatisfiable (if set $C$ is within set $D$ then the
+intersection of $C$ with the complement of $D$ must be the empty set).
+Therefore we shall check the satisfiability of $ C \sqcap \neg D $, first we
+need its negation normal form:
+\begin{align*}
+        \neg A \sqcap \exists R.A \sqcap \exists R.(\neg A \sqcap B)
+&\sqcap \neg (B \sqcap \exists R.(A \sqcap B) \sqcap \forall R.\neg A)\\
+        \neg A \sqcap \exists R.A \sqcap \exists R.(\neg A \sqcap B)
+&\sqcap \neg (B \sqcap \exists R.(A \sqcap B)) \sqcup \neg \forall R.\neg A\\
+        \neg A \sqcap \exists R.A \sqcap \exists R.(\neg A \sqcap B)
+&\sqcap \neg B \sqcup \neg \exists R.(A \sqcap B) \sqcup \exists R.A\\
+        \neg A \sqcap \exists R.A \sqcap \exists R.(\neg A \sqcap B)
+&\sqcap \neg B \sqcup \forall R.\neg (A \sqcap B) \sqcup \exists R.A\\
+        \neg A \sqcap \exists R.A \sqcap \exists R.(\neg A \sqcap B)
+&\sqcap \neg B \sqcup \forall R.(\neg A \sqcup \neg B) \sqcup \exists R.A\\
+\end{align*}
+
+Lets try to construct an interpretation that satisfies the concept above, lets
+call this interpretation $P$:
+\begin{eqnarray*}
+P_0 &=& \{ x : \neg A \sqcap \exists R.A \sqcap \exists R.(\neg A \sqcap B)\\
+    & &  \sqcap \neg B \sqcup
+         \forall R.(\neg A \sqcup \neg B) \sqcup \exists R.A\}\\
+P_0 \to_\sqcap P_1 &= P_0 \cup& \{ x : \neg A, x : \exists R.A\\
+                              & &, x : \exists R.(\neg A \sqcap B)
+                                 , x : \neg B \sqcup
+                                       \forall R.(\neg A \sqcup \neg B)
+                                       \sqcup \exists R.A\}\\
+P_1 \to_\exists P_2 &= P_1 \cup& \{ x : \neg A, x : (x,y) : R, y : A\\
+                               & &, x : \exists R.(\neg A \sqcap B)
+                                  , x : \neg B \sqcup
+                                        \forall R.(\neg A \sqcup \neg B)
+                                        \sqcup \exists R.A\}\\
+P_2 \to_\exists P_3 &= P_2 \cup& \{ x : \neg A
+                                  , x : (x,y) : R, y : A, (x,z) : R\\
+                               & &, z : \neg A \sqcap B
+                                  , x : \neg B \sqcup
+                                        \forall R.(\neg A \sqcup \neg B)
+                                        \sqcup \exists R.A\}\\
+P_3 \to_\sqcap P_4 &= P_3 \cup& \{ x : \neg A
+                                 , x : (x,y) : R, y : A , (x,z) : R\\
+                              & &, z : \neg A, z : B
+                                 , x : \neg B \sqcup
+                                       \forall R.(\neg A \sqcup \neg B)
+                                       \sqcup \exists R.A\}\\
+P_4 \to_\sqcap P_{5,1} &= P_4 \cup& \{ x : \neg A , x : (x,y) : R\\
+                                  & &, y : A , (x,z) : R
+                                     , z : \neg A, z : B, x : \neg B \}
+\end{eqnarray*}
+And we can stop in $ P_{5,1} $ because we found an interpretation that
+satisfies $ C \sqsubseteq D $.  This interpretation is $ P = (\Delta^P,
+\cdot^P) $:
+\begin{align*}
+\Delta^P &= \{x,y,z\}\\
+     A^P &= \{y\}\\
+     B^P &= \{z\}\\
+     R^P &= \{(x,y),(x,z)\}
+\end{align*}
+It is the same interpretation that satisfies the concept $C$ alone, which makes
+sense because that interpretation satisfies the most left hand side part of
+$\neg D$: $x : \neg B$.  Nevertheless, as we have found an interpretation that
+satisfies $ C \sqcap \neg D $ then we have found and interpretation for which $
+C^I \subseteq D^I $ is not true.  Therefore we can say that the subsumption $ C
+\sqsubseteq D $ is \emph{not} true.
+
+\subsection[Alternate]{Subsumption, alternate solution}
+To check if the subsumption $ C \sqsubseteq D $ we can use another method.  As
+to check this subsumption we need to check that in any interpretation $I$ the
+concept $C$ is a subset of concept $D$ (i.e. $ C^I \subseteq D^I \mid \forall
+I$) and we already know that $D$ is unsatisfiable, then we can say that $ D^I =
+\emptyset \mid \forall I $.  In other words:
+\begin{align*}
+C   &\sqsubseteq D\\
+C^I &\subseteq D^I        & \mid \forall I\\
+C^I &\subseteq \emptyset  & \mid \forall I
+\end{align*}
+
+Now, if we find an $I$ for which $C^I$ is not the empty set we will see that $
+C^I \subseteq \emptyset $ is not true $\forall I$.  As we already constructed
+an interpretation $S$ for concept $C$ in section \ref{interpretationforc} we
+can say that $ C^S \nsubseteq \emptyset $ and therefore we see:
+\begin{align*}
+C^I &\nsubseteq \emptyset  & \mid \forall I\\
+C^I &\nsubseteq D^I        & \mid \forall I
+\end{align*}
+
+From this we can finally say that:
+\begin{equation*}
+C \not\sqsubseteq D
+\end{equation*}
+
+\section[Question 10]{Answer to question 10}
+
+\begin{itemize}
+\item[-]\verb|DisjointClasses(Meat Fish Vegetable Fruit)|
+\begin{align*}
+ Meat      \sqcap Fish      &\sqsubseteq \emptyset
+&Fish      \sqcap Vegetable &\sqsubseteq \emptyset \\
+ Meat      \sqcap Vegetable &\sqsubseteq \emptyset
+&Fish      \sqcap Fruit     &\sqsubseteq \emptyset \\
+ Meat      \sqcap Fruit     &\sqsubseteq \emptyset
+&Vegetable \sqcap Fruit     &\sqsubseteq \emptyset
+\end{align*}
+
+\item[-]\verb|ObjectPropertyDomain(father Person)|
+\begin{equation*}
+\exists father.\top \sqsubseteq Person
+\end{equation*}
+
+\item[-]\verb|ObjectPropertyRange(father Male)|
+\begin{equation*}
+\exists father^-.\top \sqsubseteq Male
+\end{equation*}
+
+\item[-]\verb|SubObjectPropertyOf(father parent)|
+\begin{equation*}
+\exists father.\top \sqsubseteq \exists parent.\top
+\end{equation*}
+
+\item[-]\verb|FunctionalObjectProperty(father)|
+\begin{equation*}
+\exists father.\top \sqsubseteq {}\leq 1father.\top
+\end{equation*}
+
+\item[-]\verb|SymmetricObjectProperty(hasSameGrade)|
+\begin{align*}
+\exists hasSameGrade.\top   &\sqsubseteq \exists hasSameGrade^-.\top\\
+\exists hasSameGrade^-.\top &\sqsubseteq \exists hasSameGrade.\top
+\end{align*}
+
+\item[-]\begin{Verbatim}[samepage=true]
+SubClassOf(Lion ObjectIntersectionOf(
+                    Animal
+                    ObjectAllValuesFrom(eats Animal)))
+\end{Verbatim}
+\begin{equation*}
+Lion \sqsubseteq Animal \sqcap \forall eats.Animal
+\end{equation*}
+
+\item[-]\begin{Verbatim}[samepage=true]
+EquivalentClasses(Carnivore
+                  ObjectIntersectionOf(
+                      Animal
+                      ObjectSomeValuesFrom(eats Animal)))
+\end{Verbatim}
+\begin{equation*}
+Carnivore \equiv Animal \sqcap \exists eats.Animal
+\end{equation*}
 \end{itemize}
 
 \end{document}

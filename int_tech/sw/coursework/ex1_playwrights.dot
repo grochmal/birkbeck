@@ -1,32 +1,30 @@
 digraph {
     rankdir=LR;
-    {rank=same; Playwright Poet Drama Poem}
+    {rank=same; Playwright Poet Writer Drama Poem LiteraryContent}
     Shakespear [style="filled",color="darkgreen",fillcolor="aquamarine"];
     Hamlet  [style="filled",color="darkgreen",fillcolor="aquamarine"];
     Sonet96 [style="filled",color="darkgreen",fillcolor="aquamarine"];
+    wrote   [style="filled",color="darkgreen",fillcolor="aquamarine"];
     Playwright      [style="filled",color="navyblue",fillcolor="green"];
     Poet            [style="filled",color="navyblue",fillcolor="green"];
     Drama           [style="filled",color="navyblue",fillcolor="green"];
     Poem            [style="filled",color="navyblue",fillcolor="green"];
     Writer          [style="filled",color="navyblue",fillcolor="green"];
     LiteraryContent [style="filled",color="navyblue",fillcolor="green"];
-    wrote [style="filled",color="darkgreen",fillcolor="aquamarine"];
     Shakespear -> Playwright [label="rdf:type",color="navy",fontcolor="navy"];
     Shakespear -> Poet       [label="rdf:type",color="navy",fontcolor="navy"];
-    Playwright -> Writer [label="rdfs:subClassOf"
-                         ,color="forestgreen",fontcolor="forestgreen"];
-    Poet       -> Writer [label="rdfs:subClassOf"
-                         ,color="forestgreen",fontcolor="forestgreen"];
+    Shakespear -> Writer     [label="rdf:type",color="navy",fontcolor="navy"];
     Shakespear -> Hamlet     [label="wrote",color="navy",fontcolor="navy"];
     Shakespear -> Sonet96    [label="wrote",color="navy",fontcolor="navy"];
-    Hamlet  -> Drama [label="rdf:type",color="navy",fontcolor="navy"];
-    Sonet96 -> Poem  [label="rdf:type",color="navy",fontcolor="navy"];
-    Drama -> LiteraryContent [label="rdfs:subClassOf"
+    Hamlet -> Drama           [label="rdf:type",color="navy",fontcolor="navy"];
+    Hamlet -> LiteraryContent [label="rdf:type",color="navy",fontcolor="navy"];
+    Sonet96 -> Poem            [label="rdf:type"
+                               ,color="navy",fontcolor="navy"];
+    Sonet96 -> LiteraryContent [label="rdf:type"
+                               ,color="navy",fontcolor="navy"];
+    wrote -> Writer          [label="rdfs:domain"
                              ,color="forestgreen",fontcolor="forestgreen"];
-    Poem  -> LiteraryContent [label="rdfs:subClassOf"
-                             ,color="forestgreen",fontcolor="forestgreen"];
-    wrote -> Writer [label="rdfs:domain",color="navy",fontcolor="navy"];
     wrote -> LiteraryContent [label="rdfs:range"
-                             ,color="navy",fontcolor="navy"];
+                             ,color="forestgreen",fontcolor="forestgreen"];
 }
 
