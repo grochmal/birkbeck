@@ -1,0 +1,72 @@
+digraph {
+    node [shape=diamond,style=filled,color=forestgreen,fillcolor=greenyellow];
+    edge [label=R];
+    subgraph cluster_top {
+        label=I;
+        style=rounded;
+        subgraph cluster_tA {
+            style=filled;fontcolor=navy;color=orchid;
+            label="class A";
+            ta [label=<a<br/>{A}>];
+            tb [label=<b<br/>{A,B}>];
+            tf [label=<f<br/>{A}>];
+        }
+        subgraph cluster_tC {
+            style=filled;fontcolor=navy;color=orchid;
+            label="class C";
+            te [label=<e<br/>{C}>];
+        }
+        td [label=<d<br/>{B}>];
+        tc [label=<c<br/>{}>];
+        ta -> tb;
+        ta -> tc;
+        td -> tc;
+        tc -> te;
+    }
+    subgraph cluster_mid {
+        label="I'";
+        style=rounded;
+        subgraph cluster_mA {
+            style=filled;fontcolor=navy;color=orchid;
+            label="class A";
+            ma [label=<a<br/>{A}>];
+            mb [label=<b<br/>{A,B}>];
+            mf [label=<f<br/>{A}>];
+        }
+        subgraph cluster_mC {
+            style=filled;fontcolor=navy;color=orchid;
+            label="class C";
+            me [label=<e<br/>{C}>];
+        }
+        md [label=<d<br/>{B}>];
+        mc [label=<c<br/>{}>];
+        ma -> ma;
+        ma -> mb;
+        ma -> mc;
+        md -> mc;
+        mc -> me;
+    }
+    subgraph cluster_bot {
+        label="I''";
+        style=rounded;
+        subgraph cluster_bA {
+            style=filled;fontcolor=navy;color=orchid;
+            label="class A";
+            ba [label=<a<br/>{A}>];
+            bb [label=<b<br/>{A,B}>];
+            bf [label=<f<br/>{A}>];
+        }
+        subgraph cluster_bC {
+            style=filled;fontcolor=navy;color=orchid;
+            label="class C";
+            be [label=<e<br/>{C}>];
+            bd [label=<d<br/>{B,C}>];
+        }
+        bc [label=<c<br/>{}>];
+        ba -> bb;
+        ba -> bc;
+        bd -> bc;
+        bc -> be;
+    }
+}
+

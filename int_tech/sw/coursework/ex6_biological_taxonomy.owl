@@ -1,0 +1,61 @@
+@prefix : <http://grochmal.org/ontologies/ex6_bio_taxonomy#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://grochmal.org/ontologies/ex6_bio_taxonomy> .
+
+<http://grochmal.org/ontologies/ex6_bio_taxonomy> rdf:type owl:Ontology .
+
+##############
+# Properties #
+##############
+
+:eats rdf:type owl:ObjectProperty .
+
+###########
+# Classes #
+###########
+
+:Animal rdf:type owl:Class ;
+        owl:disjointWith :Plant .
+
+:Carnivore rdf:type owl:Class ;
+           owl:equivalentClass [ rdf:type owl:Class ;
+                                 owl:intersectionOf
+                                   ( [ rdf:type owl:Restriction ;
+                                       owl:onProperty :eats ;
+                                       owl:someValuesFrom :Animal
+                                     ]
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :eats ;
+                                       owl:allValuesFrom :Animal
+                                     ]
+                                   )
+                               ] .
+
+:CarnivorousPlant rdf:type owl:Class ;
+                  owl:equivalentClass [ rdf:type owl:Class ;
+                                        owl:intersectionOf
+                                          ( :Carnivore
+                                            :Plant
+                                          )
+                                      ] .
+
+:Herbivore rdf:type owl:Class ;
+           owl:equivalentClass [ rdf:type owl:Class ;
+                                 owl:intersectionOf
+                                   ( [ rdf:type owl:Restriction ;
+                                       owl:onProperty :eats ;
+                                       owl:someValuesFrom :Plant
+                                     ]
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :eats ;
+                                       owl:allValuesFrom :Plant
+                                     ]
+                                   )
+                               ] .
+
+:Plant rdf:type owl:Class .
+

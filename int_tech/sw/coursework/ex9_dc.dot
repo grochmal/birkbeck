@@ -1,0 +1,19 @@
+digraph {
+    rankdir=LR;
+    node [shape=diamond,style=filled,color=forestgreen,fillcolor=greenyellow];
+    edge [label=R];
+    x;
+    subgraph cluster_y {
+        style=filled;fontcolor=navy;color=orchid;
+        label=A;
+        y;
+    }
+    subgraph cluster_B {
+        style=filled;fontcolor=navy;color=orchid;
+        label=B;
+        z;
+    }
+    x -> y;
+    x -> z;
+}
+

@@ -48,7 +48,12 @@ piece of \emph{literary\_content}.
 \begin{figure}[!htp]
 \centering
 \includegraphics[width=\textwidth]{ex1_playwrights}
-\caption{Graph representation of the RDF document}
+\caption{Graph representation of the RDF document.  It is important to note
+that the RDF document do \underline{not} specify that \emph{Playwright} and/or
+\emph{Poet} are subclasses of \emph{Writer}.  Neither it can be inferred from
+the document.  Same is the case for \emph{Drama} and \emph{Poem}: we cannot
+say, based on the document, that those concepts are subclasses of
+\emph{Literary Content}.}
 \label{shakespear}
 \end{figure}
 Figure \ref{shakespear} shows the graph representation.
@@ -80,12 +85,12 @@ cannot be represented in RDF.
 \subsection[Turtle]{Represent the information in turtle}
 \begin{Verbatim}[samepage=true]
 _b  rdf:type   :Person .
-_b  :hasEmail  :bob@somewhere.uk .
+_b  :hasEmail  <mailto:bob@somewhere.uk> .
 _b  :playsGolfWith  _s .
 _s  :isSpouseOf     _r .
 _b  :isColleagueOf  _r .
-_r  :hasEmail  :rob@elsewhere.uk .
-_r  :hasEmail  :rob@somewhere.it .
+_r  :hasEmail  <mailto:rob@elsewhere.uk> .
+_r  :hasEmail  <mailto:rob@somewhere.it> .
 \end{Verbatim}
 
 \subsection[Graph]{Draw the graph representation}
@@ -99,7 +104,7 @@ Figure \ref{bobslife} shows the graph representation for this information.
 
 \subsection[DL]{Represent the information using DL}
 To represent this information in description logic (form a knowledge base)
-logic we can use an empty \emph{Tbox} and the following \emph{ABox}:
+we can use an empty \emph{Tbox} and the following \emph{ABox}:
 \begin{align*}
                     b &: Person\\
 (b, bob@somewhere.uk) &: hasEmail\\
@@ -129,9 +134,9 @@ be represented as:
 
 "Document 3 says that document 1 has been published by W3C." can be represented
 as\footnote{We could add the \verb|:Document1  :publishedBy  :W3C| triple to
-this representation.  But it is interpretation dependent, as some authors add
+this representation.  But this is interpretation dependent, as some authors add
 this triplet explicitly whilst others leave it implicit in the \emph{subject,
-predicate and object} roles.}:
+predicate} and \emph{object} roles.}:
 \begin{Verbatim}[samepage=true]
 :Document3  :says  _s .
 _s  :subject    :Document1 .
@@ -152,8 +157,8 @@ WHERE { x?  :createdBy  ?a .
 
 \subsection[RDF/S representation]{Represent in RDF/S if possible}
 \begin{itemize}
-\item[-]"John is a person." can be transliterated into "John is of type Person." and
-written in RDF triples as:
+\item[-]"John is a person." can be transliterated into "John is of type
+Person." and written in RDF triples as:
 \begin{Verbatim}[samepage=true]
 :John  rdf:type  :Person .
 \end{Verbatim}
@@ -164,57 +169,58 @@ mother of John." and written in RDF triples as:
 :Mary  :motherOf  :John .
 \end{Verbatim}
 
-\item[-]"Persons are men and women." can be transliterated into "A Person is a man,
-also a Person is a woman." which can be written in RDF/S triples
+\item[-]"Persons are men and women." can be transliterated into "A Person is a
+man, also a Person is a woman." which can be written in RDF/S triples
 as\footnote{This is a very forceful way of transliterating that phrase, notably
 because we say that every person is a Man and a Woman at the same time.
-Another viable transliteration would be "A Person is either a Man or a Woman".
-Yet, this transliteration cannot be represented using RDF triples as we need
-the concept of disjoint classes, which is not present in RDF/S.}:
+Another (and better) transliteration would be "A Person is either a Man or a
+Woman".  Yet, this transliteration cannot be represented using RDF triples as
+we need the concept of disjoint classes, which is not present in RDF/S.}:
 \begin{Verbatim}[samepage=true]
 :Person  rdfs:subClassOf  :Man .
 :Person  rdfs:subClassOf  :Woman .
 \end{Verbatim}
 
-\item[-]"Men and women are persons." can be transliterated into "Men are Persons and
-Women are Persons." and written in RDF/S triplets as:
+\item[-]"Men and women are persons." can be transliterated into "Men are
+Persons and Women are Persons." and written in RDF/S triplets as:
 \begin{Verbatim}[samepage=true]
 :Man    rdfs:subClassOf  :Person .
 :Woman  rdfs:subClassOf  :Person .
 \end{Verbatim}
 
-\item[-]"All fathers are parents." can be transliterated into "Every father is parent
-as well." and one form of writing that in RDF/S would be:
+\item[-]"All fathers are parents." can be transliterated into "Every father is
+a parent as well." and writing that in RDF/S would be:
 \begin{Verbatim}[samepage=true]
 :fatherOf  rdfs:subPropertyOf  :parentOf .
 \end{Verbatim}
 
-\item[-]"Every mother is a woman." can be transliterated into "Something that is a
-mother of something is a Woman." and written in RDF/S triples as:
+\item[-]"Every mother is a woman." can be transliterated into "Something that
+is a mother of something is a Woman." and written in RDF/S triples as:
 \begin{Verbatim}[samepage=true]
 :motherOf  rdfs:domain  :Woman .
 \end{Verbatim}
 
-\item[-]"Every person has a mother." cannot be represented in RDF/S.  To represent this
-we need the concept of "exists" $(\exists)$ from Description Logic/OWL.
+\item[-]"Every person has a mother." cannot be represented in RDF/S.  To
+represent this we need the concept of "exists" $(\exists)$ from Description
+Logic/OWL.
 
-\item[-]"John’s mother is a lecturer." can be transliterated into "John has a mother;
-John's mother is a Lecturer." and written in RDF triples as:
+\item[-]"John’s mother is a lecturer." can be transliterated into "John has a
+mother; John's mother is a Lecturer." and written in RDF triples as:
 \begin{Verbatim}[samepage=true]
 _m  :motherOf  :John .
 _m  rdf:type   :Lecturer .
 \end{Verbatim}
 
-\item[-]"Every person has two parents." cannot be represented in RDF/S.  To represent
-it we need the cardinality operators from extended DL and/or OWL 2.
+\item[-]"Every person has two parents." cannot be represented in RDF/S.  To
+represent it we need the cardinality operators from extended DL and/or OWL 2.
 
-\item[-]"Lecturers’ daughters are lecturers." cannot be represented in RDF/S.  To
-represent this we need to intersect the class \emph{Lecturer} and the domain of
-\emph{fatherOf}, but we cannot do intersection in RDF/S.
+\item[-]"Lecturers’ daughters are lecturers." cannot be represented in RDF/S.
+To represent this we need to intersect the class \emph{Lecturer} and the domain
+of \emph{fatherOf}, but we cannot do intersection in RDF/S.
 
-\item[-]"John and Sam have the same mother." can be transliterated into "Someone is
-mother of John and this same someone is mother of Sam." and written in RDF
-triples as:
+\item[-]"John and Sam have the same mother." can be transliterated into
+"Someone is mother of John and this same someone is mother of Sam." and written
+in RDF triples as:
 \begin{Verbatim}[samepage=true]
 _m  :motherOf  :John .
 _m  :motherOf  :Sam .
@@ -234,7 +240,7 @@ mary         &: Lecturer\\
 And the \emph{TBox} looks like this:
 \begin{align*}
                Person &\sqsubseteq Man \sqcup Woman\\
-     Man \sqcap Woman &\sqsubseteq \emptyset\\
+     Man \sqcap Woman &\sqsubseteq \bot\\
                   Man &\sqsubseteq Person\\
                 Woman &\sqsubseteq Person\\
 \exists fatherOf.\top &\sqsubseteq \exists parentOf.\top\\
@@ -328,7 +334,7 @@ EquivalentClasses(
 \end{Verbatim}
 
 \item[PhysicalPub] in description logic can be seen as: $ PhysicalPub \equiv\\
-Publication \sqcap \exists hasPubForm Physical $.  And in OWL functional syntax
+Publication \sqcap \exists hasPubForm.Physical $.  And in OWL functional syntax
 as:
 \begin{Verbatim}[samepage=true]
 EquivalentClasses(
@@ -339,7 +345,7 @@ EquivalentClasses(
 \end{Verbatim}
 
 \item[DigitalPub] in description logic can be seen as: $ DigitalPub \equiv\\
-Publication \sqcap \exists hasPubForm Digital $.  And in OWL functional syntax
+Publication \sqcap \exists hasPubForm.Digital $.  And in OWL functional syntax
 as:
 \begin{Verbatim}[samepage=true]
 EquivalentClasses(
@@ -360,7 +366,7 @@ considering translations in this ontology.
 identifies a publication.
 
 \item[isInCategory]: domain Publication, range PubCategory.  The same
-publication can belong to many categories at the same time.  Say a drama and
+publication can belong to many categories at the same time.  Say, a drama and
 science fiction book.
 
 \item[hasAuthor]: domain Publication, range Author, inverse of authored.  One
@@ -372,7 +378,8 @@ edit many publications.
 
 \item[printedIn]: domain PhysicalPub, range Location, functional.  Only a
 publication that was published in a physical form is printed (digital copies
-are not printed), and every physical copy has been printed somewhere.
+are not printed), and every physical copy has been printed somewhere.  We are
+not considering different editions of the same publication in this ontology.
 
 \item[hasPubForm]: domain Publication, range PublicationForm.  The same
 publication can be published in many forms.  For example, a book can be
@@ -412,12 +419,12 @@ publications always fit in the computer science literary category.", this looks
 in description logic as:
 \begin{align*}
 ElecPubCompSc \equiv Publisher \sqcap \exists &publishes.(Publication\\
-                             &\sqcap \exists hasPubForm.DigitalPub\\
-                             &\sqcap \forall hasPubForm.DigitalPub\\
+                             &\sqcap \exists hasPubForm.Digital\\
+                             &\sqcap \forall hasPubForm.Digital\\
                              &\sqcap \exists isInCategory.ComputerScience)\\
                                \sqcap \forall &publishes.(Publication\\
-                             &\sqcap \exists hasPubForm.DigitalPub\\
-                             &\sqcap \forall hasPubForm.DigitalPub\\
+                             &\sqcap \exists hasPubForm.Digital\\
+                             &\sqcap \forall hasPubForm.Digital\\
                              &\sqcap \exists isInCategory.ComputerScience)
 \end{align*}
 And in OWL functional syntax as:
@@ -430,15 +437,15 @@ EquivalentClasses(
             publishes
             ObjectIntersectionOf(
                 Publication
-                ObjectSomeValuesFrom(hasPubForm DigitalPub)
-                ObjectAllValuesFrom(hasPubForm DigitalPub)
+                ObjectSomeValuesFrom(hasPubForm Digital)
+                ObjectAllValuesFrom(hasPubForm Digital)
                 ObjectSomeValuesFrom(isInCategory ComputerScience)))
         ObjectAllValuesFrom(
             publishes
             ObjectIntersectionOf(
                 Publication
-                ObjectSomeValuesFrom(hasPubForm DigitalPub)
-                ObjectAllValuesFrom(hasPubForm DigitalPub)
+                ObjectSomeValuesFrom(hasPubForm Digital)
+                ObjectAllValuesFrom(hasPubForm Digital)
                 ObjectSomeValuesFrom(isInCategory ComputerScience)))))
 \end{Verbatim}
 
@@ -511,8 +518,8 @@ after section \ref{fixdomain} \\
 \hline \hline
 Thing                & Thing              & Thing                \\
 - Animal             & - Animal           & - Animal             \\
-- Carnivore          & - Carnivore        & - Carnivore          \\
-- - CarnivorousPlant & - Herbivore        & - - CarnivorousPlant \\
+- Carnivore          & - - Carnivore      & - Carnivore          \\
+- - CarnivorousPlant & - - Herbivore      & - - CarnivorousPlant \\
 - - Plant            & - Plant            & - Herbivore          \\
 - Herbivore          & Nothing            & - Plant              \\
 - - CarnivorousPlant & - CarnivorousPlant & - - CarnivorousPlant \\
@@ -524,12 +531,12 @@ Thing                & Thing              & Thing                \\
 \end{table}
 
 \subsection[Explain misbehaviour]{Explain plants' definition in the ontology}
-A \emph{Plant} do not eat anything in this model.  As the definition of
-\emph{Carnivore} $ (\forall eats.Animal) $ do not specify that the carnivore
-must actually eat something, a plant is a perfectly good example of a
-carnivore.  The analogous reasoning explains why a plant is a \emph{Herbivore},
-as the definition of herbivore do not specify that a member of it must eat
-something.
+A \emph{Plant} do not eat anything in this model because \emph{eats} have
+domain \emph{Animal}.  As the definition of \emph{Carnivore} $ (\forall
+eats.Animal) $ do not specify that the carnivore must actually eat something, a
+plant is a perfectly good example of a carnivore.  The analogous reasoning
+explains why a plant is a \emph{Herbivore}: as the definition of herbivore do
+not specify that a member of it must eat something.
 
 \subsection[First fix]{How the problem can be fixed}
 \label{fixforall}
@@ -542,12 +549,12 @@ Herbivore &\equiv \forall eats.Plant  \sqcap \exists eats.Plant
 
 \subsection[Fixed ontology]{Another problem with the ontology}
 \label{fixdomain}
-Another problem with the ontology is that carnivorous plants cannot be defined.
-Carnivorous plants are plants that are carnivorous, i.e. that eat animals, but
-the definition of the domain of \emph{eats} do not allow plants to eat.  To fix
-this the restriction on the domain of \emph{eats} is removed from the ontology.
-The full ontology, after all fixes, can be found in accompanying \emph{.owl}
-file.
+Another problem with the ontology is that after the changes above carnivorous
+plants cannot be defined.  Carnivorous plants are plants that are carnivorous,
+i.e. that eat animals, but the definition of the domain of \emph{eats} do not
+allow plants to eat.  To fix this the restriction on the domain of \emph{eats}
+is removed from the ontology.  The full ontology, after all fixes, can be found
+in accompanying \emph{.owl} file.
 
 \section[Question 7]{Answer to question 7}
 
@@ -564,6 +571,15 @@ And the interpretation $ I = (\Delta^I, \cdot^I) $:
      C^I &= \{e\}\\
      R^I &= \{(a,b),(a,c),(d,c),(c,e)\}
 \end{align*}
+Figure \ref{interpretations} depicts the interpretations used in this exercise.
+
+\begin{figure}[bp]
+\centering
+\includegraphics[width=\textwidth]{ex7_interpretations}
+\caption{Interpretations $I$, $I'$ and $I''$, the class $B$ is not graphically
+depicted in the illustrations.}
+\label{interpretations}
+\end{figure}
 
 \subsection[Model]{Is $I$ a model of $T$?}
 \label{itproof}
@@ -612,8 +628,8 @@ interpretation $I'$ the concept $ \exists R.(\exists R.A) $ is:
 &\{a\}
 \end{align*}
 Therefore there exists at least one interpretation that models $T$ and
-satisfies $ \exists R.(\exists R.A) $.  So it is not true that this concept is
-unsatisfiable with relation to $T$.
+satisfies $ \exists R.(\exists R.A) $.  So it is \underline{not true} that this
+concept is unsatisfiable with relation to $T$.
 
 \subsection[Consequence]{Is $ T \models C \sqsubseteq \forall R.A $?}
 We first check whether the axiom $ C \sqsubseteq \forall R.A $ is satisfied in
@@ -641,7 +657,7 @@ axiom $ C \sqsubseteq \forall R.A $ is:
 \end{align*}
 Which is not true.  Therefore there exists at least on interpretation that
 models $T$ but do not satisfy the axiom $ C \sqsubseteq \forall R.A $.  So it
-is not true that $ T \models C \sqsubseteq \forall R.A $.
+is \underline{not true} that $ T \models C \sqsubseteq \forall R.A $.
 
 \section[Question 8]{Answer to question 8}
 
@@ -654,6 +670,16 @@ Consider the ABox $A$
 claudia         &: Blond\\
 andrea          &: \neg Blond
 \end{align*}
+Figure \ref{ronandfriends} depicts the interpretations used in this exercise.
+
+\begin{figure}[bp]
+\centering
+\includegraphics[width=0.75\textwidth]{ex8_ron}
+\caption{Interpretations modeling the ABox $A$: first two are possible cases
+for $ peter : Blond $ and $ peter : \neg Blond $, the third is an
+interpretation where $andrea$ has a neighbour.}
+\label{ronandfriends}
+\end{figure}
 
 \subsection[Model]{Does $A$ have a model?}
 \label{roninterpretation}
@@ -672,7 +698,7 @@ isNeighbourOf^I &= \{(claudia,peter),(peter,andrea)\}
 \end{equation*}
 To check that $ron$ is an instance of this concept we need to see whether this
 is true for $ron$ in all interpretations that model the ABox $A$.  As in all
-interpretations that model the ABox $A$ will have the relations:
+interpretations that model the ABox $A$ we will have the relations:
 \begin{equation*}
 likes = \{(ron,claudia),(ron,peter)\}
 \end{equation*}
@@ -690,8 +716,8 @@ Blond$.
 \end{description}
 
 As in both cases the concept is true and that any interpretation that models
-$A$ must have one of these cases we can say that: it is true that $ron$ is an
-instance of the concept:
+$A$ must have one of these cases we can say that: \underline{it is true} that
+$ron$ is an instance of the concept:
 \begin{equation*}
 \exists likes.(Blond \sqcap \exists isNeighbourOf. \neg Blond)
 \end{equation*}
@@ -713,7 +739,7 @@ $\neg Blond$ still models $A$.
 As we can construct an interpretation that models the ABox $A$ and in this
 interpretation $andrea$ has a neighbour that is $\neg Blond$, in such
 interpretation the given concept is not true for $ron$.  From this we can say
-that $ron$ is not an instance of the concept:
+that $ron$ is \underline{not} an instance of the concept:
 \begin{equation*}
 \exists likes.(\exists isNeighbourOf.(\forall isNeighbourOf.Blond))
 \end{equation*}
@@ -725,6 +751,15 @@ Consider the concepts:
 C &\equiv \neg A \sqcap \exists R.A \sqcap \neg(\forall R.(A \sqcup \neg B))\\
 D &\equiv B \sqcap \exists R.(A \sqcap B) \sqcap \neg(\exists R.A)
 \end{align*}
+Figure \ref{cdconpets} shows the interpretation used below.
+
+\begin{figure}[tb]
+\centering
+\includegraphics[width=0.3\textwidth]{ex9_dc}
+\caption{Interpretation $S$ (or $P$, as they're identical) that satisfies $C$
+and satisfies $ C \sqcap \neg D $.}
+\label{cdconpets}
+\end{figure}
 
 \subsection[NNF]{Transform the concepts into negation normal form}
 Transforming concept $C$:
@@ -750,12 +785,10 @@ interpretation $S$:
 S_0 &= \{x : \neg A \sqcap \exists R.A \sqcap \exists  R.(\neg A \sqcap B)\}\\
 S_0 \to_\sqcap S_1 &= S_0 \cup \{ x : \neg A, x : \exists R.A
                                 , x : \exists R.(\neg A \sqcap B) \}\\
-S_1 \to_\exists S_2 &= S_1 \cup \{ x : \neg A, (x,y) : R, y : A
+S_1 \to_\exists S_2 &= S_1 \cup \{ (x,y) : R, y : A
                                  , x : \exists R.(\neg A \sqcap B) \}\\
-S_2 \to_\exists S_3 &= S_2 \cup \{ x : \neg A, (x,y) : R, y : A
-                                 , (x,z) : R, z : \neg A \sqcap B \}\\
-S_3 \to_\sqcap S_4 &= S_3 \cup \{ x : \neg A, (x,y) : R, y : A
-                                , (x,z) : R, z : \neg A, z : B \}
+S_2 \to_\exists S_3 &= S_2 \cup \{ (x,z) : R, z : \neg A \sqcap B \}\\
+S_3 \to_\sqcap S_4 &= S_3 \cup \{ z : \neg A, z : B \}
 \end{align*}
 
 From this we can write the interpretation $S$ as $ S = (\Delta^S, \cdot^S) $
@@ -767,7 +800,8 @@ where:
      R^S &= \{(x,y),(x,z)\}
 \end{align*}
 
-Since interpretation $S$ satisfies the concept $C$, concept $C$ is satisfiable.
+Since interpretation $S$ satisfies the concept $C$, concept $C$ is
+\underline{satisfiable}.
 
 \subsection[Concept D]{Is concept $D$ satisfiable?}
 A concept is satisfiable if we can construct an interpretation for it, let's
@@ -777,29 +811,28 @@ interpretation $I$:
 I_0 &= \{x : B \sqcap \exists R.(A \sqcap B) \sqcap \forall R.\neg A\}\\
 I_0 \to_\sqcap I_1 &= I_0 \cup \{ x : B, x : \exists R.(A \sqcap B)
                                 , x : \forall R.\neg A\}\\
-I_1 \to_\exists I_2 &= I_1 \cup \{ x : B, (x,y) : R
-                                 , y : A \sqcap B, x : \forall R.\neg A\}\\
-I_2 \to_\sqcap I_3 &= I_2 \cup \{ x : B, (x,y) : R
-                                , y : A, y : B, x : \forall R.\neg A\}\\
-I_3 \to_\forall I_4 &= I_3 \cup \{ x : B, (x,y) : R
-                                 , y : A, y : B, y : \neg A\} &(contradiction!)
+I_1 \to_\exists I_2 &= I_1 \cup \{ (x,y) : R, y : A \sqcap B
+                                 , x : \forall R.\neg A\}\\
+I_2 \to_\sqcap I_3 &= I_2 \cup \{ y : A, y : B, x : \forall R.\neg A\}\\
+I_3 \to_\forall I_4 &= I_3 \cup \{ y : \neg A\} &(contradiction!)
 \end{align*}
 
 The tableau method falls in a contradiction when trying to build an
 interpretation for concept $D$ (as both $ y : A $ and $ y : \neg A $ must be
-present in an interpretation).  Since we cannot build an interpretation for
-concept $D$ we can say that concept $D$ is unsatisfiable.
+present in any interpretation that models $D$).  Since we cannot build an
+interpretation for concept $D$ we can say that concept $D$ is
+\underline{unsatisfiable}.
 
 \subsection[Subsumption]{Check if subsumption $C \sqsubseteq D$ holds}
 For the the subsumption $ C \sqsubseteq D $ to be true it must hold that for
-all interpretations $I$: $ C^I \subseteq D^I $ is true.  There is no limitation
-on the form of the interpretations $I$ as we are not checking the subsumption
-against a TBox (although we could say we are checking the subsumption w.r.t an
-empty TBox).
+all interpretations $I$: $ C^I \subseteq D^I $ is true.  There is no extra
+limitation on the form of the interpretations $I$ as we are not checking the
+subsumption against a TBox (although we could say we are checking the
+subsumption w.r.t an empty TBox).
 
 If it is true that $ C^I \subseteq D^I \mid \forall I$ then the concept $ C
-\sqcap \neg D $ must be unsatisfiable (if set $C$ is within set $D$ then the
-intersection of $C$ with the complement of $D$ must be the empty set).
+\sqcap \neg D $ must be unsatisfiable (if set $C$ is contained within set $D$
+then the intersection of $C$ with the complement of $D$ must be the empty set).
 Therefore we shall check the satisfiability of $ C \sqcap \neg D $, first we
 need its negation normal form:
 \begin{align*}
@@ -816,39 +849,28 @@ need its negation normal form:
 \end{align*}
 
 Lets try to construct an interpretation that satisfies the concept above, lets
-call this interpretation $P$:
+call this interpretation $P$ (we use $ \neg D $ in the equation below as a
+placeholder for its negation normal form value to save space):
 \begin{eqnarray*}
-P_0 &=& \{ x : \neg A \sqcap \exists R.A \sqcap \exists R.(\neg A \sqcap B)\\
-    & &  \sqcap \neg B \sqcup
-         \forall R.(\neg A \sqcup \neg B) \sqcup \exists R.A\}\\
-P_0 \to_\sqcap P_1 &= P_0 \cup& \{ x : \neg A, x : \exists R.A\\
-                              & &, x : \exists R.(\neg A \sqcap B)
-                                 , x : \neg B \sqcup
-                                       \forall R.(\neg A \sqcup \neg B)
-                                       \sqcup \exists R.A\}\\
-P_1 \to_\exists P_2 &= P_1 \cup& \{ x : \neg A, x : (x,y) : R, y : A\\
-                               & &, x : \exists R.(\neg A \sqcap B)
-                                  , x : \neg B \sqcup
-                                        \forall R.(\neg A \sqcup \neg B)
-                                        \sqcup \exists R.A\}\\
-P_2 \to_\exists P_3 &= P_2 \cup& \{ x : \neg A
-                                  , x : (x,y) : R, y : A, (x,z) : R\\
-                               & &, z : \neg A \sqcap B
-                                  , x : \neg B \sqcup
-                                        \forall R.(\neg A \sqcup \neg B)
-                                        \sqcup \exists R.A\}\\
-P_3 \to_\sqcap P_4 &= P_3 \cup& \{ x : \neg A
-                                 , x : (x,y) : R, y : A , (x,z) : R\\
-                              & &, z : \neg A, z : B
-                                 , x : \neg B \sqcup
-                                       \forall R.(\neg A \sqcup \neg B)
-                                       \sqcup \exists R.A\}\\
-P_4 \to_\sqcap P_{5,1} &= P_4 \cup& \{ x : \neg A , x : (x,y) : R\\
-                                  & &, y : A , (x,z) : R
-                                     , z : \neg A, z : B, x : \neg B \}
+P_0 &=& \{ x : \neg A \sqcap \exists R.A
+               \sqcap \exists R.(\neg A \sqcap B) \sqcap \neg D \}\\
+P_0 \to_\sqcap P_1 &=& P_0 \cup
+                       \{ x : \neg A, x : \exists R.A
+                        , x : \exists R.(\neg A \sqcap B), x : \neg D\}\\
+P_1 \to_\exists P_2 &=& P_1 \cup
+                        \{ x : (x,y) : R, y : A
+                         , x : \exists R.(\neg A \sqcap B), x : \neg D\}\\
+P_2 \to_\exists P_3 &=& P_2 \cup
+                        \{ (x,z) : R, z : \neg A \sqcap B, x : \neg D\}\\
+P_3 \to_\sqcap P_4 &=& P_3 \cup
+                           \{ z : \neg A, z : B
+                            , x : \neg B \sqcup
+                                  \forall R.(\neg A \sqcup \neg B)
+                                  \sqcup \exists R.A\}\\
+P_4 \to_\sqcap P_{5,1} &=& P_4 \cup \{ x : \neg B \}
 \end{eqnarray*}
 And we can stop in $ P_{5,1} $ because we found an interpretation that
-satisfies $ C \sqsubseteq D $.  This interpretation is $ P = (\Delta^P,
+satisfies $ C \sqcap \neg D $.  This interpretation is $ P = (\Delta^P,
 \cdot^P) $:
 \begin{align*}
 \Delta^P &= \{x,y,z\}\\
@@ -856,19 +878,21 @@ satisfies $ C \sqsubseteq D $.  This interpretation is $ P = (\Delta^P,
      B^P &= \{z\}\\
      R^P &= \{(x,y),(x,z)\}
 \end{align*}
-It is the same interpretation that satisfies the concept $C$ alone, which makes
-sense because that interpretation satisfies the most left hand side part of
-$\neg D$: $x : \neg B$.  Nevertheless, as we have found an interpretation that
-satisfies $ C \sqcap \neg D $ then we have found and interpretation for which $
-C^I \subseteq D^I $ is not true.  Therefore we can say that the subsumption $ C
-\sqsubseteq D $ is \emph{not} true.
+It is the same interpretation as the one that satisfies the concept $C$ alone
+(in section \ref{interpretationforc}); this makes sense because that
+interpretation satisfies $C$ and also satisfies at least one of the three parts
+of $\neg D$ ($ x : \neg B $ is satisfied and the other parts are after a union
+so those do not matter for our purposes).  Nevertheless, as we have found an
+interpretation that satisfies $ C \sqcap \neg D $ then we have found and
+interpretation for which $ C^I \subseteq D^I $ is not true.  Therefore we can
+say that the subsumption $ C \sqsubseteq D $ is \underline{not true}.
 
 \subsection[Alternate]{Subsumption, alternate solution}
-To check if the subsumption $ C \sqsubseteq D $ we can use another method.  As
-to check this subsumption we need to check that in any interpretation $I$ the
-concept $C$ is a subset of concept $D$ (i.e. $ C^I \subseteq D^I \mid \forall
-I$) and we already know that $D$ is unsatisfiable, then we can say that $ D^I =
-\emptyset \mid \forall I $.  In other words:
+To check if the subsumption $ C \sqsubseteq D $ holds we can use another
+method.  As to check this subsumption we need to check that in any
+interpretation $I$ the concept $C$ is a subset of concept $D$ (i.e. $ C^I
+\subseteq D^I \mid \forall I$).  And we already know that $D$ is unsatisfiable,
+then we can say that $ D^I = \emptyset \mid \forall I $.  In other words:
 \begin{align*}
 C   &\sqsubseteq D\\
 C^I &\subseteq D^I        & \mid \forall I\\
@@ -894,12 +918,12 @@ C \not\sqsubseteq D
 \begin{itemize}
 \item[-]\verb|DisjointClasses(Meat Fish Vegetable Fruit)|
 \begin{align*}
- Meat      \sqcap Fish      &\sqsubseteq \emptyset
-&Fish      \sqcap Vegetable &\sqsubseteq \emptyset \\
- Meat      \sqcap Vegetable &\sqsubseteq \emptyset
-&Fish      \sqcap Fruit     &\sqsubseteq \emptyset \\
- Meat      \sqcap Fruit     &\sqsubseteq \emptyset
-&Vegetable \sqcap Fruit     &\sqsubseteq \emptyset
+ Meat      \sqcap Fish      &\sqsubseteq \bot
+&Fish      \sqcap Vegetable &\sqsubseteq \bot \\
+ Meat      \sqcap Vegetable &\sqsubseteq \bot
+&Fish      \sqcap Fruit     &\sqsubseteq \bot \\
+ Meat      \sqcap Fruit     &\sqsubseteq \bot
+&Vegetable \sqcap Fruit     &\sqsubseteq \bot
 \end{align*}
 
 \item[-]\verb|ObjectPropertyDomain(father Person)|

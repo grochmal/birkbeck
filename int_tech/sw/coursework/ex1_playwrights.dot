@@ -1,30 +1,24 @@
 digraph {
     rankdir=LR;
-    {rank=same; Playwright Poet Writer Drama Poem LiteraryContent}
-    Shakespear [style="filled",color="darkgreen",fillcolor="aquamarine"];
-    Hamlet  [style="filled",color="darkgreen",fillcolor="aquamarine"];
-    Sonet96 [style="filled",color="darkgreen",fillcolor="aquamarine"];
-    wrote   [style="filled",color="darkgreen",fillcolor="aquamarine"];
-    Playwright      [style="filled",color="navyblue",fillcolor="green"];
-    Poet            [style="filled",color="navyblue",fillcolor="green"];
-    Drama           [style="filled",color="navyblue",fillcolor="green"];
-    Poem            [style="filled",color="navyblue",fillcolor="green"];
-    Writer          [style="filled",color="navyblue",fillcolor="green"];
-    LiteraryContent [style="filled",color="navyblue",fillcolor="green"];
-    Shakespear -> Playwright [label="rdf:type",color="navy",fontcolor="navy"];
-    Shakespear -> Poet       [label="rdf:type",color="navy",fontcolor="navy"];
-    Shakespear -> Writer     [label="rdf:type",color="navy",fontcolor="navy"];
-    Shakespear -> Hamlet     [label="wrote",color="navy",fontcolor="navy"];
-    Shakespear -> Sonet96    [label="wrote",color="navy",fontcolor="navy"];
-    Hamlet -> Drama           [label="rdf:type",color="navy",fontcolor="navy"];
-    Hamlet -> LiteraryContent [label="rdf:type",color="navy",fontcolor="navy"];
-    Sonet96 -> Poem            [label="rdf:type"
-                               ,color="navy",fontcolor="navy"];
-    Sonet96 -> LiteraryContent [label="rdf:type"
-                               ,color="navy",fontcolor="navy"];
-    wrote -> Writer          [label="rdfs:domain"
-                             ,color="forestgreen",fontcolor="forestgreen"];
-    wrote -> LiteraryContent [label="rdfs:range"
-                             ,color="forestgreen",fontcolor="forestgreen"];
+    node [style=filled,color=darkgreen,fillcolor=aquamarine];
+    Shakespear; Hamlet; Sonet96; wrote;
+    node [style=filled,color=navyblue,fillcolor=green];
+    Playwright; Poet; Drama; Poem; Writer; LiteraryContent;
+    Property [label="rdfs:Property"];
+    {rank=same; Playwright Poet Writer Drama Poem LiteraryContent Property}
+    edge [color=navy,fontcolor=navy];
+    Shakespear -> Playwright   [label="rdf:type"];
+    Shakespear -> Poet         [label="rdf:type"];
+    Shakespear -> Writer       [label="rdf:type"];
+    Shakespear -> Hamlet       [label="wrote"];
+    Shakespear -> Sonet96      [label="wrote"];
+    Hamlet -> Drama            [label="rdf:type"];
+    Hamlet -> LiteraryContent  [label="rdf:type"];
+    Sonet96 -> Poem            [label="rdf:type"];
+    Sonet96 -> LiteraryContent [label="rdf:type"];
+    wrote -> Property          [label="rdf:type"];
+    edge [color=forestgreen,fontcolor=forestgreen];
+    wrote -> Writer          [label="rdfs:domain"];
+    wrote -> LiteraryContent [label="rdfs:range"];
 }
 

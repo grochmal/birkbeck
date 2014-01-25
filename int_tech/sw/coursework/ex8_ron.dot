@@ -1,0 +1,53 @@
+digraph {
+    node [shape=diamond,style=filled,color=forestgreen,fillcolor=greenyellow];
+    subgraph cluster_top {
+        tron [label=ron];
+        style=rounded;
+        subgraph tBlond {
+            subgraph cluster_tBlond {
+                style=filled;fontcolor=navy;color=orchid;
+                label=Blond;
+                tclaudia [label=claudia];
+            }
+            tpeter [label=peter];
+        }
+        tandrea [label=andrea];
+        tron -> tclaudia    [label=likes];
+        tron -> tpeter      [label=likes];
+        tclaudia -> tpeter  [label=isNeighbourOf];
+        tpeter   -> tandrea [label=isNeighbourOf];
+    }
+    subgraph cluster_mid {
+        mron [label=ron];
+        style=rounded;
+        subgraph cluster_mBlond {
+            style=filled;fontcolor=navy;color=orchid;
+            label=Blond;
+            mclaudia [label=claudia];
+            mpeter   [label=peter];
+        }
+        mandrea [label=andrea];
+        mron -> mclaudia    [label=likes];
+        mron -> mpeter      [label=likes];
+        mclaudia -> mpeter  [label=isNeighbourOf];
+        mpeter   -> mandrea [label=isNeighbourOf];
+    }
+    subgraph cluster_bot {
+        bron [label=ron];
+        style=rounded;
+        subgraph cluster_bBlond {
+            style=filled;fontcolor=navy;color=orchid;
+            label=Blond;
+            bclaudia [label=claudia];
+            bpeter   [label=peter];
+        }
+        bandrea [label=andrea];
+        bsimon  [label=simon];
+        bron -> bclaudia    [label=likes];
+        bron -> bpeter      [label=likes];
+        bclaudia -> bpeter  [label=isNeighbourOf];
+        bpeter   -> bandrea [label=isNeighbourOf];
+        bandrea  -> bsimon  [label=isNeighbourOf];
+    }
+}
+

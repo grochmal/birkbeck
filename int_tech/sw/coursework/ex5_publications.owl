@@ -1,0 +1,281 @@
+@prefix : <http://grochmal.org/ontologies/ex5_publications#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://grochmal.org/ontologies/ex5_publications> .
+
+<http://grochmal.org/ontologies/ex5_publications> rdf:type owl:Ontology .
+
+##############
+# Properties #
+##############
+
+:authored rdf:type owl:ObjectProperty ;
+          rdfs:domain :Author ;
+          rdfs:range  :Publication .
+
+:edited rdf:type owl:ObjectProperty ;
+        rdfs:domain :Editor ;
+        rdfs:range  :Publication .
+
+:editedBy rdf:type   owl:ObjectProperty ;
+          rdfs:range    :Editor ;
+          rdfs:domain   :Publication ;
+          owl:inverseOf :edited .
+
+:hasAuthor rdf:type   owl:ObjectProperty ;
+           rdfs:range    :Author ;
+           rdfs:domain   :Publication ;
+           owl:inverseOf :authored .
+
+:hasISBN rdf:type owl:FunctionalProperty ,
+                  owl:ObjectProperty ;
+         rdfs:range  :ISBN ;
+         rdfs:domain :Publication .
+
+:hasPubForm rdf:type owl:ObjectProperty ;
+            rdfs:domain :Publication ;
+            rdfs:range  :PublicationForm .
+
+:hasTitle rdf:type owl:FunctionalProperty ,
+                   owl:ObjectProperty ;
+          rdfs:domain :Publication ;
+          rdfs:range  :Title .
+
+:isInCategory rdf:type owl:ObjectProperty ;
+              rdfs:range  :PubCategory ;
+              rdfs:domain :Publication .
+
+:printedIn rdf:type owl:FunctionalProperty ,
+                    owl:ObjectProperty ;
+           rdfs:range  :Location ;
+           rdfs:domain :PhysicalPub .
+
+:published rdf:type owl:InverseFunctionalProperty ,
+                    owl:ObjectProperty ;
+           rdfs:range  :Publication ;
+           rdfs:domain :Publisher .
+
+:worksAt rdf:type owl:FunctionalProperty ,
+                  owl:ObjectProperty ;
+         rdfs:domain :Person ;
+         rdfs:range  :Publisher .
+
+###########
+# Classes #
+###########
+
+:Author rdf:type owl:Class ;
+        owl:equivalentClass [ rdf:type owl:Class ;
+                              owl:intersectionOf
+                                ( :Person
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :authored ;
+                                    owl:someValuesFrom :Publication
+                                  ]
+                                )
+                            ] .
+
+:Book rdf:type owl:Class ;
+      rdfs:subClassOf :Publication .
+
+:ComputerScience rdf:type owl:Class ;
+                 rdfs:subClassOf :PubCategory .
+
+:Digital rdf:type owl:Class ;
+         rdfs:subClassOf :PublicationForm .
+
+:DigitalPub rdf:type owl:Class ;
+            owl:equivalentClass [ rdf:type owl:Class ;
+                                  owl:intersectionOf
+                                    ( :Publication
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :hasPubForm ;
+                                        owl:someValuesFrom :Digital
+                                      ]
+                                    )
+                                ] .
+
+:Editor rdf:type owl:Class ;
+        owl:equivalentClass [ rdf:type owl:Class ;
+                              owl:intersectionOf
+                                ( :Person
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :edited ;
+                                    owl:someValuesFrom :Publication
+                                  ]
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :worksAt ;
+                                    owl:someValuesFrom :Publisher
+                                  ]
+                                )
+                            ] .
+
+:ElecPubCompSc rdf:type owl:Class ;
+               owl:equivalentClass
+                 [ rdf:type owl:Class ;
+                   owl:intersectionOf
+                     ( :Publisher
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :published ;
+                         owl:someValuesFrom
+                           [ rdf:type owl:Class ;
+                             owl:intersectionOf
+                               ( :Publication
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasPubForm ;
+                                   owl:someValuesFrom :Digital
+                                 ]
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :isInCategory ;
+                                   owl:someValuesFrom :ComputerScience
+                                 ]
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasPubForm ;
+                                   owl:allValuesFrom :Digital
+                                 ]
+                               )
+                             ]
+                       ]
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :published ;
+                         owl:allValuesFrom
+                           [ rdf:type owl:Class ;
+                             owl:intersectionOf
+                               ( :Publication
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasPubForm ;
+                                   owl:someValuesFrom :Digital
+                                 ]
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :isInCategory ;
+                                   owl:someValuesFrom :ComputerScience
+                                 ]
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasPubForm ;
+                                   owl:allValuesFrom :Digital
+                                 ]
+                               )
+                           ]
+                       ]
+                     )
+                 ] .
+
+:ISBN rdf:type owl:Class .
+
+:Journal rdf:type owl:Class ;
+         rdfs:subClassOf :Publication .
+
+:Location rdf:type owl:Class .
+
+:Manager rdf:type owl:Class ;
+         owl:equivalentClass [ rdf:type owl:Class ;
+                               owl:intersectionOf
+                                 ( :Person
+                                   [ rdf:type owl:Class ;
+                                     owl:complementOf :Editor
+                                   ]
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :worksAt ;
+                                     owl:someValuesFrom :Publisher
+                                   ]
+                                 )
+                             ] .
+
+:MultiAuthorBook rdf:type owl:Class ;
+                 owl:equivalentClass
+                   [ rdf:type owl:Class ;
+                     owl:intersectionOf
+                       ( :Book
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasAuthor ;
+                           owl:minCardinality "2"^^xsd:nonNegativeInteger
+                         ]
+                       )
+                   ] .
+
+:Person rdf:type owl:Class .
+
+:Physical rdf:type owl:Class ;
+           rdfs:subClassOf :PublicationForm .
+
+:PhysicalPub rdf:type owl:Class ;
+             owl:equivalentClass [ rdf:type owl:Class ;
+                                   owl:intersectionOf
+                                     ( :Publication
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty :hasPubForm ;
+                                         owl:someValuesFrom :Physical
+                                       ]
+                                     )
+                                 ] .
+
+:PubCategory rdf:type owl:Class .
+
+:Publication rdf:type owl:Class .
+
+:PublicationForm rdf:type owl:Class .
+
+:Publisher rdf:type owl:Class .
+
+:Room rdf:type owl:Class ;
+      rdfs:subClassOf :Location .
+
+:ScienceFiction rdf:type owl:Class ;
+                rdfs:subClassOf :PubCategory .
+
+:SfBookPr123EdFem rdf:type owl:Class ;
+                  owl:equivalentClass
+                    [ rdf:type owl:Class ;
+                      owl:intersectionOf
+                        ( :Book
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :editedBy ;
+                            owl:someValuesFrom [ rdf:type owl:Class ;
+                                                 owl:intersectionOf
+                                                   ( :Editor
+                                                     :Woman
+                                                   )
+                                               ]
+                          ]
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :isInCategory ;
+                            owl:someValuesFrom :ScienceFiction
+                          ]
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :printedIn ;
+                            owl:hasValue :room123
+                          ]
+                        )
+                    ] .
+
+:Title rdf:type owl:Class .
+
+:Woman rdf:type owl:Class ;
+       rdfs:subClassOf :Person .
+
+###############
+# Individuals #
+###############
+
+:room123 rdf:type :Room ,
+         owl:NamedIndividual .
+
+##################
+# General axioms #
+##################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :ISBN
+                :Location
+                :Person
+                :PubCategory
+                :Publication
+                :PublicationForm
+                :Publisher
+                :Title
+              )
+] .
+

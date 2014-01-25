@@ -1,16 +1,13 @@
 digraph {
     rankdir=LR;
+    node [style=filled,color=darkgreen,fillcolor=aquamarine]
+    Dwarf; Stmt [label=""]; Someone; hadEatenFrom; Plate;
     {rank=same; Someone hadEatenFrom Plate}
-    Dwarf [style="filled",color="darkgreen",fillcolor="aquamarine"];
-    Stmt [style="filled",color="darkgreen",fillcolor="aquamarine",label=""];
-    Someone      [style="filled",color="darkgreen",fillcolor="aquamarine"];
-    hadEatenFrom [style="filled",color="darkgreen",fillcolor="aquamarine"];
-    Plate        [style="filled",color="darkgreen",fillcolor="aquamarine"];
-    Dwarf -> Stmt [label="noticed",color="navy",fontcolor="navy"];
-    Stmt -> Someone      [label="subject",color="navy",fontcolor="navy"];
-    Stmt -> hadEatenFrom [label="predicate",color="navy",fontcolor="navy"];
-    Stmt -> Plate        [label="object",color="navy",fontcolor="navy"];
-    Dwarf -> Plate [label="belongsTo",color="navy"
-                   ,fontcolor="navy",dir="back"];
+    edge [color=navy,fontcolor=navy];
+    Dwarf -> Stmt        [label=noticed];
+    Stmt -> Someone      [label=subject];
+    Stmt -> hadEatenFrom [label=predicate];
+    Stmt -> Plate        [label=object];
+    Dwarf -> Plate       [label=belongsTo,dir=back];
 }
 
