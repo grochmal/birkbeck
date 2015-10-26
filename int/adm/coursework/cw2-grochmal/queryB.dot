@@ -1,0 +1,17 @@
+graph queryB {
+    graph [label="Query plan B",labelloc=t,fontsize=20]
+    node [style=filled,color=darkgreen,fillcolor=aquamarine];
+    Proj [label=<Projection<br/>on 'name'>];
+    Sel  [label=<Selection<br/>on bid &gt; 75>];
+    Join [label=<Join using<br/>SMJ>];
+    node [shape=box,color=navyblue,fillcolor=green];
+    Sailors  [label=<Sailors<br/>_______<br/>_______>];
+    Reserves [label=<Reserves<br/>________<br/>________<br/>________>];
+    Sort [label=<sort in memory<br/>store in temp file>,style="",shape=""]
+    {rank=same; Sailors Reserves}
+    edge [color=navy,fontcolor=navy];
+    Proj -- Sel  -- Join
+    Join -- Sort -- Sailors
+    Join -- Reserves
+}
+

@@ -1,0 +1,137 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\title{2nd coursework for the Advances in Data Management module}
+\author{Michal Grochmal
+  $<$\href{mailto:grochmal@member.fsf.org}{grochmal@member.fsf.org}$>$
+}
+\date{\today}
+
+\usepackage[pdftex,colorlinks=true]{hyperref}
+
+\begin{document}
+\maketitle
+
+\section[Relational algebra]{Translate the query into relational algebra}
+We can see the query as the following relational algebra expression:
+\begin{equation*}
+\pi_{name} (\sigma_{rid > 75}
+             (Sailors \Join_{Sailors.sid = Reserves.sid} Reserves))
+\end{equation*}
+
+\section[Query plans]{Write down 4 query plans}
+\begin{figure}[!htp]
+\centering
+  \includegraphics[width=0.48\textwidth]{queryA}
+  \includegraphics[width=0.48\textwidth]{queryB}
+\caption{Query plans A and B, these plans join the tables before selection.
+\emph{Query plan A} first uses an \emph{index nested loop join (INLJ)} with the
+outer table as \emph{Reserves} and the inner table \emph{Sailors}, it uses the
+hash index on \emph{sid} on \emph{Sailors} as the index in the inner part of
+INLJ.  Then the selection and projection are done \emph{on the fly}.
+\emph{Query plan B} first sorts (in memory) the \emph{Sailors} table and stores
+the sorted result in a temporary file.  Then uses a \emph{sort merge join
+(SMJ)} to join the sorted \emph{Sailors} table with the \emph{Reserves} table,
+the \emph{Reserves} table can be accessed sorted from the clustered B+tree
+index on \emph{(sid, bid)} (this can be done because \emph{sid} is a prefix in
+this index).  Finally selection and projection are done \emph{on the fly}.}
+\label{figAB}
+\end{figure}
+\begin{figure}[!htp]
+\centering
+  \includegraphics[width=0.48\textwidth]{queryC}
+  \includegraphics[width=0.48\textwidth]{queryD}
+\caption{Query plans C and D, these plans perform selection before joining the
+tables.  \emph{Query plan C} first selects all records from \emph{Reserves}
+that have \emph{bid > 75} and feeds the result into the \emph{index nested loop
+join} as the outer table.  In the INLJ \emph{Sailors} is again used as the
+inner table with the index on \emph{sid}.  Following the join the projection is
+done \emph{on the fly}.  \emph{Query plan D} also selects \emph{Reserves} on
+\emph{bid > 75} first and then feeds it into the join.  But the join used is a
+\emph{hash join (HJ)}.  After the join the projection in done \emph{on the
+fly}.}
+\label{figCD}
+\end{figure}
+Figures \ref{figAB} and \ref{figCD} shows four possible query plans for the
+given query.
+
+\section[Query cost]{Estimate the cost of each query plan}
+
+We know that the number of pages of \emph{Sailors} is 5 and the number of pages
+of \emph{Reserves} is 200.  We will use the symbols $N_S = 5$ and $N_R = 200$
+to refer to these two numbers below.
+
+\subsection[Query A]{Cost for query plan A}
+Read the entire Reserves relation $ \Rightarrow 200 $ I/Os
+
+For each of the 20 000 records in Reserves use the hash index on sid of the
+Sailors relation to find corresponding records.  That hash index is clustered
+therefore we need
+$ \lceil selectivity(sid = Reserves.sid, Sailors) * N_S \rceil $ I/Os
+for each record in Reserves.  The selectivity can be estimated to $ 1/50 $ so
+we have a total of $ \lceil 1/50 * 5 \rceil $ I/Os per record in Reserves.
+$ 20000 * \lceil 1/10 \rceil = 20000 $ I/Os.
+
+Selection and projection are done on the fly as rows are generated from the
+join.
+
+Total cost: 20200 I/Os
+
+\subsection[Query B]{Cost for query plan B}
+Read the Sailors relation and sort it on sid (in memory) $ \Rightarrow 5 $ I/Os
+
+Write the sorted records into a temporary file $ \Rightarrow 5 $ I/Os
+
+Read Sailors from the temporary file and read Reserves from the clustered
+B+tree index.  Both relations are sorted on sid therefore we can perform a sort
+merge join directly (i.e. without sorting, we just merge).  The cost for the
+merge will be approximately the cost to read the relations $ \Rightarrow 205 $.
+
+Selection and projection are done on the fly.
+
+Total cost: 215 I/Os
+
+\subsection[Query C]{Cost for query plan C}
+Read the Reserves relation and select it by bid > 75.  This requires a full
+table scan as the B+tree index cannot be used (because bid is not a prefix in
+this index).  $ \Rightarrow 200 $ I/Os
+
+To estimate the number of records of Reserves that have bid > 75 we need the
+selectivity of such records.  Given that the values of bid are uniformly
+distributed we can say that:
+$ selectivity \approx (100 - 75)/100 * 200 * 100 = 5000 $ records.
+
+Now we perform INLJ using the resulting 5000 records from Reserves as the outer
+loop and use the hash index on Sailors in the inner part.  This results in
+$ 5000 * \lceil 1/50 * 5 \rceil = 5000 $ I/Os.
+
+The projection is done on the fly.
+
+Total cost: 5200 I/Os
+
+\subsection[Query D]{Cost for query plan D}
+Again we read the Reserves relation and select it by bid > 75.  As seen in the
+previous section this results in approximately 5000 records.
+$ \Rightarrow 200 $ I/Os.
+
+There is no need to store the result in a temporary file as the next step (HJ)
+can hash incoming record in any order.  We can pipeline directly into the HJ.
+
+Hash join the selected 5000 records together with Sailors.  The 5000 records
+can be stored over 50 pages (Reserves can be stored 100 record per page) and
+Sailors have only 5 pages, therefore the cost of the HJ will be
+$ 3 * (50 + 5) = 165 $ I/Os
+
+The projection is done on the fly.
+
+Total cost: 365 I/Os
+
+\end{document}
+

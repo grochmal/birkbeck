@@ -1,0 +1,128 @@
+
+I started my academic career in Physics where for the first time I met computer
+models, it was on the lectures in Astronomy.  One model starts from the big
+bang, it explodes stars through the estimated life of the universe and
+calculates the amounts of each of the elements of matter.  A second model
+estimates these amounts based on the gravitational attraction we can see in the
+universe today.  The two computational models disagree in about 80% so that the
+conclusion drawn is simple: Our theoretical models of universe are wrong,
+but they are the best models we managed to think so far.  On the Astronomy exam
+the comparison between these two computer models was the correct answer for the
+question: "What is the problem of the origin of life?".
+
+To get a better reply to that question I joined the Phys. Ed. course.  When
+asked why did I join the Phys. Ed. I replied citing the Astronomy lectures, the
+computer models and the exam question.  The wish to be able to build something
+that better replies that question has been with me for a long time.
+
+The reason that leans me into Bioinformatics is still the same question.  Can
+we make models that explain the origin of life and universe?  I have polished
+my programming skills since the Astronomy times but never looked at computer
+models again.  I want to return to the area of computer models of life and
+learn them close to the latest advances in the area.
+
+After coursing both Physics and Phys. Ed. at the same time for a year, the
+opportunity to continue Physics on a university in Poland appeared.  This
+didn't lasted long as shortly I got a job as a Programmer in London.
+
+As a professional programmer the learning curve is high, real world problems
+need to be solved through algorithmic logic just as theoretical problems.  On
+the other hand, real world programs often have flaws that cannot be solved
+without redesigning them from scratch.  But a real world program is used for
+more than the one purpose we are working on and cannot be simply rewritten.
+Workarounds over such flaws need to be created in place of fixing them, then
+slowly working within that workaround such a flaw can be corrected over a long
+time.
+
+As a team of 4 people, we were together responsible for an application of
+almost 10 million lines of code, plus the maintenance of our own work
+environment (our tools) and the maintenance of our databases.  We work on a
+platform aimed at financial businesses, especially banks.  In such a small team
+I needed to learn to be self sufficient.  This meant to be able to analyse and
+design a programming solution, and then implement it.  When trained each person
+was responsible for his/hers own projects.
+
+The two big achievements (completed projects), I was responsible for, are the
+high availability and the database migration.  In the high availability project
+I needed to extend the middleware of our platform to work concurrently on two
+(or more) machines at the same time.  It's also called an "Active-Active"
+design of high availability, where many machines perform the work whilst they
+appear to the external world as only one machine.  If any of the machines
+crashes the other machines are still capable of performing the work.  This way
+the availability of the entire system is not affected by the crashed machine.
+The database migration was a completely different achievement.  In a new
+version of our platform the database schemas were redesigned to be normalized.
+This meant changes to more than half of the database tables that our platform
+had (changing between 250-300 tables from a total of 400-500, depending on the
+amount of customizations to the platform).  In resume, we needed scripts to
+change the underlying database (tables, constraints and indexes) of dozens of
+millions of records without corrupting them, moreover, these scripts needed to
+be fast.  It took for me a few months to write the scripts that perform such a
+migration in less than one night (having one night of down time is plausible).
+The major challenge of running these scripts was in the second bigger bank of
+Romania, BRD, where the amount of database records surpasses two hundred
+million.  Together with the database administrators of the BRD bank we ran the
+scripts overnight achieving a time of seven hours.  I believe that these kinds
+of program design such as these two projects have everything to do with
+Bioinformatics.
+
+The description of the Bioinformatics course says that good programing skills
+in any language is an advantage.  In the past few years, I needed to learn many
+programing languages very fast and then design and write consistent solutions
+in them.  I believe that given a bit of time to learn the language I can
+program well in any language.  Either way, I will enumerate the skills
+according to each programing language I worked with or read at least one book
+about:
+
+By default, I'm a C programmer with good knowledge of the tools around building
+operating systems with C (I know lex and autotools, although I'm still learning
+yacc).  Given a month of time, I am able to download the code for the gcc
+compiler and other GNU tools needed to run a machine, download the Linux kernel
+and compile all these pieces, then add System V boot scripts and build a simple
+GNU/Linux system from scratch.  Apart from it, I commonly use C with embedded
+SQL at work.
+
+Being able to build an operating system similar to UNIX from scratch gives me a
+good insight into the operations of UNIX (and especially GNU/Linux) machines.
+Quick scripts using awk, sed and bash (or even the korn shell) are very useful
+when writing and testing programs in C and embedded SQL.
+
+I have installed and tuned about six database servers.  My professional
+experience focuses on Informix but I also worked with Oracle and have a bit of
+experience with SQLite.  The knowledge of the operating system is very
+important when building a database.  Hardware needs to be correctly assigned
+for the database processes, otherwise processing power is wasted.
+
+Perl is the next logical choice to know in the C, UNIX and database
+environment.  For more complex test scripts or even full solutions that focus
+on the database, Perl is the best choice.  I believe that the summit of Perl is
+the possibility of programing in a functional way using currying, higher order
+functions and recursion.  The database migration scripts mentioned above were
+written in functional Perl and SQL.
+
+I have a bit of professional experience with Python as well, although never
+wrote anything really big using this language.
+
+I know how to program in Java using object oriented programming and
+polymorphism but only used this language to play with very small applets.  I
+can boot a very basic apache server and write a small browser to communicate
+with it using swing.  Professionally, I have often supported Java teams using
+hibernate by looking through the database logs and processes but never wrote
+the hibernate Java code myself.
+
+Lisp, Scheme and Haskell are languages I have passion for and great fun
+programming in, even though never used any of them professionally.
+
+I think that other necessary skills needed to work with Bioinformatics lie in
+biology.  During Phys. Ed. I have coursed the principles of Biochemistry and
+Cytology and also helped (with the computer and graphical skills) in the
+production of two articles about genetics.  
+
+In my current professional path the only opportunity to move forward is to go
+into management and financial business.  This is a career that would provide me
+with a good deal of money but no satisfaction.  I do not see myself as a
+businessman, I do see myself as a scientist.  Bioinformatics is a challenge
+that can give me the satisfaction from overcoming it.
+
+Application reference: TMSBOWSB_C
+

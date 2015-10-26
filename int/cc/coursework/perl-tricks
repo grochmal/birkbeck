@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cat sample |
+cut -d, -f2 |
+perl -e 'while(<>) { ($r) = /([.\d]+)$/; push @arr, $r;} print "$_\n" foreach (@arr); $sum += $_ foreach(@arr); print "$sum\n"'

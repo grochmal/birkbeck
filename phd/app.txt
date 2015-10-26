@@ -1,0 +1,25 @@
+I am interested in research projects because of the uncommon nature they have.
+Research requires a lot of creativity and dedication, therefore I believe that
+I can better explore Artificial Intelligence techniques if I work on a research
+project that uses them.  Moreover, difficult data is needed if I want to
+explore AI techniques deeper, and biological data is difficult.
+
+The exact techniques I'd like to explore are intelligent systems that operate
+on huge amounts of either structured or unstructured data.  Interesting
+structured data are, for example, genomics and proteomics.  Three good public
+datasets in this area are the denisova, ensembl and 1000 genomes.  Integration
+between these three datasets is a challenging problem.
+
+On unstructured data, feature extraction is an area of much turmoil in the
+recent years.  The advances in deep learning allow for features to be learned
+from the data, and in recent experiments learned features perform better than
+hand crafted ones in certain domains.  Comparison of hand crafted features and
+learned ones in multimedia data is a promising area for research.
+
+I am working with Prof. Dell Zhang in a project of feature extraction in the
+Computer Vision area.  I have strong background in the programming tools
+used/preferred by Prof. Zhang, and I believe he would be interested in the
+development of data integration algorithms in the cloud.
+
+ref: http://www.bbk.ac.uk/cgi-bin/apply_redirect.cgi?page=RMPCOSCI+6011
+

@@ -1,0 +1,52 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{parskip}
+
+\title{Deep learning applied to multiomics: treating structured data as
+unstructured}
+\author{Michal Grochmal
+  $<$\href{mailto:grochmal@member.fsf.org}{grochmal@member.fsf.org}$>$
+}
+\date{\today}
+
+\usepackage[colorlinks=true]{hyperref}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+Proteomics and genomics data is very difficult to classify programaticaly.
+Although multiomics databases posses huge amounts of data in structured schemas
+we cannot be sure that the structure of these databases actually represent
+features of the data.  The major example that the structure of the multiomics
+databases do not represent all features in the proteomic or genomic data is the
+fact that between distinct databases there are enormous differences in the
+hierarchies used to structure the data.
+
+We will try to prove the fact that the schemas of the multiomic databases
+represent only a small part of the features that can be found in the multiomic
+data.  If we can find a big amount of features in the multiomic data we can
+evaluate the correlation and importance of these features to select the
+features most relevant for the classification.  Using only the selected
+features shall bestow the accuracy of the classification.  To perform this we
+will use deep learning techniques over flattened data from multiomics
+databases.
+
+In the recent years deep learning came out of age, because of the availability
+of powerful computers.  Deep learning shows promising results in automatically
+learning features from unstructured data, notably in the computer vision field.
+We will flatten the data on multiomics, consider it as if it were completely
+unstructured data and feed it into the deep learning algorithm.  We shall find
+low level and, more importantly, high level features that can be compared with
+the hand crafted features of the data used to structure the database schemas.
+
+Unfortunately I cannot build a sensible list of references.  This is a "mock"
+proposal written in 4 hours, thanks to the fact that I was made aware of the
+deadline for the proposal submission with only 24 hours of antecedence.
+Apologies if I wasted your time by reading it.
+
+\end{document}
+

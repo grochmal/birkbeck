@@ -1,0 +1,4 @@
+(((thrice thrice) double) 5)
+(defn thrice [f] (fn [x] (apply-n-times f x 3))))
+(defn concat [x y])
+fibonachi numbers
