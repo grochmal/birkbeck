@@ -1,0 +1,69 @@
+" .vimrc
+"if 700 > v:version | finish | endif
+
+colo elflord
+syntax on
+:match ErrorMsg '\%80v.'
+set textwidth=79
+
+set noautoindent
+set showcmd
+set incsearch
+"set showmatch
+"set ignorecase
+"set smartcase
+"set autowrite
+
+set backspace=indent,eol,start
+set listchars=eol:$,tab:@>,trail:%
+set list
+set laststatus=2
+
+set statusline=%t         " tail of file name (last part of file name)
+set statusline+=%m        " modified flag
+set statusline+=%r        " readonly flag
+set statusline+=[%{&ff}]  " fileformat (unix, dos, mac)
+set statusline+=%y        " filetype
+set statusline+=%=        " left align / right align separator
+set statusline+={%c%V}    " column number, virtual column number
+set statusline+=[%l/%L]   " line number / total lines
+set statusline+=[0x%O]    " byte number in file
+set statusline+={0x%B}    " value of byte under cursor
+set statusline+=%P        " percentage through file
+
+":%!xxd     " hex editor
+":%!xxd -r  " restore from hex
+
+"filetype indent on
+" don't use filetype plugins, write indents by hand below
+if has("autocmd")
+  autocmd FileType python,java set expandtab shiftwidth=4 softtabstop=4 ai
+  autocmd FileType vim,sql,xml set expandtab shiftwidth=2 softtabstop=2 ai
+  autocmd FileType c,cpp       set cindent comments=sr:/*,mb:*,ex:*/,://
+endif
+
+"syntax off
+"if has("syntax") && has("autocmd")
+"  autocmd FileType * syntax on
+"endif
+"if exists("b:current_syntax") | syntax on          | endif
+"if exists("b:did_indent")     | filetype indent on | endif
+"filetype indent on
+
+"if filereadable()
+":autocmd FileType *      set formatoptions=tcql nocindent comments&
+":autocmd FileType c,cpp  set formatoptions=croql cindent comments=sr:/*,mb:*,ex:*/,://
+":
+":set autoindent
+":set autowrite
+":ab #d #define
+":ab #i #include
+":ab #b /********************************************************
+":ab #e ********************************************************/
+":ab #l /*------------------------------------------------------*/
+":set sw=4
+":set notextmode
+":set notextauto
+":set hlsearch
+":set incsearch
+

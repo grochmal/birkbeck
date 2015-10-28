@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="remakes_full.xsl" type="text/xsl"?>
+<remakes>
+  <remake>
+    <rtitle> Independence Day</rtitle>
+    <ryear>1996</ryear>
+    <stitle>War of the Worlds</stitle>
+    <syear>1953</syear>
+    <fraction>0.8</fraction>
+  </remake>
+  <remake>
+    <rtitle> Mars Attacks</rtitle>
+    <ryear>1996</ryear>
+    <stitle>Jason and the Argonauts</stitle>
+    <syear>1963</syear>
+    <fraction>0.1</fraction>
+  </remake>
+  <remake>
+    <rtitle> Mars Attacks</rtitle>
+    <ryear>1996</ryear>
+    <stitle>Ed Wood </stitle>
+    <syear>1994</syear>
+    <fraction>0.2</fraction>
+  </remake>
+  <remake>
+    <rtitle> The Haunting </rtitle>
+    <ryear>1996</ryear>
+    <stitle>The Haunting</stitle>
+    <syear>1963</syear>
+    <fraction>0.9</fraction>
+  </remake>
+  <remake>
+    <rtitle>True to the Army</rtitle>
+    <ryear>1940?</ryear>
+    <stitle>She Loves me Not</stitle>
+    <syear>1935</syear>
+    <fraction>0.8</fraction>
+  </remake>
+  <remake>
+    <rtitle>Blowing Wild</rtitle>
+    <ryear>19++</ryear>
+    <stitle>Bordertown</stitle>
+    <syear>1934</syear>
+    <fraction>0.9</fraction>
+  </remake>
+  <remake>
+    <rtitle>Captain Nemo and the Underwater City</rtitle>
+    <ryear>1969æ</ryear>
+    <stitle>Mysterious Island</stitle>
+    <syear>1929</syear>
+    <fraction>0.7</fraction>
+  </remake>
+  <remake>
+    <rtitle>Manhattan Murder Mystery</rtitle>
+    <ryear>1993p</ryear>
+    <stitle>Rear Window</stitle>
+    <syear>1954</syear>
+    <fraction>0.7</fraction>
+  </remake>
+  <remake>
+    <rtitle>Solarisn</rtitle>
+    <ryear/>
+    <stitle>Solaris</stitle>
+    <syear>1972</syear>
+    <fraction>0.8</fraction>
+  </remake>
+  <remake>
+    <rtitle>The Devil's Brigade</rtitle>
+    <ryear>19yy</ryear>
+    <stitle>Dirty Dozen</stitle>
+    <syear>1966</syear>
+    <fraction>0.9</fraction>
+  </remake>
+  <remake>
+    <rtitle>Mysterious Island</rtitle>
+    <ryear>1961</ryear>
+    <stitle>Mysterious Island</stitle>
+    <syear>1929</syear>
+    <fraction>0.8.</fraction>
+  </remake>
+  <remake>
+    <rtitle>Slim</rtitle>
+    <ryear>1937</ryear>
+    <stitle>Tiger Shark</stitle>
+    <syear>1932</syear>
+    <fraction>0.9.6</fraction>
+  </remake>
+  <remake>
+    <rtitle>Port of Seven Seas</rtitle>
+    <ryear>1938</ryear>
+    <stitle>Marius</stitle>
+    <syear>1931</syear>
+    <fraction>.1</fraction>
+  </remake>
+  <remake>
+    <rtitle>A Woman's Face</rtitle>
+    <ryear>1942</ryear>
+    <stitle>A Woman's Face</stitle>
+    <syear>1938</syear>
+    <fraction>.9</fraction>
+  </remake>
+  <remake>
+    <rtitle>Final Round</rtitle>
+    <ryear>1993</ryear>
+    <stitle>unknown</stitle>
+    <syear>un</syear>
+    <fraction>0.8</fraction>
+  </remake>
+  <remake>
+    <rtitle>East Side Story</rtitle>
+    <ryear>1997</ryear>
+    <stitle/>
+    <syear>1950</syear>
+    <fraction>0.8</fraction>
+  </remake>
+  <remake>
+    <rtitle>Murder, My Sweet</rtitle>
+    <ryear>1944</ryear>
+    <stitle>Time To Kill</stitle>
+    <syear>1940%</syear>
+    <fraction>0.7</fraction>
+  </remake>
+  <remake>
+    <rtitle>Copy Cat</rtitle>
+    <ryear>1995</ryear>
+    <stitle>Seven Lights</stitle>
+    <syear>19xx</syear>
+    <fraction>0.8</fraction>
+  </remake>
+  <remake>
+    <rtitle>Crouching Tiger, Hidden Dragon</rtitle>
+    <ryear>2000</ryear>
+    <stitle>A Touch of Zen</stitle>
+    <syear>19xx</syear>
+    <fraction>0.3</fraction>
+  </remake>
+  <remake>
+    <rtitle>Crouching Tiger, Hidden Dragon</rtitle>
+    <ryear>2000</ryear>
+    <stitle>Raining in the Mountain</stitle>
+    <syear>19xx</syear>
+    <fraction>0.3</fraction>
+  </remake>
+  <remake>
+    <rtitle>Der M\"ude Tod</rtitle>
+    <ryear>1921</ryear>
+    <stitle>Appointment in Samarra</stitle>
+    <syear>19xx</syear>
+    <fraction>0.8</fraction>
+  </remake>
+  <remake>
+    <rtitle>Father's Day</rtitle>
+    <ryear>1996</ryear>
+    <stitle>Comperes</stitle>
+    <syear>19xx</syear>
+    <fraction>0.9</fraction>
+  </remake>
+  <remake>
+    <rtitle>Hollywood Boulevard</rtitle>
+    <ryear>1976</ryear>
+    <stitle>Battle Beyond the Sun</stitle>
+    <syear>19xx</syear>
+    <fraction>0.2</fraction>
+  </remake>
+  <remake>
+    <rtitle>Jungle 2 Jungle</rtitle>
+    <ryear>1977</ryear>
+    <stitle>Little Indian, Big City</stitle>
+    <syear>19xx</syear>
+    <fraction>0.9</fraction>
+  </remake>
+</remakes>
+

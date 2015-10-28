@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+          PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Michal Grochmal's Homepage</title>
+<link rel="icon" type="image/png" href="lambda_16x16.png" />
+<link rel="stylesheet" type="text/css" href="mybasestyle.css" />
+<link rel="alternate" type="application/atom+xml"
+      href="feed.atom" title="ATOM feed" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description"
+      content="An effort to make some of my work presentable" />
+<meta name="author" content="Michal Grochmal" />
+<script type="text/javascript" src="basescript.js"></script>
+</head>
+<body>
+
+<div>
+<div class="topl">
+<pre class="terminal">
+BITS 64
+global _start      ; -- this also prints grochmal.org
+fun: pop  rsi      ; import Data.Char
+  mov  rax, 0x01   ; r    = [103,11,-3,-12,5,5,-12,11,-62,65,3,-11]
+  mov  rdi, 0x01   ; fl s = foldl (\a x -> (head a + x):a) [head s] (tail s)
+  mov  rdx, 0x0d   ; fr s = reverse $ map (\x -> chr (fromIntegral x)) $ fl s
+  syscall          ; main = do
+  mov  rax, 0x3c   ;     putStrLn $ fr r
+  mov  rdi, 0x00
+  syscall
+_start: call fun
+  dq 0x6c616d68636f7267  ; lamhcorg
+  dq 0x0000000a67726f2e  ; 0000\ngro.
+</pre>
+</div>
+
+<div class="topr">
+<p>some form with a search function</p>
+</div>
+
+<ul class="navdiv">
+  <li>
+    <a href="/">home</a>
+  </li>
+  <li>
+    <a href="hacks/">hacks</a>
+    <ul>
+      <li><a href="hacks/beautiful-perl/">beautiful perl</a></li>
+    </ul>
+  </li>
+  <li>
+    <a href="about/">about</a>
+    <ul>
+      <li><a href="about/contact/">contact</a></li>
+      <li><a href="about/education/">education</a></li>
+      <li><a href="about/cv">curriculum vitae</a></li>
+    </ul>
+  </li>
+  <li>
+    <a href="tools/">tools</a>
+    <ul>
+      <li><a href="tools/gnu-linux">GNU/Linux</a></li>
+      <li><a href="tools/gimp">gimp</a></li>
+      <li><a href="tools/rlwrap">rlwrap</a></li>
+    </ul>
+  </li>
+  <li>
+    <a href="crypto/">crypto</a>
+    <ul>
+      <li><a href="crypto/gpg">gnupg</a></li>
+      <li><a href="crypto/openssl">openssl</a></li>
+    </ul>
+  </li>
+  <li>
+    <a href="software/">software</a>
+    <ul>
+      <li><a href="software/django-biblio">bibtex django</a></li>
+      <li><a href="software/unix-jsons">unixjsons</a></li>
+    </ul>
+  </li>
+  <li>
+    <a href="work/">work</a>
+    <ul>
+      <li><a href="work/cards">cards</a></li>
+    </ul>
+  </li>
+  <li>
+    <a href="random/">random</a>
+    <ul>
+      <li><a href="random/monads">monads</a></li>
+    </ul>
+  </li>
+</ul>
+</div>
+
+<div class="mainpg">
+<div class="toc" style="float:right;border:1px solid black;margin:10px;padding:6px">
+  <div>Contents</div>
+  <ul>
+<li><a href="imgidx.html">search with vectorised images</a></li>
+<li><a href="imgidx.html">sth else will be here</a></li>
+  </ul>
+</div>
+
+<div class="title">
+<h1>The prototype page</h1>
+</div>
+
+<hr />
+
+<div>
+<p>This webpage is under construction.  Every webpage is always under
+construction.  This text shall not stay behind the float.</p>
+
+<h2>Following all tags will be tested for CSS formatting</h2>
+
+<p><em>CSS formatting</em>will give us </p>
+
+<p><a href="http://google.com" title="Google">link with title</a></p>
+
+<p><img src="valid_atom_88x31.png" alt="alt text" title="Title" /></p>
+
+<ul>
+  <li>item
+    <ul>
+      <li>internal</li>
+    </ul>
+  </li>
+  <li>item
+    <ol>
+      <li>one</li>
+      <li>two</li>
+      <li>three</li>
+    </ol>
+  </li>
+  <li>item</li>
+</ul>
+
+<blockquote>
+  <p>Blockquotes are sometimes useful</p>
+</blockquote>
+
+<p>literal backticks in <code>`code`</code>.</p>
+
+<pre><code>This is a preformatted
+code block.
+</code></pre>
+
+<hr />
+
+<p>break <br />
+line</p>
+
+<p>Table with thead, tfoot, and tbody</p>
+<table style="border:1px solid blue;">
+  <caption style="caption-side:bottom;">Awesome caption</caption>
+  <thead>
+    <tr>
+      <th>Header content 1</th>
+      <th>Header content 2</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr>
+      <td>Footer content 1</td>
+      <td>Footer content 2</td>
+    </tr>
+  </tfoot>
+  <tbody>
+    <tr>
+      <td>Body content 1</td>
+      <td>Body content 2</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+Year  Name				James Bond	Book<br />
+----  --------------------------------	--------------	----<br />
+50's  James Bond TV Series		Barry Nelson<br />
+1962  Dr. No				Sean Connery	1958<br />
+1963  From Russia With Love		Sean Connery	1957<br />
+1964  Goldfinger			Sean Connery	1959<br />
+1965  Thunderball			Sean Connery	1961<br />
+1967* Casino Royale			David Niven	1954<br />
+1967  You Only Live Twice		Sean Connery	1964<br />
+1969  On Her Majesty's Secret Service	George Lazenby	1963<br />
+1971  Diamonds Are Forever		Sean Connery	1956<br />
+1973  Live And Let Die			Roger Moore	1955<br />
+1974  The Man With The Golden Gun	Roger Moore	1965<br />
+1977  The Spy Who Loved Me		Roger Moore	1962 (novelette)<br />
+1979  Moonraker				Roger Moore	1955<br />
+1981  For Your Eyes Only		Roger Moore	1960 (novelette)<br />
+1983  Octopussy				Roger Moore	1965<br />
+1983* Never Say Never Again		Sean Connery<br />
+1985  A View To A Kill			Roger Moore	1960 (novelette)<br />
+1987  The Living Daylights		Timothy Dalton	1965 (novelette)<br />
+	* -- Not a Broccoli production.<br />
+</p>
+</div>
+</div>
+
+<hr />
+
+<div id="bottom" style="font-size:10pt;">
+<p>Copyright © 2015 Michal Grochmal</p>
+<p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+   <img src="by-sa-88x31.png"
+        style="border-width:0"
+        alt="[Creative Commons Licence]" /></a>
+</p>
+<p>This page is licenced under a <a rel="license"
+title="Creative commons page"
+href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+Attribution-ShareAlike 4.0 International License</a>.
+</p>
+<p>All code snippets are licenced under the <a rel="licence"
+title="Free Software Foundation"
+href="https://www.gnu.org/licenses/quick-guide-gplv3.html">GNU GPL licence version 3, or (at your option) any later version of the licence</a>.
+</p>
+</div>
+
+<!--
+<a href="http://validator.w3.org/feed/">
+<img src="valid_atom_88x31.png"
+     alt="[Valid Atom 1.0]" /></a>
+<a href="http://www.vim.org/">
+<img src="written_with_vim_128x31.png"
+     alt="[page written with vim]" class="bot_img" /></a>
+<a href="http://www.gimp.org/">
+<img src="gimp_graphics_80x31.png"
+       alt="[graphics made with gimp]" class="bot_img" /></a>
+<a href="http://www.libpng.org/">
+<img src="using_png_80x31.png"
+     alt="[using png]" class="bot_img" /></a>
+<a href="http://www.fsf.org/campaigns/freejs">
+<img src="free_js_only_128x31.png"
+     alt="[providing free JavaScript only]" class="bot_img" /></a>
+<a href="http://www.mozilla.org/">
+<img src="mozilla_best_view_128x31.png"
+     alt="[best viewed with a mozilla browser]" class="bot_img" /></a>
+<a href="http://lynx.browser.org/">
+<img src="text_browser_friendly_128x31.png"
+     alt="[text browser friendly]" class="bot_img" /></a>
+-->
+
+</body>
+</html>
+

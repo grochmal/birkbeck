@@ -1,0 +1,11 @@
+README for the top directory of the project.
+
+There are two directories on the CD: `capybara` containing the datasets code
+and instructions for the experiments performed, and `unixjsons` containing
+extra tools needed to acquire the datasets.  Both pieces of code were written
+as part of the MSc project, yet only the `capybara` directory contains code
+that can be considered scientific work.
+
+You shall run the code in the `capybara` directory, and only wander towards the
+`unixjsons` directory if you are curious how the datasets were processed.
+

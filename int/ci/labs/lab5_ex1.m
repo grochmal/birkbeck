@@ -15,5 +15,14 @@ FieldD = [ lind lind lind lind lind lind lind lind lind lind
          ; 1    1    1    1    1    1    1    1    1    1
          ];
 % everything below needs the GA toolbox
+% currently at \\studentnfs(H:)\matlab\Intelligent Tech Lab
 Chrom = crtbp(nind, lind*nvar);
-Phen1 = bs2rv(chrom, FieldD);
+Phen1 = bs2rv(Chrom, FieldD);
+obj_v = objfuntest(bs2rv(Chrom, FieldD));
+
+%while gen < maxg
+  fit_v = ranking(obj_v);
+  SelCh = select('sus', Chrom, fit_v, ggap);
+  SelChRec = recombin('xovsp', SelCh, xov);
+  SelChMut = mut(SelChRec, mutr);
+  

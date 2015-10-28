@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Why GNU/Linux?</title>
+<link rel="icon" type="image/png" href="../lambda_16x16.png" />
+<link rel="stylesheet" type="text/css" href="../basestyle.css" />
+<meta name="description" content="GNU/Linux installation and use tutorial" />
+<meta charset="utf-8" />
+<script type="text/javascript" src="../basescript.js"></script>
+</head>
+<body>
+<div style="text-align:center;" class="top_home">
+  <a href="../index.html">Michal Grochmal's personal page (home)</a>
+</div>
+
+<table class="bartb"><tr>
+  <td class="tbon" >
+    <div class="menu_parent" id="parent_hacks"
+         onmouseover="showelem('parent_hacks','child_hacks')"
+          onmouseout="hideelem('parent_hacks','child_hacks')">
+      <a href="../hacks/index.html">hacking (projects)</a>
+      <div class="menu_child" id="child_hacks"
+           onmouseover="showelem('parent_hacks','child_hacks')"
+            onmouseout="hideelem('parent_hacks','child_hacks')">
+      </div>
+    </div>
+  </td>
+  <td class="tboff">
+    <div class="menu_parent" id="parent_about"
+         onmouseover="showelem('parent_about','child_about')"
+          onmouseout="hideelem('parent_about','child_about')">
+      <a href="../about/index.html">who is this guy?</a>
+      <div class="menu_child" id="child_about"
+           onmouseover="showelem('parent_about','child_about')"
+            onmouseout="hideelem('parent_about','child_about')">
+      </div>
+    </div>
+  </td>
+  <td class="tbon" >
+    <div class="menu_parent" id="parent_interests"
+         onmouseover="showelem('parent_interests','child_interests')"
+          onmouseout="hideelem('parent_interests','child_interests')">
+      <a href="../interests/index.html">random interests</a>
+      <div class="menu_child" id="child_interests"
+           onmouseover="showelem('parent_interests','child_interests')"
+            onmouseout="hideelem('parent_interests','child_interests')">
+      </div>
+    </div>
+  </td>
+  <td class="tboff">
+    <div class="menu_parent" id="parent_monads"
+         onmouseover="showelem('parent_monads','child_monads')"
+          onmouseout="hideelem('parent_monads','child_monads')">
+      <a href="../monads/index.html">monads (programming)</a>
+      <div class="menu_child" id="child_monads"
+           onmouseover="showelem('parent_monads','child_monads')"
+            onmouseout="hideelem('parent_monads','child_monads')">
+      </div>
+    </div>
+  </td>
+  <td class="tbon" >
+    <div class="menu_parent" id="parent_tools"
+         onmouseover="showelem('parent_tools','child_tools')"
+          onmouseout="hideelem('parent_tools','child_tools')">
+      <a href="../tools/index.html">useful tools</a>
+      <div class="menu_child" id="child_tools"
+           onmouseover="showelem('parent_tools','child_tools')"
+            onmouseout="hideelem('parent_tools','child_tools')">
+      </div>
+    </div>
+  </td>
+  <td class="tboff">
+    <div class="menu_parent" id="parent_curoccp"
+         onmouseover="showelem('parent_curoccp','child_curoccp')"
+          onmouseout="hideelem('parent_curoccp','child_curoccp')">
+      <a href="curoccp/index.html">occupation</a>
+      <div class="menu_child" id="child_curoccp"
+           onmouseover="showelem('parent_curoccp','child_curoccp')"
+            onmouseout="hideelem('parent_curoccp','child_curoccp')">
+      </div>
+    </div>
+  </td>
+</tr></table>
+
+<div id="mainpg">
+<div id="rightpane">
+  <div class="small_pane">
+    <div class="rhead">Recent Activities</div>
+    <div class="rlink">
+<a href="imgidx.html">this page is slowly migrating</a>
+    </div>
+    <div class="rlink">
+<a href="imgidx.html">from geocites, please be patient</a>
+    </div>
+    <div class="rlink">
+<a href="imgidx.html">this page is slowly migrating</a>
+    </div>
+  </div>
+  <div class="small_pane">
+    <div>BBK</div>
+    <div>FSF</div>
+    <div>CC BY-SA</div>
+  </div>
+</div>
+
+<h2>Summary</h2>
+<p>
+<em>GNU/Linux</em> is the <em>OS (operating system)</em> of choice of most
+hackers, widely used by programmers and adopted by vast majority of web
+servers.  The article below gives a gentle introduction into the intricacies of
+this OS.
+</p>
+<ol>
+  <li><a href="#why-gnu">Why GNU/Linux?</a></li>
+  <li>
+    <a href="#distros">Selecting a distro</a>
+    <ul>
+      <li><a href="#distro-list">Which distro to pick</a></li>
+      <li><a href="#hardware">The right hardware</a></li>
+    </ul>
+  </li>
+  <li>
+    <a href="#installation">Installation</a>
+    <ul>
+      <li><a href="#install-opts">Where to install</a></li>
+      <li><a href="#burn-the-image">Burn the image</a></li>
+      <li><a href="#boot-gnu">First boot into the new OS</a></li>
+      <li><a href="#anaconda">Installation process</a></li>
+      <li><a href="#custom-install">Custom system layout</a></li>
+      <li><a href="#anaconda-conf">Boot into your installed GNU/Linux</a></li>
+    </ul>
+  </li>
+  <li><a href="#shell">The shell, and why it is useful</a></li>
+</ol>
+
+<h2 id="why-gnu">1. Why GNU/Linux?</h2>
+<p>
+For ideological reasons I've been using GNU/Linux as the operating system on
+all my machines for more than 10 years.  Nowadays it is hard for me to use an
+OS that is not UNIX based.  When confronted with a machine running MS Windows I
+miss the power of the command line.  From this we can argue that using a
+GNU/Linux OS (or any POSIX compliant UNIX operating system) have advantages
+that are not only ideological.
+</p>
+<p>
+This document will describe advantages of a fully customisable OS as opposed to
+a out of the box OS which is often hard to troubleshoot.  I assume you are
+familiar with computers and have some basic background in programming (you
+wrote a hello world in two different programming languages), yet if you miss
+such background please see the bottom of this document for links to documents
+that might be of use to acquire it.
+</p>
+<p>
+If there are advantages in learning how to use a UNIX based operating system as
+an OS for personal machines there are many more advantages in knowing your way
+around a UNIX OS as a professional working with computers.  Almost all web
+servers today run on UNIX based operating systems (with a wast majority running
+on GNU/Linux) as do most wide scale applications like banking transaction
+systems or databases (most systems in the financial sector run either on UNIX
+or on mainframes).  The main reason for these facts is the reliability and
+backward compatibility these OSes provide.  Knowing your way around a UNIX
+based system do improve your CV.
+</p>
+<h2 id="distros">2. Selecting a distro</h2>
+<p>
+To start our adventure with GNU/Linux you will need to get hold of a copy of
+it.  There are many communities on the internet distributing copies of
+GNU/Linux, we call these copies different <em>flavors</em> of GNU/Linux.  Some
+flavors are very friendly others might require you to be an expert hacker to
+simply install the OS, choosing the wrong flavour may throw you off GNU/Linux
+simply because that flavour is too complex for a first experience.  Most
+flavours of GNU/Linux are free and can be downloaded from the web pages that
+distribute them.  These flavours are called <em>GNU/Linux distributions</em> or
+<em>distros</em> for short.
+</p>
+<p>
+I assume you're interested in running GNU/Linux on your machine if you're
+reading this article so far.  From here the next step is to decide on a distro
+that will not be painful for a first time user.  Later we will also discuss a
+little on the hardware GNU/Linux can run on (don't be scared, it is probably th
+OS that can run on most machines).
+</p>
+<h3 id="distro-list">Which distro shall I pick?</h3>
+<p>
+One way of finding a suitable distro would be to go to <a
+href="http://distrowatch.com/" target="_blank">distrowatch</a>, read the almost
+exhaustive articles that can be found there about distros and armed with that
+knowledge select one.  But I'll give you some suggestions below in a more
+succinct way, these are rather user friendly distros:
+</p>
+<ul>
+  <li style="padding:3px;">
+<a href="http://fedoraproject.org/" target="_blank">Fedora</a> is probably the
+distribution with the latests versions of software in it.  This is a double
+edged sword, because you get the newest bug fixes fast but you also get the new
+bugs.  The Fedora distro is used by <em>Red Hat Linux</em> (see below) as
+experimentation ground for it's own flavour of GNU/Linux.
+  </li>
+  <li style="padding:3px;">
+<a href="http://crunchbang.org" target="_blank">CrunchBang</a> recently became
+a very popular distro because of it's lightweight and minimalistic basic
+install.  It is an ideal distribution for machines with little processing
+power.
+  </li>
+  <li style="padding:3px;">
+<a href="http://ubuntu.com/" target="_blank">Ubuntu</a> is a very popular and
+robust distro.  It is commercially focused, which allows it to run on
+proprietary hardware but does not allow full customisability.  Ubuntu is not a
+hacker's OS.
+  </li>
+  <li style="padding:3px;">
+<a href="http://www.redhat.com/" target="_blank">Red Hat</a> is not a distro
+but a commercial GNU/Linux OS.  It is extremely robust and one of the most used
+OSes to run business applications.  Yet, it is not a good OS for a personal
+machine.
+  </li>
+  <li style="padding:3px;">
+<a href="http://www.scientificlinux.org/" target="_blank">Scientific Linux</a>
+is a distro based on the same code as Red Hat but compiled and distributed by
+CERN and Fermilab.  It is a distro focused on academia, and for this reason we
+will use this distro in the examples below.
+  </li>
+  <li style="padding:3px;">
+<a href="http://trisquel.info/" target="_blank">Trisquel</a> is completely free
+from proprietary software.  Unfortunately this is not a very mature distro yet,
+and may crash sometimes.  Although it is very user friendly it is hard to
+recommend it for a first experience with GNU/Linux.
+  </li>
+  <li style="padding:3px;">
+<a href="http://www.linuxmint.com/" target="_blank">Mint</a> is a distro so
+user friendly that it hurts.  Although it's easy to use it lacks the proper
+GNU/Linux learning curve.  In other words, once you use any distro above you
+will not have problems in switching between distros, but if you use Mint you
+still might struggle with other distros because Mint introduces too many user
+friendly features.  Use it only if you struggle too much with other distros.
+  </li>
+</ul>
+<p>
+Here we will use Scientific Linux because of it's academic focus, but feel free
+to choose another distro if it looks better.  I'll point out where there are
+differences between Scientific Linux and other distros (there aren't many).
+</p>
+<p>
+Independently of which distro you decide to go forward with (and not
+necessarily it being one from the list above) go to the distribution website
+and download a <em>disk image of it</em> All distros in the list above come in
+many disk image installation formats: minimal install mini-CD image, full
+install on CDs, full install on DVDs, live-CD, live-DVD and sometimes more.
+For a first install I recommend a <em>live-CD</em>, because you can boot the
+distro and test if all hardware is working before beginning installation.  All
+distros in the list above do come in live-CD form.  It is also very important
+to choose the OS appropriate for the processor of the machine you plan to
+install on.  Almost all personal computers have intel or AMD x86 family
+processors, and come in two possible processor <em>architectures</em> 32bit or
+64bit instruction set.  Nowadays single core machines almost always use the
+32bit instruction set and multi core machines almost always use the 64bit
+instruction set.  The 32bit instruction set is named as a <em>i386, i486, i586
+and i686</em> processor family (the difference between these is not important
+for our purpose) and the 64bit instruction set is normally written as
+<em>x86_64</em>.  A 64bit machine can run on both i386 and x86_64 OSes, yet
+it's performance will most likely be better when running on a x86_64 OS.  32bit
+machines can only run the i386 family of OSes, and will not boot an OS compiled
+for a x86_64 processor.
+</p>
+<p>
+For example, the Scientific Linux version 6.4 (latest as of this writing)
+distro can be downloaded from the FTP on the main website in the live-CD format
+in both i386 and x86_64 architectures.  For the i386 machines you can find it
+under the name
+<a href="ftp://ftp1.scientificlinux.org/linux/scientific/livecd/64/i386/SL-64-i386-2013-04-17-LiveCD.iso">
+SL-64-i386-2013-04-17-LiveCD.iso</a>, and for x86_64 machines under
+<a href="ftp://ftp1.scientificlinux.org/linux/scientific/livecd/64/x86_64/SL-64-x86_64-2013-04-17-LiveCD.iso">
+SL-64-x86_64-2013-04-17-LiveCD.iso</a>.  It is common name convention to
+indicate the version, the processor architecture, the type of the release
+(live-CD) and the release date in the OS disk image name.
+</p>
+<h3 id="hardware">The right hardware</h3>
+<p>
+GNU/Linux distributions are maintained mostly by volunteers and moreover the
+hardware drivers and applications are developed and maintained by hackers and
+hobbyists.  Therefore drivers for the new hardware technologies released last
+week are most likely not present in the OS (to be exact drivers are present in
+the kernel i.e. Linux).  It is rare that hardware manufacturers provide drivers
+for GNU/Linux, for the reason that it is not run by a company like Microsoft or
+Apple which would pay the hardware manufacturer for the driver.  Even worse,
+very often hardware manufacturers do not publish the specification of the
+hardware and the only way to build a driver for it is by trial and error.  For
+all these reasons drivers arrive slowly into GNU/Linux, but don't be taken off
+right now there is at least a handful of hackers working on the drivers for
+that new hardware released last week and it will become available once they
+finish.
+</p>
+<p>
+Therefore the first important tip is to <em>not try running GNU/Linux on the
+latest top notch hardware you can find</em>, first of all that hardware is not
+mature yet and probably buggy; second, the driver for it might not be complete.
+Often volunteers writing drivers for GNU/Linux decide to not write a driver
+until the hardware technology is mature.  The most awful example of hardware
+that is not mature are 802.11x wireless cards (x standing for g, n or b).
+Given the complexity of the link layer of wireless and many proprietary
+extensions wireless card manufacturers add new features to their cards all the
+time, and often many manufacturers fail to comply with the basic 802.11
+standard in the process.  With ever new feature new drivers are needed, and of
+course no specs are released.  This is hell for anyone trying to keep a
+standardised set of drivers for wireless.  Therefore, the second tip is to
+<em>if you want to use a wireless card on your machine make sure it's not the
+latest card released last month</em>.
+</p>
+<p>
+Also note that GNU/Linux will run perfectly fine on an old machine.  The memory
+imprint of GNU/Linux is little and in contrast to many OSes these days the
+imprint did not increase much since the late '90s.
+</p>
+<p>
+Finally, you can also run GNU/Linux as a virtual machine if the machine you use
+is powerful enough.  Virtualisation simulates a different virtual hardware for
+the guest machine and almost all hardware that is simulated by diverse tools is
+easily supported by drivers in GNU/Linux.  Some good open source virtualisation
+tools are: <a href="http://xenproject.org/" target="_blank">Xen</a> developed
+by the University of Cambridge and <a href="http://virtualbox.org/"
+target="_blank"> Virtual Box</a> by Oracle.  While Virtual Box is very user
+friendly Xen is more robust.  If you have a powerful machine, running your
+first GNU/Linux inside a virtual machine is a very wise choice.
+</p>
+<h2 id="installation">3. Installation</h2>
+<p>
+By now you have a distribution image disk in your hands (or more exactly on
+your hard disk) and you have decided on which machine you will install the
+GNU/Linux OS.  Either as a fully flagged OS for the machine or as a guest
+virtual machine.  If you wanna install GNU/Linux as a fully flagged OS on your
+machine it is possible to install it and still keep the old  operating system
+(almost) intact, we will discuss this option shortly.
+</p>
+<h3 id="install-opts">Where to install?</h3>
+<p>
+There are three main ways an OS can run on a machine.  The most common
+configuration is to have one and only OS on the machine but that is not the
+only way a computer can run an OS.  A general purpose computer is capable of
+running more than one OS, but not at the same time.  You can have more than one
+installed OS and decide which one to boot when you turn your computer on.
+Also, with the use of virtual machine you can run an entire computer with a
+completely different OS inside the main OS.  Each of the techniques have it's
+advantages and disadvantages, which we will discuss here.  Before you begin
+installing your new GNU/Linux OS you shall be aware of the options you have for
+doing so.
+</p>
+<p>
+There was a time when computers could have installed <em>only one OS</em> at
+any given time, this is hardly a limitation anymore on most modern machines.
+Yet, an installed OS occupy a big amount of disk space which can be undesirable
+on machines with small disks.  Most personal computer vendors sell machines
+with only one OS for the easy of use, not because they cannot run two (or
+more).  Although running only one OS have the advantage of using less disk
+space I do not recommend substituting your current OS by GNU/Linux entirely as
+your first experience with it.  If something goes wrong and you lose your
+current OS you might want to strangle me for suggesting the use of GNU/Linux in
+the first place, and we do not want that.
+</p>
+<p>
+You can install <em>GNU/Linux as a second (or third) OS</em> on your machine,
+and then you can boot into GNU/Linux or your old OS whenever you like.  This is
+possible when installing GNU/Linux last, as its installation scripts are
+crafted to do this, but it is often not possible with other OSes.  The
+installation process of an OS is dangerous because if something goes very wrong
+the machine might not boot anymore.  <em>Always make a backup before attempting
+to install a new OS.</em>  This is the way I'll suggest you to install your
+first GNU/Linux, and I'll point out where in the installation process the
+choices for this kind of installation are made.
+</p>
+<p>
+Another way to run an extra OS is to run it inside the primary OS as a virtual
+machine, as discussed above.  The installation process on a VM (virtual
+machine) is much easier, it is as the installation of GNU/Linux as the sole OS
+for the machine.  The installation is also safer because if something goes
+wrong you just wipe out the VM and create a new one.  But VMs need many
+resources from the host machine and the guest machine (running GNU/Linux) runs
+slower than it would if it was installed on the host machine itself.  If you
+have a very powerful machine and some experience with virtualisation creating a
+VM for your GNU/Linux may be a very good choice.  When you're installing
+GNU/Linux on a VM you shall perform the installation process as if it were to
+be the only OS on the machine (as it will be the only OS on the virtual
+machine).
+</p>
+<h3 id="burn-the-image">Burn the image</h3>
+<p>
+If you're not going to virtualise your GNU/Linux you need to burn the image
+disk to a media like a CD or a USB stick.  If you plan to use a virtual machine
+for your GNU/Linux you can ignore this section altogether.
+</p>
+<p>
+Burning the image is the common term used to describe the process of
+transforming the distro disk image downloaded into a media from which the OS
+can be installed.  This is needed because an OS cannot run while another OS is
+being installed (this is not 100% true, but installing a new OS on a machine
+while it is still running it's old one is very complex and only possible on a
+few OSes).  The machine you plan to install GNU/Linux on will need to boot from
+the installation media, without the aid of the current OS.
+</p>
+<p>
+The most obvious way to burn the live-CD image is to use a CD/DVD burner.  Most
+OSes come with a CD burner installed by default but if it not the case for your
+OS, good alternatives are <a href="http://projects.gnome.org/brasero/"
+target="_blank">Brasero</a>, <a href="http://burn-osx.sourceforge.net/"
+target="_blank">Burn</a> or <a href="http://imgburn.com/"
+target="_blank">ImgBurn</a> (one of them will support your OS).  It is
+important to burn the live-CD image as a disk image and <em>no as data</em>,
+otherwise your machine will not be capable of booting from the CD-Rom.
+</p>
+<p>
+If your machine do not have a CD/DVD-Rom reader (and writer) or you do not want
+to waste a CD-Rom on an image you not sure will work, you can "burn" the disk
+image to a USB stick.  Contrary to a CD-Rom the USB stick will not be
+permanently written with the image, although it will need to be formated before
+it can store data once again.  The USB stick needs to be big enough to
+accommodate the entire live-CD, a 1GB USB drive for a 700MB live-CD is a good
+choice.  To "burn" a disk image to a USB stick the guys at
+<a href="http://www.pendrivelinux.com/">pendrivelinux</a> created a very easy
+to use application that runs on MS Windows.  But if you already run a UNIX
+based OS you can write the live-CD on a USB drive using the
+<span class="mono">dd</span> command.  First insert the USB drive and run:
+<span class="terminal">dmesg | tail</span>
+One of the lines shall look similar to:
+<span class="terminal">sd 2:0:0:0: [sdX] Attached SCSI removable disk</span>
+Where the <span class="mono">X</span> will be a lowercase letter.  Make note of
+this label, if you mistype it later you may erase your file system.  Now in the
+same directory where the disk image is do:
+<span class="terminal">
+dd if=SL-64-i386-2013-04-17-LiveCD.iso of=/dev/sdX bs=8M</span>
+Substituting the <span class="mono">X</span> with the correct label and the
+disk image with the image you downloaded.  Note the this will erase everything
+on the USB drive, and that it is a process that might take some time to
+complete.
+</p>
+<h3 id="boot-gnu">First boot into the new OS</h3>
+<p>
+With the installation media in hand, shutdown your machine (you might want to
+print part of this document before doing that as you will not be able to open a
+browser for some time).  If you are installing GNU/Linux on a virtual machine
+instead of shutting down the machine prepare to start the VM.  Insert the media
+(CD or USB) into the appropriate drive and start the machine (for a VM insert
+the disk image into the virtual CD drive).
+</p>
+<p>
+Once the machine starts booting you need to enter the BIOS menu to configure
+the drive from which the machine shall boot.  To enter the BIOS menu you need
+to press the <span class="mono">ESC</span> key just after pressing the power
+button, the key you need to press is different on some machines but is normally
+displayed on the first screen (I've seen machines that enter the BIOS menu by
+pressing the <span class="mono">F2</span>, <span class="mono">F8</span> or
+<span class="mono">F12</span> keys).  Once you reach the BIOS menu find an
+option called boot order and set the CD-Rom drive or the USB stick at the first
+position.  Save the changes in the BIOS menu and the machine shall reboot by
+exiting the BIOS menu.  After changing the boot order the machine shall boot
+from our installation media, if it does you shall see a screen with the name of
+the distro.  If you used a live-CD select the option to try the distro without
+installing, otherwise select the install to disk option and jump to the next
+section.  Actually if your machine have little memory (I mean very little, less
+than 1/2 GB of memory) it might be wise to select the install option instead of
+the live try without installing, as that option requires loading the entire OS
+into memory.
+</p>
+<p>
+If you are booting GNU/Linux in a virtual machine there is no BIOS menu as the
+BIOS is part of the virtualisation software.  You will need to find the boot
+order options inside the VM configuration and set it to the CD-Rom drive.
+</p>
+<p>
+If the machine do not want to boot from the GNU/Linux media but boots its old
+OS you probably did not setup the boot order correctly.  Try setting the drive
+with GNU/Linux as the only one in the boot order, and if then the machine does
+not boot at all cross check that the media is correctly written.  If you can
+see the disk image on the media as a file your CD-Rom or USB stick have the OS
+written as data and not as an image, go back to the <a href="#burn-the-image">
+burn the image</a> section.
+</p>
+<p>
+Your new GNU/Linux shall boot into a graphical environment, it is the best
+moment to check that everything is working.  For example, try changing the
+screen resolution, play sounds and connect to the network.  Do not worry about
+finding each piece of configuration yet, the configuration of the live boot
+will be lost once you reboot the machine so do not bother with it.  If
+something does not work try searching the web for a solution, for example
+sometimes the driver for your sound card is present but is badly identified by
+the boot scripts.  Try searching using the name of the vendor of the hardware
+that is not working the version of the hardware and the name and version of the
+distro you're trying out.
+</p>
+<p>
+Once the OS seems alright click the installation button.  Most distros have an
+icon called "install to disk" on the desktop during the live session.
+</p>
+<h3 id="anaconda">Installation process</h3>
+<p>
+The installation screens are fruits of a scripting engine called <em>
+anaconda</em>, almost all distros nowadays use anaconda to perform the
+installation.  Either is you had chosen the installation on the first (after
+the boot) screen or if you clicked the install to hard drive button in the live
+session anaconda will be triggered.
+</p>
+<p>
+The first couple of screens will led you through selecting the language, the
+keyboard layout and the hostname of the machine.  Do not worry about the
+hostname, if this is your personal machine leaving it as localhost.localdomain
+is perfectly fine.  The scripts will also ask you for a location to determine
+the timezone where the machine runs.  On some distros here anaconda asks for a
+password for the root user.  The root user is the reason UNIX is called UNIX.
+GNU/Linux (and UNIX in general) is a multiuser system, with permissions of
+access between the different users.  But one user, the root user, is a special
+user that can do everything on the system bypassing anyone else's permissions.
+On a UNIX system there is always one and only one such user it is the one (uno)
+in the UNIX.  It is wise to setup a strong password for the root user, but not
+an impossible to remember one as it is the user you will use to do the
+maintenance on your machine.  Some distros (notably Ubuntu) discourage the
+setup of a password for the root user altogether, these distros use sessions
+with root permissions to allow you to do the maintenance.
+<!-- We will look at users and permissions in section 5. -->
+</p>
+<p>
+Next is the decision of how the system shall be installed on your machine, the
+most common options configured in anaconda by the distro maintainers are:
+</p>
+<ul>
+  <li style="padding:3px;">
+<em>Use entire drive</em> and <em>replace existing system</em> are good options
+to run the GNU/Linux system as the only OS on the machine.  This is a good
+choice when installing on a virtual machine.  Most likely you do not have a
+UNIX system already present on the machine so the replace existing system
+option might not appear.  On the other hand, if you are installing GNU/Linux on
+the machine directly and want to keep the original OS these options are a poor
+choice.  Using the entire disk for your GNU/Linux is a good choice for a first
+experience with it, but if the machine will need to perform specific tasks
+(like a web server) a different layout is desired.
+  </li>
+  <li>
+<em>Use free space</em> and <em>shrink current system</em> will place your GNU/Linux
+next to the existing OS
+  </li>
+  <li>
+A <em>custom layout</em> is needed when the machine is to be optimised for a specific task.
+  </li>
+</ul>
+<p>
+After the layout of the system is decided the installation process will copy
+the necessary files to disk, it is a process that may take some time.  With the
+copy complete it will ask you to configure the boot manager.  The boot manager
+is a small application that runs before the OS is loaded and is used to select
+between different OSes to boot.  If you selected any option different from
+custom layout for the system layout the defaults that anaconda gives you are
+good.  If you choose entire disk install there's only on OS on the boot manager
+list, if you choose to use free space for GNU/Linux both OSes will be listed.
+You might wanna change the order of the OSes on the boot manager list, that's
+all.  A custom layout may need some changes in this screen, the next section
+discuss these.
+</p>
+<h3 id="custom-install">Custom system layout</h3>
+<p>
+This section deals with the reasons for customising the layout of a GNU/Linux
+installation.  But I had not the time to write this section yet.
+</p>
+<h3 id="anaconda-conf">Boot into your installed GNU/Linux</h3>
+<p>
+It is time to boot the machine from the disk using the newly installed
+GNU/Linux.  If you configured the boot order to the drive with the installation
+media first remove the media, and if you needed to remove the hard disk from
+the allowed boot devices put it back there now.
+</p>
+<p>
+Once the machine boots you will see a GRUB screen, the boot manager, allowing
+you to select GNU/Linux or your old OS (if you opted for keeping it).  Select
+the GNU/Linux distro option and a configuration screen shall appear.  These
+screens are the last parts of anaconda scripts and will configure the machine
+for use as a personal computer.  First you get a welcome screen and then a
+screen showing the GNU GPL license, the GPL license is not very long and the
+first sections about the reasons for the creation of GPL are especially worth
+reading.  After the license you anaconda will ask you to create a normal user
+(not root), you will use this user to do most things on this machine: browse
+the web, program, write documents.  Choose a username and a decent password,
+some common usernames are your first name, your last name, "me" or "myself".
+Finally anaconda will ask you for the current time to set on the machine.
+</p>
+<p>
+On some distros anaconda may as you to connect to the network and send a
+hardware profile and installation log back to the distro maintainers.  It is
+polite to do so, although it is totally optional.  Anaconda shall finally close
+and leave you on the login screen, use the username you just created to login
+to you GNU/Linux system.
+</p>
+<p>
+If you do not see the GRUB screen with options to choose the OS, chances are
+that the device boot order in the BIOS menu is incorrect.  Go back into the
+BIOS menu and change the boot order of devices, setting the hard drive as the
+first device.  If you can select your distro from GRUB but it fail to boot
+something went wrong with the installation, insert the installation media, boot
+from it and try performing the install once again.
+</p>
+<h2 id="shell">4. The shell, and why it is useful</h2>
+<p>
+Once you login to your system, what shall you do?  What most GNU/Linux hackers
+do first on a newly installed OS is to configure a terminal emulator.  The
+terminal emulator runs a program called a <em>shell</em> which is a text based
+command line with many quirks.  You could say that a shell is a fully featured
+programming language.
+</p>
+<h2>Soon...</h2>
+<p>
+Before the end of 2013 I hope finding time to extend this page with a short
+description of important shell commands.  And, given the fact that many people
+may be directed to this page to learn how to install GNU/Linux to install
+Hadoop on it, I hope writing an article on Hadoop installation.
+</p>
+<h2>Useful links</h2>
+<p>
+Probably the most exhaustive resource on computers and UNIX in general is the
+(very dated but still relevant)
+<a href="http://tldp.org/HOWTO/Unix-and-Internet-Fundamentals-HOWTO/"
+target="_blank">Unix and Internet Fundamentals</a> by Eric Raymond.  For
+understanding software building under GNU/Linux is
+<a href="http://tldp.org/HOWTO/Software-Building-HOWTO.html" target="_blank">
+Building and Installing Software Packages for Linux</a> by Mendel Cooper.
+Actually <a href="http://tldp.org/" target="_blank">The Linux Documentation
+Project</a> page have many useful tutorials and books on GNU/Linux, for example
+<a href="http://tldp.org/LDP/sag/html/index.html" target="_blank">The Linux
+System Administrator's Guide</a> is an almost exhaustive description of the
+components and configuration of the GNU/Linux system.
+
+</p>
+<h2>Contact</h2>
+<p>
+If you notice broken links, typos or some inconsistencies feel free to email me
+on grochmal at fsf dot member dot org
+</p>
+<p>
+This page is under a very slow migration (as I find time to do it) from the
+defunct geosites.  And, to make things worse, I'm adding new things to the page
+at the same time as migrating it.  Therefore, I am sure there are lost of typos
+and inconsistencies on this and other articles hosted here.  Many thanks for
+pointing them out if you find them.
+</p>
+<!--<h2>5. GNU/Linux is a multiuser system</h2>
+root user, permissions
+<h2>6. Directory tree, environment variable and moving around</h2>
+mkdir, rmdir, touch, cd, rm, mv, cp
+<h2>7. Text editors</h2>
+<h2>8. Globbing, wildcards and scripting</h2>
+<h2>9. Cookbook</h2>
+change password, change date
+<h2>10. Coming soon... Hadoop</h2>-->
+
+</div>
+
+<div id="bottom">
+<hr />
+<div>
+<a href="http://validator.w3.org/">
+<img src="http://www.w3.org/Icons/valid-xhtml10.png"
+     alt="| Valid XHTML 1.0 Strict |" class="bot_img" /></a>
+<a href="http://jigsaw.w3.org/css-validator/">
+<img src="http://jigsaw.w3.org/css-validator/images/vcss.png"
+     alt="| Valid CSS! |" class="bot_img" /></a>
+<a href="http://www.vim.org/">
+<img src="../written_with_vim_128x31.png"
+     alt="| page written with vim |" class="bot_img" /></a>
+<a href="http://www.gimp.org/">
+<img src="../gimp_graphics_80x31.png"
+       alt="| graphics made with gimp |" class="bot_img" /></a>
+<a href="http://www.libpng.org/">
+<img src="../using_png_80x31.png"
+     alt="| using png |" class="bot_img" /></a>
+<a href="http://www.fsf.org/campaigns/freejs">
+<img src="../free_js_only_128x31.png"
+     alt="| providing free JavaScript only |" class="bot_img" /></a>
+<a href="http://www.mozilla.org/">
+<img src="../mozilla_best_view_128x31.png"
+     alt="| best viewed with a mozilla browser |" class="bot_img" /></a>
+<a href="http://lynx.browser.org/">
+<img src="../text_browser_friendly_128x31.png"
+     alt="| text browser friendly |" class="bot_img" /></a>
+</div>
+<p>
+Last modified 2013-12-13T01:03:28Z
+</p>
+</div>
+<script type="text/javascript">
+//<!--
+pgbase = urlup(document.location.href, 2)+"/";
+build_menus(pgbase, pgbase+"topmenu.json")
+//-->
+</script>
+</body>
+</html>
+

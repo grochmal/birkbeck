@@ -1,0 +1,13 @@
+PREFIX dbpedia_ont: <http://dbpedia.org/ontology/>
+SELECT $x, $a, $d WHERE {
+$x rdf:type dbpedia_ont:Film .
+$x dbpedia2:director $a .
+#$x dbpedia_ont:releaseDate $d .
+FILTER regex($a, "kubrick", "i")
+}
+
+#SELECT $x WHERE {
+#?x rdf:type owl:DatatypeProperty .
+#FILTER regex(?x, "date", "i")
+#}
+

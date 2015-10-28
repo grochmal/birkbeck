@@ -1,0 +1,66 @@
+To enchance the foodmart warehouse to be able to report not only on days but
+also on hours and minutes we can use at least two approaches: add a timestamp
+to the new fact table (SALES_FACT_1999) or enchance the TIME_BY_DAY table with
+hours and minutes.  Each approach have it's advantages and disadvantages,
+discussed below.
+
+Adding a timestamp to the fact table for the year 1999 has the advantage of not
+impacting any data for the previous years.  All tables beside the new fact
+table remain the same.  On the other hand the time dimension become fragmented,
+the TIME_BY_DAY table do not contain the full information about the time
+dimension.  Also, this design requires the use of the EXTRACT() function to
+retrieve the hours and minutes, which is an overhead to the query.
+
+The fact table for the year 1999 would look as follows:
+---------------
+SALES_FACT_1999
+---------------
+product_id     number(11)
+time_id        number(11)
+customer_id    number(11)
+promotion_id   number(11)
+store_id       number(11)
+store_sales    number(15,2)
+store_cost     number(15,2)
+unit_sales     number(11)
+the_timestamp  timestamp(0)  -- column not present in previous years
+
+In the second approach we change the TIME_BY_DAY table and the new fact table
+for the year 1999 is created with the exact same columns as SALES_FACT_1998.
+We add two columns THE_MINUTE (that will hold the minute within the hour) and
+THE_HOUR (that will hold the hour within the day) to the TIME_BY_DAY table.
+The advantage of this approach is that the time dimension stays consistent.
+Another advantage is that it is easy to specify ranges of times within a day
+and that these ranges can be easily understood with the separation of hours and
+minutes.  The disvantage of this approach is that the TIME_BY_DAY table will
+hold NULLs for the two new columns in the records related to years 1998 and
+1997.  If there are queries using "SELECT *" on the TIME_BY_DAY table these
+queries will need to be refactored.
+
+The new TIME_BY_DAY table would look as follows:
+-----------
+TIME_BY_DAY
+-----------
+time_id            number(11)     not null
+the_minute         number(5)    -- new column
+the_hour           number(5)    -- new column
+the_date           date
+the_day            varchar2(15)
+the_month          varchar2(15)
+the_year           number(5)
+day_of_month       number(5)
+week_of_year       number(5)
+month_of_year      number(5)
+quarter            varchar2(2)
+fiscal_period      varchar2(255)
+
+The second approach looks better in the long term as at some point in the
+future data for the years of 1997 and 1998 will be purged and the entire
+warehouse will be consistent again.
+
+It's important to note that other alternatives are possible.  e.g. Adding only
+one column to the table TIME_BY_DAY called THE_MINUTE that would hold the
+minute of the day.  Or changing the THE_DATE in the TIME_BY_DAY to be of type
+DATETIME.  Or creating a new table between TIME_BY_DAY and the fact table.  All
+these possibilities could be discussed further.
+

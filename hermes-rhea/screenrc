@@ -1,0 +1,18 @@
+caption always "(%t) %w %= [%h][%c]"
+startup_message off
+hardstatus on
+hardstatus alwayslastline
+escape ^b^a
+
+chdir public_www/curoccp
+
+screen bash
+title "rnd"
+
+screen bash
+title "edt"
+
+screen bash
+#exec rlwrap -c -f $HOME/sqlw.sql sqlplus mgroch01/adm123
+title "run"
+

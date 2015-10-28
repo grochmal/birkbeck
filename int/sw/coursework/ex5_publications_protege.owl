@@ -1,0 +1,473 @@
+@prefix : <http://www.semanticweb.org/mgroch01/ontologies/2014/0/untitled-ontology-13#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications> .
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications> rdf:type owl:Ontology .
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#authored
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#authored> rdf:type owl:ObjectProperty ;
+                                                                                  
+                                                                                  rdfs:domain <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Author> ;
+                                                                                  
+                                                                                  rdfs:range <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Publication> .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#edited
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#edited> rdf:type owl:ObjectProperty ;
+                                                                                
+                                                                                rdfs:domain <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Editor> ;
+                                                                                
+                                                                                rdfs:range <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Publication> .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#editedBy
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#editedBy> rdf:type owl:ObjectProperty ;
+                                                                                  
+                                                                                  rdfs:range <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Editor> ;
+                                                                                  
+                                                                                  rdfs:domain <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Publication> ;
+                                                                                  
+                                                                                  owl:inverseOf <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#edited> .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#hasAuthor
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#hasAuthor> rdf:type owl:ObjectProperty ;
+                                                                                   
+                                                                                   rdfs:range <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Author> ;
+                                                                                   
+                                                                                   rdfs:domain <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Publication> ;
+                                                                                   
+                                                                                   owl:inverseOf <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#authored> .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#hasISBN
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#hasISBN> rdf:type owl:FunctionalProperty ,
+                                                                                          owl:ObjectProperty ;
+                                                                                 
+                                                                                 rdfs:range <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#ISBN> ;
+                                                                                 
+                                                                                 rdfs:domain <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Publication> .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#hasPubForm
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#hasPubForm> rdf:type owl:ObjectProperty ;
+                                                                                    
+                                                                                    rdfs:domain <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Publication> ;
+                                                                                    
+                                                                                    rdfs:range <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#PublicationForm> .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#hasTitle
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#hasTitle> rdf:type owl:FunctionalProperty ,
+                                                                                           owl:ObjectProperty ;
+                                                                                  
+                                                                                  rdfs:domain <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Publication> ;
+                                                                                  
+                                                                                  rdfs:range <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Title> .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#isInCategory
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#isInCategory> rdf:type owl:ObjectProperty ;
+                                                                                      
+                                                                                      rdfs:range <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#PubCategory> ;
+                                                                                      
+                                                                                      rdfs:domain <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Publication> .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#printedIn
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#printedIn> rdf:type owl:FunctionalProperty ,
+                                                                                            owl:ObjectProperty ;
+                                                                                   
+                                                                                   rdfs:range <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Location> ;
+                                                                                   
+                                                                                   rdfs:domain <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#PhysicalPub> .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#published
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#published> rdf:type owl:InverseFunctionalProperty ,
+                                                                                            owl:ObjectProperty ;
+                                                                                   
+                                                                                   rdfs:range <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Publication> ;
+                                                                                   
+                                                                                   rdfs:domain <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Publisher> .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#worksAt
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#worksAt> rdf:type owl:FunctionalProperty ,
+                                                                                          owl:ObjectProperty ;
+                                                                                 
+                                                                                 rdfs:domain <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Person> ;
+                                                                                 
+                                                                                 rdfs:range <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Publisher> .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Author
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Author> rdf:type owl:Class ;
+                                                                                
+                                                                                owl:equivalentClass [ rdf:type owl:Class ;
+                                                                                                      owl:intersectionOf ( <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Person>
+                                                                                                                           [ rdf:type owl:Restriction ;
+                                                                                                                             owl:onProperty <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#authored> ;
+                                                                                                                             owl:someValuesFrom <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Publication>
+                                                                                                                           ]
+                                                                                                                         )
+                                                                                                    ] .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Book
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Book> rdf:type owl:Class ;
+                                                                              
+                                                                              rdfs:subClassOf <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Publication> .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#ComputerScience
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#ComputerScience> rdf:type owl:Class ;
+                                                                                         
+                                                                                         rdfs:subClassOf <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#PubCategory> .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Digital
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Digital> rdf:type owl:Class ;
+                                                                                 
+                                                                                 rdfs:subClassOf <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#PublicationForm> .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#DigitalPub
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#DigitalPub> rdf:type owl:Class ;
+                                                                                    
+                                                                                    owl:equivalentClass [ rdf:type owl:Class ;
+                                                                                                          owl:intersectionOf ( <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Publication>
+                                                                                                                               [ rdf:type owl:Restriction ;
+                                                                                                                                 owl:onProperty <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#hasPubForm> ;
+                                                                                                                                 owl:someValuesFrom <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Digital>
+                                                                                                                               ]
+                                                                                                                             )
+                                                                                                        ] .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Editor
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Editor> rdf:type owl:Class ;
+                                                                                
+                                                                                owl:equivalentClass [ rdf:type owl:Class ;
+                                                                                                      owl:intersectionOf ( <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Person>
+                                                                                                                           [ rdf:type owl:Restriction ;
+                                                                                                                             owl:onProperty <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#edited> ;
+                                                                                                                             owl:someValuesFrom <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Publication>
+                                                                                                                           ]
+                                                                                                                           [ rdf:type owl:Restriction ;
+                                                                                                                             owl:onProperty <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#worksAt> ;
+                                                                                                                             owl:someValuesFrom <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Publisher>
+                                                                                                                           ]
+                                                                                                                         )
+                                                                                                    ] .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#ElecPubCompSc
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#ElecPubCompSc> rdf:type owl:Class ;
+                                                                                       
+                                                                                       owl:equivalentClass [ rdf:type owl:Class ;
+                                                                                                             owl:intersectionOf ( <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Publisher>
+                                                                                                                                  [ rdf:type owl:Restriction ;
+                                                                                                                                    owl:onProperty <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#published> ;
+                                                                                                                                    owl:someValuesFrom [ rdf:type owl:Class ;
+                                                                                                                                                         owl:intersectionOf ( <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Publication>
+                                                                                                                                                                              [ rdf:type owl:Restriction ;
+                                                                                                                                                                                owl:onProperty <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#hasPubForm> ;
+                                                                                                                                                                                owl:someValuesFrom <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Digital>
+                                                                                                                                                                              ]
+                                                                                                                                                                              [ rdf:type owl:Restriction ;
+                                                                                                                                                                                owl:onProperty <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#isInCategory> ;
+                                                                                                                                                                                owl:someValuesFrom <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#ComputerScience>
+                                                                                                                                                                              ]
+                                                                                                                                                                              [ rdf:type owl:Restriction ;
+                                                                                                                                                                                owl:onProperty <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#hasPubForm> ;
+                                                                                                                                                                                owl:allValuesFrom <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Digital>
+                                                                                                                                                                              ]
+                                                                                                                                                                            )
+                                                                                                                                                       ]
+                                                                                                                                  ]
+                                                                                                                                  [ rdf:type owl:Restriction ;
+                                                                                                                                    owl:onProperty <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#published> ;
+                                                                                                                                    owl:allValuesFrom [ rdf:type owl:Class ;
+                                                                                                                                                        owl:intersectionOf ( <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Publication>
+                                                                                                                                                                             [ rdf:type owl:Restriction ;
+                                                                                                                                                                               owl:onProperty <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#hasPubForm> ;
+                                                                                                                                                                               owl:someValuesFrom <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Digital>
+                                                                                                                                                                             ]
+                                                                                                                                                                             [ rdf:type owl:Restriction ;
+                                                                                                                                                                               owl:onProperty <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#isInCategory> ;
+                                                                                                                                                                               owl:someValuesFrom <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#ComputerScience>
+                                                                                                                                                                             ]
+                                                                                                                                                                             [ rdf:type owl:Restriction ;
+                                                                                                                                                                               owl:onProperty <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#hasPubForm> ;
+                                                                                                                                                                               owl:allValuesFrom <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Digital>
+                                                                                                                                                                             ]
+                                                                                                                                                                           )
+                                                                                                                                                      ]
+                                                                                                                                  ]
+                                                                                                                                )
+                                                                                                           ] .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#ISBN
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#ISBN> rdf:type owl:Class .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Journal
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Journal> rdf:type owl:Class ;
+                                                                                 
+                                                                                 rdfs:subClassOf <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Publication> .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Location
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Location> rdf:type owl:Class .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Manager
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Manager> rdf:type owl:Class ;
+                                                                                 
+                                                                                 owl:equivalentClass [ rdf:type owl:Class ;
+                                                                                                       owl:intersectionOf ( <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Person>
+                                                                                                                            [ rdf:type owl:Class ;
+                                                                                                                              owl:complementOf <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Editor>
+                                                                                                                            ]
+                                                                                                                            [ rdf:type owl:Restriction ;
+                                                                                                                              owl:onProperty <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#worksAt> ;
+                                                                                                                              owl:someValuesFrom <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Publisher>
+                                                                                                                            ]
+                                                                                                                          )
+                                                                                                     ] .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#MultiAuthorBook
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#MultiAuthorBook> rdf:type owl:Class ;
+                                                                                         
+                                                                                         owl:equivalentClass [ rdf:type owl:Class ;
+                                                                                                               owl:intersectionOf ( <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Book>
+                                                                                                                                    [ rdf:type owl:Restriction ;
+                                                                                                                                      owl:onProperty <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#hasAuthor> ;
+                                                                                                                                      owl:minCardinality "2"^^xsd:nonNegativeInteger
+                                                                                                                                    ]
+                                                                                                                                  )
+                                                                                                             ] .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Person
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Person> rdf:type owl:Class .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Physical
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Physical> rdf:type owl:Class ;
+                                                                                  
+                                                                                  rdfs:subClassOf <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#PublicationForm> .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#PhysicalPub
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#PhysicalPub> rdf:type owl:Class ;
+                                                                                     
+                                                                                     owl:equivalentClass [ rdf:type owl:Class ;
+                                                                                                           owl:intersectionOf ( <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Publication>
+                                                                                                                                [ rdf:type owl:Restriction ;
+                                                                                                                                  owl:onProperty <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#hasPubForm> ;
+                                                                                                                                  owl:someValuesFrom <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Physical>
+                                                                                                                                ]
+                                                                                                                              )
+                                                                                                         ] .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#PubCategory
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#PubCategory> rdf:type owl:Class .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Publication
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Publication> rdf:type owl:Class .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#PublicationForm
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#PublicationForm> rdf:type owl:Class .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Publisher
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Publisher> rdf:type owl:Class .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Room
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Room> rdf:type owl:Class ;
+                                                                              
+                                                                              rdfs:subClassOf <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Location> .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#ScienceFiction
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#ScienceFiction> rdf:type owl:Class ;
+                                                                                        
+                                                                                        rdfs:subClassOf <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#PubCategory> .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#SfBookPr123EdFem
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#SfBookPr123EdFem> rdf:type owl:Class ;
+                                                                                          
+                                                                                          owl:equivalentClass [ rdf:type owl:Class ;
+                                                                                                                owl:intersectionOf ( <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Book>
+                                                                                                                                     [ rdf:type owl:Restriction ;
+                                                                                                                                       owl:onProperty <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#editedBy> ;
+                                                                                                                                       owl:someValuesFrom [ rdf:type owl:Class ;
+                                                                                                                                                            owl:intersectionOf ( <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Editor>
+                                                                                                                                                                                 <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Woman>
+                                                                                                                                                                               )
+                                                                                                                                                          ]
+                                                                                                                                     ]
+                                                                                                                                     [ rdf:type owl:Restriction ;
+                                                                                                                                       owl:onProperty <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#isInCategory> ;
+                                                                                                                                       owl:someValuesFrom <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#ScienceFiction>
+                                                                                                                                     ]
+                                                                                                                                     [ rdf:type owl:Restriction ;
+                                                                                                                                       owl:onProperty <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#printedIn> ;
+                                                                                                                                       owl:hasValue <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#room123>
+                                                                                                                                     ]
+                                                                                                                                   )
+                                                                                                              ] .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Title
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Title> rdf:type owl:Class .
+
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Woman
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Woman> rdf:type owl:Class ;
+                                                                               
+                                                                               rdfs:subClassOf <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Person> .
+
+
+
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#room123
+
+<http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#room123> rdf:type <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Room> ,
+                                                                                          owl:NamedIndividual .
+
+
+
+
+
+#################################################################
+#
+#    General axioms
+#
+#################################################################
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#ISBN>
+                <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Location>
+                <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Person>
+                <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#PubCategory>
+                <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Publication>
+                <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#PublicationForm>
+                <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Publisher>
+                <http://www.semanticweb.org/mgroch01/ontologies/2014/0/ex5_publications#Title>
+              )
+] .
+
+
+
+
+###  Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net
+

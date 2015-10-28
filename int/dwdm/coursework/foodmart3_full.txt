@@ -1,0 +1,164 @@
+THIS FILE IS UNIX ENCODED IF YOU DO NOT SEE NEWLINES CONVERT IT
+
+-- Answer to question 1 (i)
+-- First build the sum of sales grouped by district, and we can rank the
+-- results at this level.  Then select the first 10 in the outer level
+-- as the ranked results are ranked in the appropriate order.
+select sales_district
+     , sales
+  from ( select region.sales_district
+              , sum(sf_1998.store_sales) sales
+              , rank() over (order by sum(sf_1998.store_sales) desc) rank
+           from region
+              , store
+              , ( select store_sales
+                       , store_id
+                    from sales_fact_1998
+                   union all
+                  select store_sales
+                       , store_id
+                    from sales_fact_dec_1998
+                ) sf_1998
+          where region.region_id = store.region_id
+            and store.store_id   = sf_1998.store_id
+          group by region.sales_district
+       ) sales_by_district
+ where rank <= 10
+;
+
+-- Answer to question 1 (ii)
+-- First build a big union of the fact tables from 1997, 1998 without December
+-- and December 1998.  Just in case add a sale of 0.0 for each store type for
+-- each month during that period, it will prevent window aggregation problems
+-- if there's no data for a certain month/store type combination.  At this
+-- level filter out the HeadQuarters as we do not want those.  Aggregate all by
+-- an unique time (the year and the month value) and we can run a window
+-- aggregation over that data.  Finally filter to get only the months we are
+-- interested in from the results of the window aggregation.
+
+-- The generation of every month/store type combination is not actually needed
+-- as there is data for every combination.  Yet, for the query to be reused
+-- with other data having that measure in might prove useful.
+with all_store_sales as
+  ( select yearmonth
+         , sum(usales) sales
+         , store_type
+      from ( select to_char(t.the_date, 'YYYYMM') yearmonth
+                  , sum(sf.store_sales) usales
+                  , s.store_type
+               from store s
+                  , time_by_day t
+                  , ( select store_sales
+                           , time_id
+                           , store_id
+                        from sales_fact_1997
+                       union all
+                      select store_sales
+                           , time_id
+                           , store_id
+                        from sales_fact_1998
+                       union all
+                      select store_sales
+                           , time_id
+                           , store_id
+                        from sales_fact_dec_1998
+                    ) sf
+              where sf.store_id   = s.store_id
+                and sf.time_id    = t.time_id
+                and s.store_type <> 'HeadQuarters'
+              group by s.store_type
+                     , to_char(t.the_date, 'YYYYMM')
+              union all  -- just in case, generate all months
+             select distinct
+                    to_char(t.the_date, 'YYYYMM') yearmonth
+                  , 0.0 usales
+                  , s.store_type
+               from time_by_day t
+                  , store s
+              where s.store_type <> 'HeadQuarters'
+           )
+     group by yearmonth
+            , store_type
+  )
+select yearmonth
+     , acc_sales
+     , store_type
+  from ( select yearmonth
+              , sum(sales) over ( partition by store_type
+                                  order by yearmonth
+                                  rows 2 preceding
+                                ) acc_sales
+              , store_type
+              from all_store_sales
+       )
+ where yearmonth >= '199801'
+ order by yearmonth, store_type
+;
+
+-- Answer to question 2
+To enhance the foodmart warehouse to be able to report not only on days but
+also on hours and minutes we can use at least two approaches: add a timestamp
+to the new fact table (SALES_FACT_1999) or enhance the TIME_BY_DAY table with
+hours and minutes.  Each approach have it's advantages and disadvantages,
+discussed below.
+
+Adding a timestamp to the fact table for the year 1999 has the advantage of not
+impacting any data for the previous years.  All tables beside the new fact
+table remain the same.  On the other hand the time dimension become fragmented,
+the TIME_BY_DAY table do not contain the full information about the time
+dimension.  Also, this design requires the use of the EXTRACT() function to
+retrieve the hours and minutes, which is an overhead for the queries.
+
+The fact table for the year 1999 would look as follows:
+---------------
+SALES_FACT_1999
+---------------
+product_id     number(11)
+time_id        number(11)
+customer_id    number(11)
+promotion_id   number(11)
+store_id       number(11)
+store_sales    number(15,2)
+store_cost     number(15,2)
+unit_sales     number(11)
+the_timestamp  timestamp(0)  -- column not present in previous years
+
+In the second approach we change the TIME_BY_DAY table and the new fact table
+for the year 1999 is created with the exact same columns as SALES_FACT_1998.
+We add two columns THE_MINUTE (that will hold the minute within the hour) and
+THE_HOUR (that will hold the hour within the day) to the TIME_BY_DAY table.
+The advantage of this approach is that the time dimension stays consistent.
+Another advantage is that it is easy to specify ranges of times within a day
+and that these ranges can be easily understood with the separation of hours and
+minutes.  The disadvantage of this approach is that the TIME_BY_DAY table will
+hold NULLs for the two new columns in the records related to years 1998 and
+1997.  If there are queries using "SELECT *" on the TIME_BY_DAY table these
+queries will need to be refactored.
+
+The new TIME_BY_DAY table would look as follows:
+-----------
+TIME_BY_DAY
+-----------
+time_id            number(11)     not null
+the_minute         number(5)    -- new column
+the_hour           number(5)    -- new column
+the_date           date
+the_day            varchar2(15)
+the_month          varchar2(15)
+the_year           number(5)
+day_of_month       number(5)
+week_of_year       number(5)
+month_of_year      number(5)
+quarter            varchar2(2)
+fiscal_period      varchar2(255)
+
+The second approach looks better in the long term as at some point in the
+future data for the years of 1997 and 1998 will be purged and the entire
+warehouse will be consistent again.
+
+It's important to note that other alternatives are possible.  e.g. Adding only
+one column to the table TIME_BY_DAY called THE_MINUTE that would hold the
+minute of the day.  Or changing the THE_DATE column in the TIME_BY_DAY to be
+of type DATETIME.  Or creating a new table between TIME_BY_DAY and the fact
+table.  All these possibilities could be discussed further.
+

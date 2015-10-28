@@ -1,0 +1,35 @@
+rtitle
+<td class="tbon"> Independence Day</td>
+<td class="tbon"> Mars Attacks</td>
+<td class="tbon"> Mars Attacks</td>
+<td class="tbon"> The Haunting </td>
+
+ryear
+<td class="tboff">1940?</td>
+<td class="tboff">19++</td>
+<td class="tboff">1969æ</td>
+<td class="tboff"/>
+<td class="tboff">1993p</td>
+<td class="tboff">19yy</td>
+
+fraction
+<td class="tbon">0.8.</td>
+<td class="tbon">0.9.6</td>
+<td class="tbon">.1</td>
+<td class="tbon">.9</td>
+
+stitle
+<td class="tbon"/>
+<td class="tbon">unknown</td>
+
+syear
+<td class="tboff">19xx</td>
+<td class="tboff">19xx</td>
+<td class="tboff">1940%</td>
+<td class="tboff">19xx</td>
+<td class="tboff">un</td>
+<td class="tboff">19xx</td>
+<td class="tboff">19xx</td>
+<td class="tboff">19xx</td>
+<td class="tboff">19xx</td>
+

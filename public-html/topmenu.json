@@ -1,0 +1,87 @@
+{ "copyright" : "Michal Grochmal",
+  "license" : "GNU GPL v3",
+  "menu" : {
+    "child_hacks" : [
+      { "a"    : "what is hacking?",
+        "href" : "hacks/index.html"
+        },
+      { "a"    : "what is a cypherpunk?",
+        "href" : "hacks/cypherpunk.html"
+        },
+      { "a"    : "the beauty of perl",
+        "href" : "hacks/perl_acme.html"
+        }
+      ],
+    "child_about" : [
+      { "a"    : "that's me",
+        "href" : "about/index.html",
+        "img"  : {
+          "src"   : "me_photo_150x130.png",
+          "alt"   : "[my picture]",
+          "class" : "menu_img_big"
+          }
+        },
+      { "a"    : "education",
+        "href" : "about/edu.html"
+        }
+      ],
+    "child_interests" : [
+      { "a"    : "functional programming",
+        "href" : "interests/index.html"
+        },
+      { "a"    : "academic",
+        "href" : "interests/research.html"
+        },
+      { "a"    : "professional",
+        "href" : "interests/professional.html"
+        },
+      { "a"    : "books",
+        "href" : "interests/books.html"
+        },
+      { "a"    : "other",
+        "href" : "interests/other.html"
+        }
+      ],
+    "child_monads" : [
+      { "a"    : "what's a monad?",
+        "href" : "monads/index.html"
+        },
+      { "a"    : "monads in Haskell",
+        "href" : "monads/haskell.html"
+        },
+      { "a"    : "monads in javascript",
+        "href" : "monads/javascript.html"
+        }
+      ],
+    "child_tools" : [
+      { "a"    : "GNU/Linux",
+        "href" : "tools/index.html",
+        "img"  : {
+          "src"   : "gnu_head_48x48.png",
+          "alt"   : "[gnu head]",
+          "class" : "menu_img_small"
+          }
+        },
+      { "a"    : "gimp",
+        "href" : "tools/gimp.html",
+        "img"  : {
+          "src"   : "gimp_wilber_48x48.png",
+          "alt"   : "[gimp wilber]",
+          "class" : "menu_img_small"
+          }
+        },
+      { "a"    : "rlwrap",
+        "href" : "tools/rlwrap.html"
+        }
+      ],
+    "child_curoccp" : [
+      { "a"    : "MSc ACT course",
+        "href" : "curocc/index.html"
+        },
+      { "a"    : "archive",
+        "href" : "curocc/previous.html"
+        }
+      ]
+    }
+  }
+

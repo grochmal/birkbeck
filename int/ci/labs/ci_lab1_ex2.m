@@ -1,0 +1,12 @@
+[x, t] = crab_dataset;
+% net = patternnet(10);
+net = feedforwardnet(10);
+[nett, tr] = train(net, x, t);
+testX = x(:,tr.testInd);
+testT = t(:,tr.testInd);
+testY = nett(testX);
+testInd = vec2ind(testY);
+plotconfusion(testT, testY);
+[c, cm] = confusion(testT, testY);
+fprintf('Percentage Correct Class:%f%%\n', 100*(1-c));
+fprintf('Percentage Incorrect Class: %f%%\n', 100*c);

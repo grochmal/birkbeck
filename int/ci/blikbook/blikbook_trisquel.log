@@ -1,0 +1,18 @@
+# trisquel linux log
+[18:34:19.860] GET http://moodle.bbk.ac.uk/mod/lti/launch.php?id=64595 [HTTP/1.1 200 OK 590ms]
+[18:34:20.451] The character encoding of a framed document was not declared. The document may appear different if viewed without the document framing it. @ http://moodle.bbk.ac.uk/mod/lti/launch.php?id=64595
+[18:34:20.551] POST http://www.blikbook.com/api/1/vle/BBK_COIY022H7_1213 [HTTP/1.1 302 FOUND 458ms]
+[18:34:21.042] GET http://www.blikbook.com/courses/BBK_COIY022H7_1213 [HTTP/1.1 200 OK 428ms]
+[18:34:21.462] GET http://www.blikbook.com/static/klarro/sass/css/app-new.css?4416 [HTTP/1.1 200 OK 742ms]
+[18:34:21.470] GET http://www.blikbook.com/static/klarro/sass/respond.js?4416 [HTTP/1.1 200 OK 806ms]
+[18:34:21.478] GET http://www.blikbook.com/static/js/jquery-1.7.min.js [HTTP/1.1 200 OK 820ms]
+[18:34:21.485] GET http://www.blikbook.com/static/klarro/sass/placeholder.js?4416 [HTTP/1.1 200 OK 25ms]
+[18:34:22.141] Unknown property 'box-sizing'.  Declaration dropped. @ http://www.blikbook.com/static/klarro/sass/css/app-new.css?4416:13
+
+... many CCS 3 slurpus code warnings later
+
+[18:34:22.175] Expected end of value but found 'solid'.  Error in parsing value for 'padding-top'.  Declaration dropped. @ http://www.blikbook.com/static/klarro/sass/css/app-new.css?4416:2896
+[18:34:23.129] GET http://use.typekit.net/sqg3ocn.js [HTTP/1.1 200 OK 163ms]
+[18:34:23.135] GET http://www.google-analytics.com/ga.js [HTTP/1.1 200 OK 530ms]
+[18:34:23.998] GET http://use.typekit.net/c/613cba/calluna-sans:i4:n4:n7,ff-enzo-web:i3,ratio:i3.QKP:F:2,QKN:F:2,QKR:F:2,Vcn:F:2,TTt:F:2/d?3bb2a6e53c9684ffdc9a9bff195b2a62eddc7af2380fdbefada29662e982471bf2675120225d8b73de1b905596c327184d881497dd967f234fe224c921a6000aaf3f6d53ecf4c8687457d9de36e66f07f2fd27a093c0792dd719d81729da1c5649c1b0944b64c57affb7ec3eb3a7ea72274f94c41f0c6b0fbde53271f4e33bdf57f550832d179538a125e16beb49a356c7fd014b62b09a2ff69042c083f33f9cea4122b9be4aa7a602985d8a8e6dd3dd603bfed944c7ff5b8699baeb8084ed6ef9 [HTTP/1.1 200 OK 796ms]
+[18:34:24.005] GET http://p.typekit.net/p.gif?s=1&k=sqg3ocn&ht=tk&h=www.blikbook.com&f=8549.8546.8547.5434.1628&a=523050&_=1363890863805 [HTTP/1.1 200 OK 172ms]

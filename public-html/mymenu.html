@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+          PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Michal Grochmal's Homepage</title>
+<link rel="icon" type="image/png" href="lambda_16x16.png" />
+<link rel="stylesheet" type="text/css" href="mybasestyle.css" />
+<link rel="alternate" type="application/atom+xml"
+      href="feed.atom" title="ATOM feed" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description"
+      content="An effort to make some of my work presentable" />
+<meta name="author" content="Michal Grochmal" />
+<script type="text/javascript" src="basescript.js"></script>
+</head>
+<body>
+
+<div style="min-width:640px;">
+<div class="topl">
+<pre class="terminal">
+BITS 64
+global _start      ; -- this also prints grochmal.org
+fun: pop  rsi      ; import Data.Char
+  mov  rax, 0x01   ; r    = [103,11,-3,-12,5,5,-12,11,-62,65,3,-11]
+  mov  rdi, 0x01   ; fl s = foldl (\a x -> (head a + x):a) [head s] (tail s)
+  mov  rdx, 0x0d   ; fr s = reverse $ map (\x -> chr (fromIntegral x)) $ fl s
+  syscall          ; main = do
+  mov  rax, 0x3c   ;     putStrLn $ fr r
+  mov  rdi, 0x00
+  syscall
+_start: call fun
+  dq 0x6c616d68636f7267  ; lamhcorg
+  dq 0x0000000a67726f2e  ; 0000\ngro.
+</pre>
+</div>
+
+<!--
+import Data.Char
+r    = [103,11,-3,-12,5,5,-12,11,-62,65,3,-11]
+fl s = foldl (\a x -> (head a + x):a) [head s] (tail s)
+fr s = reverse $ map (\x -> chr (fromIntegral x)) $ fl s
+main = do
+    putStrLn $ fr r
+  <h1>You reached Michal Grochmal's personal page</h1>
+  <h3>Here you might find some texts about functional programming,
+      some playfull cleverness (a.k.a. hacking) with web pages and
+      a lot of unfinished code.</h3>
+-->
+
+<div class="topr">
+<p>some form with a search function</p>
+</div>
+
+<div style="clear:both;"></div>
+<ul class="navdiv" style="min-width:640px;">
+    <li>
+      <a href="hacks/index.html">hacking (projects)</a>
+      <ul>
+        <li><a href="hacks/index.html">about</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="hacks/index.html">home</a>
+      <ul>
+        <li><a href="hacks/index.html">more stuff</a></li>
+        <li>
+          <a href="hacks/index.html">even more stuff</a>
+          <ul>
+            <li><a href="hacks/index.html">more stuff 3</a></li>
+            <li><a href="hacks/index.html">more stuff 3</a></li>
+            <li><a href="hacks/index.html">more stuff 3</a></li>
+            <li><a href="hacks/index.html">more stuff 3</a></li>
+            <li><a href="hacks/index.html">more stuff 3</a></li>
+          </ul>
+        </li>
+        <li><a href="hacks/index.html">more stuff</a></li>
+      </ul>
+    </li>
+    <li><a href="hacks/index.html">about</a></li>
+    <li>
+      <a href="hacks/index.html">home</a>
+      <ul>
+        <li><a href="hacks/index.html">more stuff</a></li>
+        <li>
+          <a href="hacks/index.html">even more stuff</a>
+          <ul>
+            <li><a href="hacks/index.html">more stuff 3</a></li>
+            <li><a href="hacks/index.html">more stuff 3</a></li>
+            <li><a href="hacks/index.html">more stuff 3</a></li>
+            <li><a href="hacks/index.html">more stuff 3</a></li>
+            <li><a href="hacks/index.html">more stuff 3</a></li>
+          </ul>
+        </li>
+        <li><a href="hacks/index.html">more stuff</a></li>
+      </ul>
+    </li>
+    <li><a href="hacks/about.html">what is?</a></li>
+    <li><a href="hacks/index.html">about</a></li>
+    <li><a href="hacks/index.html">about</a></li>
+  </ul>
+</div>
+
+<div class="mainpg">
+<div class="toc" style="float:right;border:1px solid black;margin:10px;padding:6px">
+  <div>Contents</div>
+  <ul>
+<li><a href="imgidx.html">search with vectorised images</a></li>
+<li><a href="imgidx.html">sth else will be here</a></li>
+  </ul>
+</div>
+
+<div class="title">
+<h1>The prototype page</h1>
+</div>
+
+<div>
+<p>This webpage is under construction.  Every webpage is always under
+construction.  This text shall not stay behind the float.</p>
+<pre>
+Year  Name				James Bond	Book
+----  --------------------------------	--------------	----
+50's  James Bond TV Series		Barry Nelson
+1962  Dr. No				Sean Connery	1958
+1963  From Russia With Love		Sean Connery	1957
+1964  Goldfinger			Sean Connery	1959
+1965  Thunderball			Sean Connery	1961
+1967* Casino Royale			David Niven	1954
+1967  You Only Live Twice		Sean Connery	1964
+1969  On Her Majesty's Secret Service	George Lazenby	1963
+1971  Diamonds Are Forever		Sean Connery	1956
+1973  Live And Let Die			Roger Moore	1955
+1974  The Man With The Golden Gun	Roger Moore	1965
+1977  The Spy Who Loved Me		Roger Moore	1962 (novelette)
+1979  Moonraker				Roger Moore	1955
+1981  For Your Eyes Only		Roger Moore	1960 (novelette)
+1983  Octopussy				Roger Moore	1965
+1983* Never Say Never Again		Sean Connery
+1985  A View To A Kill			Roger Moore	1960 (novelette)
+1987  The Living Daylights		Timothy Dalton	1965 (novelette)
+	* -- Not a Broccoli production.
+</pre>
+</div>
+</div>
+
+<hr />
+
+<div id="bottom">
+<a href="http://validator.w3.org/feed/">
+<img src="valid_atom_88x31.png"
+     alt="[Valid Atom 1.0]" /></a>
+<a href="http://www.vim.org/">
+<img src="written_with_vim_128x31.png"
+     alt="[page written with vim]" class="bot_img" /></a>
+<a href="http://www.gimp.org/">
+<img src="gimp_graphics_80x31.png"
+       alt="[graphics made with gimp]" class="bot_img" /></a>
+<a href="http://www.libpng.org/">
+<img src="using_png_80x31.png"
+     alt="[using png]" class="bot_img" /></a>
+<a href="http://www.fsf.org/campaigns/freejs">
+<img src="free_js_only_128x31.png"
+     alt="[providing free JavaScript only]" class="bot_img" /></a>
+<a href="http://www.mozilla.org/">
+<img src="mozilla_best_view_128x31.png"
+     alt="[best viewed with a mozilla browser]" class="bot_img" /></a>
+<a href="http://lynx.browser.org/">
+<img src="text_browser_friendly_128x31.png"
+     alt="[text browser friendly]" class="bot_img" /></a>
+</div>
+
+</body>
+</html>
+
+

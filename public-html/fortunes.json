@@ -1,0 +1,21 @@
+{ "copyright" : "Michal Grochmal",
+  "license" : "GNU GPL v3",
+  "fortunes" : [
+    { "cookie" : "politics",
+      "text"   : "Ours is a world of nuclear giants and ethical infants.",
+      "quote"  : "General Omar N. Bradley"
+      },
+    { "cookie" : "linux",
+      "text"   : "Debian is like Suse with yast turned off, just better. :)",
+      "quote"  : "Goswin Brederlow"
+      },
+    { "cookie" : "law",
+      "text"   : "A doctor was stranded with a lawyer in a leaky life raft in shark-infested waters. The doctor tried to swim ashore but was eaten by the sharks. The lawyer, however, swam safely past the bloodthirsty sharks.  \"Professional courtesy,\" he explained."
+      },
+    { "cookie" : "startrek",
+      "text"   : "I have never understood the female capacity to avoid a direct answer to any question.",
+      "quote"  : "Spock, \"This Side of Paradise\", stardate 3417.3"
+      }
+    ]
+  }
+

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Javascript Lab</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
+    <script type="text/javascript">
+//<!--
+function promptInts() {
+  clearOut1()
+  parsed = null;
+  msgbase = "Please enter two integers separated by a comma (e.g. 12,13).";
+  msg = msgbase;
+  while (!parsed) {
+    var retints = window.prompt(msg, "1, 3" );
+    parsed = /^\s*(\d+)\s*,\s*(\d+)\s*$/.exec(retints);
+    msg = msgbase + " I'll not go away until you do it right";
+  }
+  leftInt  = parsed[1];
+  rightInt = parsed[2];
+  if (parseInt(leftInt) >= parseInt(rightInt)) { bigger = leftInt; }
+  else { bigger = rightInt }
+  output   = "The larger of "+leftInt+" and "+rightInt+" is "+bigger;
+  out_div  = document.getElementById("ex1_out");
+  pelem    = document.createElement("p");
+  telem    = document.createTextNode(output);
+  telem1   = document.createTextNode(output);
+  pelem.appendChild(telem);
+  out_div.appendChild(pelem);
+}
+
+function clearOut1() {
+  out_div = document.getElementById("ex1_out");
+  out_div.innerHTML = "";
+}
+
+function larger(x, y) { if (x>y) {return x} else {return y} }
+
+function resolveWinner(left, right, win) {}
+
+//-->
+    </script>
+  </head>
+  <body>
+    <h1>Hi, I'm a webpage used for javascript labs.  I'm a little boring
+       but very useful.</h1>
+    <div id="ex1">
+      <p>I'm the 1st exercise, with two buttons</p>
+      <button type="button" onClick="promptInts()">ask me for ints</button>
+      <button type="button" onClick="clearOut1()">clear the page</button>
+      <div id="ex1_out"></div>
+    </div>
+    <hr />
+    <div id="ex2">
+      <p>And I'm the 2nd one, with one button only</p>
+      <form>
+        <label>Two integers please</label>
+        <input type="text" name="leftInteger"  id="leftInt"  />
+        <input type="text" name="rightInteger" id="rightInt" />
+        <input type="button" value="And the winner is..."
+               onClick="resolveWinner(leftInt.value, rightInt.value, biggeer)" />
+        <input type="text" disabled="disabled" name="biggerInt" id="bigger" />
+  </body>
+</html>
+

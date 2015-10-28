@@ -1,0 +1,32 @@
+# conifg for ssh
+
+# myself
+Host swan
+    HostName     swan.themetgroup.com
+    User         grochmal
+    IdentityFile ~/.ssh/grochmal_swan.pem
+
+# ec2-user
+Host swan-admin
+    HostName     swan.themetgroup.com
+    User         ec2-user
+    IdentityFile ~/.ssh/ec2-user_swan.pem
+
+# import sage db user
+Host swan-import
+    HostName     swan.themetgroup.com
+    User         import
+    IdentityFile ~/.ssh/import_swan.pem
+
+# capybara server for computer vision
+Host capy
+    HostName     capybara.grochmal.org
+    User         grochmal
+    IdentityFile ~/.ssh/grochmal_capybara.pem
+
+# ec2-user
+Host capy-admin
+    HostName     capybara.grochmal.org
+    User         ec2-user
+    IdentityFile ~/.ssh/ec2-user_capybara.pem
+

@@ -1,0 +1,16 @@
+| self-standing          | modifiers | relations        | definable  |
++------------------------+-----------+------------------+------------+
+| Activity               | Rating    | hasRating        | 2StarHotel |
+|  - SportActivity       |  - 2Star  | hasActivity      | SpaResort  |
+|   -- Hiking            |  - 3Star  | hasAccommodation |
+|   -- Surfing           |  - 4Star  |
+|  - RelaxActivity       |  - 5Star  |
+|   -- Spa               |
+|   -- Sunbathing        |
+|  - SightSeeingActivity |
+|   -- Safari            |
+| Accommodation          |
+|  - Hotel               |
+|  - BedAndBreakfast     |
+| Restaurant             |
+| Destination            |

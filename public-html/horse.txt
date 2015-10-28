@@ -1,0 +1,20 @@
+Proof techniques #2: Proof by Oddity.
+	SAMPLE: To prove that horses have an infinite number of legs.
+(1) Horses have an even number of legs.
+(2) They have two legs in back and fore legs in front.
+(3) This makes a total of six legs, which certainly is an odd number of
+    legs for a horse.
+(4) But the only number that is both odd and even is infinity. 
+(5) Therefore, horses must have an infinite number of legs.
+
+Topics is be covered in future issues include proof by:
+	Intimidation
+	Gesticulation (handwaving)
+	"Try it; it works"
+	Constipation (I was just sitting there and ...)
+	Blatant assertion
+	Changing all the 2's to n's
+	Mutual consent
+	Lack of a counterexample, and
+	"It stands to reason"
+

@@ -1,0 +1,214 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns="http://www.owl-ontologies.com/Ontology1163248003.owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xml:base="http://www.owl-ontologies.com/Ontology1163248003.owl">
+  <owl:Ontology rdf:about=""/>
+  <owl:Class rdf:ID="Female"/>
+  <owl:Class rdf:ID="Driver">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:ID="Person"/>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="Vehicle"/>
+            </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="drives"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Adult"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Plant"/>
+  <owl:Class rdf:ID="CatOwner">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Person"/>
+          <owl:Restriction>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="Cat"/>
+            </owl:someValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="hasPet"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="CatLover">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Person"/>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Cat"/>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="likes"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Vegetarian">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:ID="Animal"/>
+          <owl:Restriction>
+            <owl:allValuesFrom>
+              <owl:Class>
+                <owl:complementOf>
+                  <owl:Restriction>
+                    <owl:someValuesFrom rdf:resource="#Animal"/>
+                    <owl:onProperty>
+                      <owl:ObjectProperty rdf:ID="partOf"/>
+                    </owl:onProperty>
+                  </owl:Restriction>
+                </owl:complementOf>
+              </owl:Class>
+            </owl:allValuesFrom>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="eats"/>
+            </owl:onProperty>
+          </owl:Restriction>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="#eats"/>
+            <owl:allValuesFrom>
+              <owl:Class>
+                <owl:complementOf rdf:resource="#Animal"/>
+              </owl:Class>
+            </owl:allValuesFrom>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Elderly"/>
+  <owl:Class rdf:ID="BusDriver">
+    <rdfs:subClassOf rdf:resource="#Vehicle"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Person"/>
+          <owl:Restriction>
+            <owl:onProperty rdf:resource="#drives"/>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="Bus"/>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Sheep">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:subClassOf rdf:resource="#Animal"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="#eats"/>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="Grass"/>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="OldLady">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Person"/>
+          <owl:Class rdf:about="#Elderly"/>
+          <owl:Class rdf:about="#Female"/>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#hasPet"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#hasPet"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="#Cat"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Grass">
+    <rdfs:subClassOf rdf:resource="#Plant"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:ID="A">
+    <owl:disjointWith>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Plant"/>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Plant"/>
+            <owl:onProperty rdf:resource="#partOf"/>
+          </owl:Restriction>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:disjointWith>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Animal"/>
+          <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Animal"/>
+            <owl:onProperty rdf:resource="#partOf"/>
+          </owl:Restriction>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Bus">
+    <rdfs:subClassOf rdf:resource="#Vehicle"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:ID="GrownUp">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Adult"/>
+          <owl:Class rdf:about="#Person"/>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="#hasPet">
+    <rdfs:subPropertyOf rdf:resource="#likes"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="isPetOf"/>
+  <Person rdf:ID="walt"/>
+  <owl:Thing rdf:ID="pete"/>
+  <owl:Thing rdf:ID="spike">
+    <isPetOf rdf:resource="#pete"/>
+  </owl:Thing>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 2.2, Build 331)  http://protege.stanford.edu -->

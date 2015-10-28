@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+          PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Film Remakes</title>
+<link rel="stylesheet" type="text/css" href="remakes.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="First coursework for IWT" />
+<meta name="author" content="Michal Grochmal" />
+<meta name="declaration"
+      content="I confirm that this coursework submission is entirely my own work, except where explicitly stated otherwise." />
+<script type="text/javascript" src="remakes.js"></script>
+</head>
+<body onload="load_data();">
+<div class="top_title">
+  <h1>Remakes of movies</h1>
+</div>
+
+<p>
+In the 20th century many movie stories were reused to produce new movies.  A
+small database of these story reuses can be found here, and you can check
+whether a certain movie you saw is a remake of an earlier production.
+</p>
+<p>
+Below you can use all or some fields to query for remakes.  The year accepts
+the operators &lt;, &gt; and = and a four digit year; the faithfulness to the
+original shall be expressed as a decimal point number from 0.01 (different) to
+0.99 (almost equal to the original).  Faithfulness also accepts the &lt;, &gt;
+and = operators.  If no operator is given for either year or faithfulness = is
+assumed.  The title of the remake allows you to type the full title of the
+remake or you can type only a part of the title and select the "approximate
+match" box for a search on titles that contain what you typed in.  All title
+matches, exact or approximate are case independent.  Finally, the box "remakes
+with same title as original only" will return only remakes that kept the title
+of the original movie.
+</p>
+<p>
+You may use all three fields or only two or one of them.  To not use a field in
+a query simply leave it blank.  If you use two or three fields you can combine
+the filters using the <em>AND</em> or <em>OR</em> set operators.  Note that if
+you use three filters the <em>AND</em> operator "binds closer" than the
+<em>OR</em> operator.  i.e. when using all three fields the results are
+combined as follows:
+</p>
+<pre class="binding">
+(year  AND  faithfulness) OR  title
+  year  OR  (faithfulness  AND title)
+</pre>
+<p>
+You can sort the results by the remake title, year or faithfulness or by the
+title or year of the film it was based upon.  Use ascending order to order the
+results in alphabetical order for titles or numerical order for years or
+faithfulness, descending order for the reverse ordering.
+</p>
+<h5>Examples:</h5>
+<ul>
+  <li>
+    To find whether the film Blade Runner was based upon an earlier film,
+    search:
+    <div>
+      <pre class="example">      </pre>
+      <pre class="example">AND/OR</pre>
+      <pre class="example">     </pre>
+      <pre class="example">AND/OR</pre>
+      <pre class="example">Blade Runner   </pre>
+    </div>
+  </li>
+  <li>
+    To find the previous production of the film Dracula, which was made in
+    the '30s and it was a rather good remake of a previous movie; search:
+    <div>
+      <pre class="example">&gt;1930 </pre>
+      <pre class="example">AND</pre>
+      <pre class="example">&gt;0.6  </pre>
+      <pre class="example">AND</pre>
+      <pre class="example">Dracula      </pre>
+    </div>
+  </li>
+  <li>
+    To find all Dracula movies which are good remakes, check the approximate
+    search box and type:
+    <div>
+      <pre class="example">      </pre>
+      <pre class="example">AND/OR</pre>
+      <pre class="example">&gt;0.4 </pre>
+      <pre class="example">AND</pre>
+      <pre class="example">Dracula      </pre>
+    </div>
+  </li>
+  <li>
+    Find movies upon which films Dracula movies after 1970 where based upon.
+    With approximate search checked type:
+    <div>
+      <pre class="example">&gt;1970 </pre>
+      <pre class="example">AND</pre>
+      <pre class="example">&lt;0.7  </pre>
+      <pre class="example">AND</pre>
+      <pre class="example">Dracula      </pre>
+    </div>
+  </li>
+  <li>
+    In the same query compare the Bram Stoker's Dracula film with good remakes
+    done during the '90s:
+    <div>
+      <pre class="example">&gt;1970 </pre>
+      <pre class="example">AND</pre>
+      <pre class="example">&gt;0.7  </pre>
+      <pre class="example">OR</pre>
+      <pre class="example">Bram Stoker's Dracula</pre>
+    </div>
+  </li>
+  <li>
+    To find how many times the film Dracula was remade using the same title,
+    check the remakes with same title box and type:
+    <div>
+      <pre class="example">      </pre>
+      <pre class="example">AND/OR</pre>
+      <pre class="example">      </pre>
+      <pre class="example">AND/OR</pre>
+      <pre class="example">Dracula      </pre>
+    </div>
+  </li>
+  <li>
+    Find all infidel remakes made in 1938:
+    <div>
+      <pre class="example">1938  </pre>
+      <pre class="example">AND</pre>
+      <pre class="example">&lt;0.3  </pre>
+      <pre class="example">AND/OR</pre>
+      <pre class="example">         </pre>
+    </div>
+  </li>
+  <li>
+    Compare all Dracula films with remakes before 1930, using approximate
+    search do:
+    <div>
+      <pre class="example">&lt;1940 </pre>
+      <pre class="example">OR</pre>
+      <pre class="example">      </pre>
+      <pre class="example">OR</pre>
+      <pre class="example">Dracula      </pre>
+    </div>
+  </li>
+</ul>
+
+<div id="query_form">
+  <form action="#">
+    <table class="fmn"><tbody><tr><td><table class="fmn fpt"><tbody>
+      <tr>
+        <td class="fpt">Remake year is</td>
+        <td></td>
+        <td class="fpt">How faithful?</td>
+        <td></td>
+        <td>Remake title is</td>
+      </tr>
+      <tr>
+        <td class="fpt"><input type="text" name="year"
+                   size="13" id="year_text" value=">1980"    /></td>
+        <td><input type="button" name="orandleft"  onclick="union_inter(this);"
+                   class="set_op" id="set_left" value="AND"   /></td>
+        <td class="fpt"><input type="text" name="faithful"
+                   size="13" id="faithful_text" value=">0.2" /></td>
+        <td><input type="button" name="orandright" onclick="union_inter(this);"
+                   class="set_op" id="set_right" value="AND"  /></td>
+        <td><input type="text" name="title"
+                   id="title_text" size="60" value="Top Gun" /></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><input type="checkbox" name="match"
+                   id="match_check" value="regex" />
+          approximate title match (contains)</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><input type="checkbox" name="stitle"
+                   id="stitle_check" value="regex" />
+          remakes with same title as original only</td>
+      </tr>
+    </tbody></table></td></tr>
+    <tr><td><table class="fmn fpt"><tbody><tr>
+      <td>Sort by:</td>
+      <td>
+        <input type="radio" name="sort"
+               id="sort_rtitle" value="rtitle" checked="checked"        />
+        remake's title
+      </td>
+      <td>
+        <input type="radio" name="sort" id="sort_year" value="ryear"    />
+        remake's year
+      </td>
+      <td>
+        <input type="radio" name="sort" id="sort_stitle" value="stitle" />
+        original's title
+      </td>
+      <td>
+        <input type="radio" name="sort" id="sort_syear" value="syear"   />
+        original's year
+      </td>
+      <td>
+        <input type="radio" name="sort" id="sort_frac" value="fraction" />
+        faithfulness
+      </td>
+    </tr></tbody></table></td></tr>
+    <tr><td><div class="fmn">
+      Display in:
+      <input type="radio" name="display"
+             id="asc_ord" value="ascending" checked="checked" />
+      ascending order
+      <input type="radio" name="display" id="desc_ord" value="descending" />
+      descending order
+    </div></td></tr>
+    <tr><td><div class="fmn fbot">
+      <input type="button" name="search"
+             disabled="" id="search_but" value="Search"
+             onclick="do_search();" />
+    </div></td></tr></tbody></table>
+  </form>
+</div>
+
+<hr id="hbar" />
+
+<div id="results">
+</div>
+<div id="no_results">
+</div>
+
+<hr />
+
+<div>
+<a href="http://validator.w3.org/">
+<img class="bottom_img"
+     src="http://www.w3.org/Icons/valid-xhtml10"
+     alt="[Valid XHTML 1.0 Strict]" /></a>
+<a href="http://jigsaw.w3.org/css-validator/">
+<img class="bottom_img"
+     src="http://jigsaw.w3.org/css-validator/images/vcss"
+     alt="[Valid CSS!]" /></a>
+</div>
+
+<p>
+This page is the 1st coursework for the IWT module during the Autumn term
+of 2013.  Please look into the page metadata for the coursework declaration.
+</p>
+<p>
+Also, a deployed version of this coursework can be found at
+<a href="http://titan.dcs.bbk.ac.uk/~mgroch01/curoccp/iwt/remakes.html">
+my personal webspace on birkbeck</a>.
+</p>
+</body>
+</html>
+

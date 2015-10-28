@@ -1,0 +1,42 @@
+/*
+Graph Attributes
+
+    label="My Graph"; Label a graph itself
+    rankdir=LR; Lay the graph out from Left to Right, instead of Top to Bottom
+    {rank=same; a, b, c } Group nodes together at the same level of a graph
+    splines="line"; Force edges to be straight, no curves or angles
+    K=0.6; Used to influence the 'spring' used in the layout, Can be used to
+           push nodes further apart, which is especially useful for twopi and
+           sfdp layouts
+
+Vertex Attributes
+
+    [label="Some Label"] Labels the Vertex
+    [color="red"] Colors the Vertex
+    [fillcolor="blue"] Fills the Vertex with the specified colour
+
+Edge Attributes
+
+    [label="Some Label"] Labels the Edge (Useful for Weights)
+    [color="red"] Colors the Vertex (Useful for Paths)
+    [penwidth=2.0] Adjusts the thickness of the edge line,
+                   Very useful for Paths
+
+
+Edges may also have a weight attribute, defined as [weight=0.5] for example,
+but note that this doesn't display the weight directly, It instead acts as a
+hint to the graph layout to give this edge a more direct routing.
+*/
+
+graph graphname {
+    // This attribute applies to the graph itself
+    size="1,1";
+    // The label attribute can be used to change the label of a node
+    a [label="Foo"];
+    // Here, the node shape is changed.
+    b [shape=box];
+    // These edges both have different line properties
+    a -- b -- c [color=blue];
+    b -- d [style=dotted];
+}
+

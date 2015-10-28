@@ -1,0 +1,19 @@
+
+{ "head": { "link": [], "vars": ["x", "a", "d"] },
+  "results": { "distinct": false, "ordered": true, "bindings": [
+    { "x": { "type": "uri", "value": "http://dbpedia.org/resource/Flying_Padre" }	, "a": { "type": "uri", "value": "http://dbpedia.org/resource/Stanley_Kubrick" }},
+    { "x": { "type": "uri", "value": "http://dbpedia.org/resource/Lolita_(1962_film)" }	, "a": { "type": "uri", "value": "http://dbpedia.org/resource/Stanley_Kubrick" }},
+    { "x": { "type": "uri", "value": "http://dbpedia.org/resource/The_Killing_(film)" }	, "a": { "type": "uri", "value": "http://dbpedia.org/resource/Stanley_Kubrick" }},
+    { "x": { "type": "uri", "value": "http://dbpedia.org/resource/The_Seafarers" }	, "a": { "type": "uri", "value": "http://dbpedia.org/resource/Stanley_Kubrick" }},
+    { "x": { "type": "uri", "value": "http://dbpedia.org/resource/2001:_A_Space_Odyssey_(film)" }	, "a": { "type": "uri", "value": "http://dbpedia.org/resource/Stanley_Kubrick" }},
+    { "x": { "type": "uri", "value": "http://dbpedia.org/resource/Day_of_the_Fight" }	, "a": { "type": "uri", "value": "http://dbpedia.org/resource/Stanley_Kubrick" }},
+    { "x": { "type": "uri", "value": "http://dbpedia.org/resource/A_Clockwork_Orange_(film)" }	, "a": { "type": "uri", "value": "http://dbpedia.org/resource/Stanley_Kubrick" }},
+    { "x": { "type": "uri", "value": "http://dbpedia.org/resource/Barry_Lyndon" }	, "a": { "type": "uri", "value": "http://dbpedia.org/resource/Stanley_Kubrick" }},
+    { "x": { "type": "uri", "value": "http://dbpedia.org/resource/Dr._Strangelove" }	, "a": { "type": "uri", "value": "http://dbpedia.org/resource/Stanley_Kubrick" }},
+    { "x": { "type": "uri", "value": "http://dbpedia.org/resource/Eyes_Wide_Shut" }	, "a": { "type": "uri", "value": "http://dbpedia.org/resource/Stanley_Kubrick" }},
+    { "x": { "type": "uri", "value": "http://dbpedia.org/resource/Fear_and_Desire" }	, "a": { "type": "uri", "value": "http://dbpedia.org/resource/Stanley_Kubrick" }},
+    { "x": { "type": "uri", "value": "http://dbpedia.org/resource/Full_Metal_Jacket" }	, "a": { "type": "uri", "value": "http://dbpedia.org/resource/Stanley_Kubrick" }},
+    { "x": { "type": "uri", "value": "http://dbpedia.org/resource/Killer's_Kiss" }	, "a": { "type": "uri", "value": "http://dbpedia.org/resource/Stanley_Kubrick" }},
+    { "x": { "type": "uri", "value": "http://dbpedia.org/resource/Paths_of_Glory" }	, "a": { "type": "uri", "value": "http://dbpedia.org/resource/Stanley_Kubrick" }},
+    { "x": { "type": "uri", "value": "http://dbpedia.org/resource/Spartacus_(film)" }	, "a": { "type": "uri", "value": "http://dbpedia.org/resource/Stanley_Kubrick" }},
+    { "x": { "type": "uri", "value": "http://dbpedia.org/resource/The_Shining_(film)" }	, "a": { "type": "uri", "value": "http://dbpedia.org/resource/Stanley_Kubrick" }} ] } }

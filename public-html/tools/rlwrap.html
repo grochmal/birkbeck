@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>rlwrap - history and keybindings for command prompts</title>
+<link rel="icon" type="image/png" href="../lambda_16x16.png" />
+<link rel="stylesheet" type="text/css" href="../basestyle.css" />
+<meta name="description" content="rlwrap installtion tutorial" />
+<meta charset="utf-8" />
+<script type="text/javascript" src="../basescript.js"></script>
+</head>
+<body>
+<div style="text-align:center;" class="top_home">
+  <a href="../index.html">Michal Grochmal's personal page (home)</a>
+</div>
+
+<table class="bartb"><tr>
+  <td class="tbon" >
+    <div class="menu_parent" id="parent_hacks"
+         onmouseover="showelem('parent_hacks','child_hacks')"
+          onmouseout="hideelem('parent_hacks','child_hacks')">
+      <a href="../hacks/index.html">hacking (projects)</a>
+      <div class="menu_child" id="child_hacks"
+           onmouseover="showelem('parent_hacks','child_hacks')"
+            onmouseout="hideelem('parent_hacks','child_hacks')">
+      </div>
+    </div>
+  </td>
+  <td class="tboff">
+    <div class="menu_parent" id="parent_about"
+         onmouseover="showelem('parent_about','child_about')"
+          onmouseout="hideelem('parent_about','child_about')">
+      <a href="../about/index.html">who is this guy?</a>
+      <div class="menu_child" id="child_about"
+           onmouseover="showelem('parent_about','child_about')"
+            onmouseout="hideelem('parent_about','child_about')">
+      </div>
+    </div>
+  </td>
+  <td class="tbon" >
+    <div class="menu_parent" id="parent_interests"
+         onmouseover="showelem('parent_interests','child_interests')"
+          onmouseout="hideelem('parent_interests','child_interests')">
+      <a href="../interests/index.html">random interests</a>
+      <div class="menu_child" id="child_interests"
+           onmouseover="showelem('parent_interests','child_interests')"
+            onmouseout="hideelem('parent_interests','child_interests')">
+      </div>
+    </div>
+  </td>
+  <td class="tboff">
+    <div class="menu_parent" id="parent_monads"
+         onmouseover="showelem('parent_monads','child_monads')"
+          onmouseout="hideelem('parent_monads','child_monads')">
+      <a href="../monads/index.html">monads (programming)</a>
+      <div class="menu_child" id="child_monads"
+           onmouseover="showelem('parent_monads','child_monads')"
+            onmouseout="hideelem('parent_monads','child_monads')">
+      </div>
+    </div>
+  </td>
+  <td class="tbon" >
+    <div class="menu_parent" id="parent_tools"
+         onmouseover="showelem('parent_tools','child_tools')"
+          onmouseout="hideelem('parent_tools','child_tools')">
+      <a href="../tools/index.html">useful tools</a>
+      <div class="menu_child" id="child_tools"
+           onmouseover="showelem('parent_tools','child_tools')"
+            onmouseout="hideelem('parent_tools','child_tools')">
+      </div>
+    </div>
+  </td>
+  <td class="tboff">
+    <div class="menu_parent" id="parent_curoccp"
+         onmouseover="showelem('parent_curoccp','child_curoccp')"
+          onmouseout="hideelem('parent_curoccp','child_curoccp')">
+      <a href="curoccp/index.html">occupation</a>
+      <div class="menu_child" id="child_curoccp"
+           onmouseover="showelem('parent_curoccp','child_curoccp')"
+            onmouseout="hideelem('parent_curoccp','child_curoccp')">
+      </div>
+    </div>
+  </td>
+</tr></table>
+
+<div id="mainpg">
+<div id="rightpane">
+  <div class="small_pane">
+    <div class="rhead">Recent Activities</div>
+    <div class="rlink">
+<a href="imgidx.html">this page is slowly migrating</a>
+    </div>
+    <div class="rlink">
+<a href="imgidx.html">from geocites, please be patient</a>
+    </div>
+    <div class="rlink">
+<a href="imgidx.html">this page is slowly migrating</a>
+    </div>
+  </div>
+  <div class="small_pane">
+    <div>BBK</div>
+    <div>FSF</div>
+    <div>CC BY-SA</div>
+  </div>
+</div>
+
+<h2>Summary</h2>
+<p>
+<a href="http://utopia.knoware.nl/~hlub/rlwrap/">rlwrap</a> is a wrapper over
+the <a href="http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html">GNU
+readline</a> library, it adds the facilities of readline to command prompts.
+Most free command based software already use the readline library to provide
+command history and <a href="https://www.gnu.org/software/emacs/">emacs</a>
+like key bindings, notable examples are the command prompts for
+<a href="http://www.python.org/">python</a>,
+<a href="http://www.haskell.org/ghc/">ghc</a> and
+<a href="https://www.gnu.org/software/bash/">bash</a>.  Yet, a lot of software
+cannot use the readline library because of the license limitations in that
+software.  The readline library can only be used in free software.  Although
+the best solution would be to convince the software producers to make their
+product free software, rlwrap is a tool that allows the user, by himself, to
+add a better command line interface.
+</p>
+<ol>
+  <li>
+    <a href="#get-it">Getting rlwrap</a>
+    <ul>
+      <li><a href="#from-source">Install from source</a></li>
+      <li><a href="#bashrc">Automatic setup</a></li>
+    </ul>
+  </li>
+  <li>
+    <a href="#use-rlwrap">Some useful tricks with rlwrap</a>
+    <ul>
+      <li><a href="#readline-basics">Very, very basic readline</a></li>
+      <li><a href="#file-completion">File name completion</a></li>
+      <li><a href="#keyword-completion">Keyword completion</a></li>
+    </ul>
+  </li>
+  <li><a href="#bbk-notes">Extra notes for Birkbeck DCS students</a></li>
+</ol>
+
+<h2 id="get-it">1. Getting rlwrap</h2>
+<p>
+On a GNU/Linux distro rlwrap is certainly available through the packet manager,
+just type as root <span class="mono">apt-get install rlwrap</span> on Debian
+based distros or <span class="mono">yum install rlwrap</span> on Red Hat based
+distros.  Yet, if you're using a different *nix system (e.g. Solaris) or you do
+not have access to the root account (or both) you can always install rlwrap
+from source.
+</p>
+<h3 id="from-source">Install from source</h3>
+<p>
+When installing from source for your user only it is wise to have all installed
+software in one place.  Following the *nix standard we will use
+<span class="mono">~/local</span> as the base directory for all software.  If
+you already have software compiled from source in your home directory use that
+location instead.  For now create the directories and go to
+<span class="mono">~/local/src</span>:
+</p>
+<pre class="terminal">
+mkdir -p ~/local/src
+cd ~/local/src
+</pre>
+<p>
+As of this writing the latest version of readline is 6.2 and of rlwrap is 0.37,
+but please use the latest versions available.  Both readline and rlwrap are
+mature software and shall not have compatibility problems or major interface
+changes with new releases.  Download both packages and unpack:
+</p>
+<pre class="terminal">
+wget ftp.gnu.org/gnu/readline/readline-6.2.tar.gz
+wget http://utopia.knoware.nl/~hlub/rlwrap/rlwrap-0.37.tar.gz
+gunzip readline-6.2.tar.gz
+gunzip rlwrap-0.37.tar.gz
+tar -xvf readline-6.2.tar
+tar -xvf rlwrap-0.37.tar
+</pre>
+<p>
+On systems with GNU tar (notably GNU/Linux and BSD distros) you can unpack in
+one step by using <span class="mono">tar -xzvf</span>.
+</p>
+<p>
+To compile readline no special dependencies are needed.  It is best to compile
+it using the <a href="http://gcc.gnu.org/">gcc</a> C compiler but it works
+without major quirks under other compilers.  To prepare the compilation go into
+the readline directory and start the <span class="mono">configure</span> script
+using the directory for local software as the <span class="mono">prefix</span>:
+</p>
+<pre class="terminal">
+cd readline-6.2
+./configure --prefix=$HOME/local
+</pre>
+Once it finishes, run <span class="mono">make</span> and
+<span class="mono">make install</span> to compile and then install the compiled
+software into the desired place.  Note that you shall run
+<span class="mono">make install</span> as your current user, not as root, as we
+are not touching any part of the operating system.
+<pre class="terminal">
+make
+make install
+</pre>
+<p>
+Now we shall compile the rlwrap program.  Here we need a couple of options to
+tell the compilation process where to find the readline library we just built.
+In the rlwrap directory add the options below to
+<span class="mono">configure</span> (the forward slash means that the command
+continues to the next line, i.e. it shall be written as one long command).
+</p>
+<pre class="terminal">
+cd ../rlwrap-0.37
+./configure --prefix=$HOME/local CFLAGS=-I$HOME/local/include \
+            CPPFLAGS=-I$HOME/local/include LDFLAGS=-L$HOME/local/lib
+</pre>
+<p>
+If the <span class="mono">configure</span> fails (you're meant to read what the
+programs you execute print to the screen) you most likely made a typo.
+Crosscheck the command and rerun it.  After the successful completion of the
+<span class="mono">configure</span> run <span class="mono">make</span> and
+<span class="mono">make install</span> as we did for readline:
+</p>
+<pre class="terminal">
+make
+make install
+</pre>
+<p>
+And the install is complete.  Still, we need to tell the shell where to find
+the library and the command.  To do this execute the following:
+</p>
+<pre class="terminal">
+export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
+export PATH=$HOME/local/bin:$PATH
+</pre>
+<p><em>
+Note: If you're running a *nix system that is not GNU/Linux, BSD or Solaris you
+must export a different environment variable instead of
+<span class="mono">LD_LIBRARY_PATH</span>.  On IBM AIX the variable is called
+<span class="mono">LIBPATH</span> and on HP-UX it is
+<span class="mono">SHLIB_PATH</span>.
+</em></p>
+<p>
+Now if you type <span class="mono">rlwrap</span> you shall have the program
+running.  To test it run <span class="mono">rlwrap -v</span> and it shall print
+out the following:
+</p>
+<pre class="terminal">
+rlwrap -v
+rlwrap 0.37
+</pre>
+<h3 id="bashrc">Automatic setup</h3>
+<p>
+To have <span class="mono">rlwrap</span> available to you every time you start
+your shell add it to your shell's <span class="mono">.profile</span>.  For the
+bash shell the best place to add it is the <span class="mono">~/.bashrc</span>
+file, found in your home directory.  Edit it and add the following lines:
+</p>
+<pre class="terminal">
+export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
+export PATH=$HOME/local/bin:$PATH
+</pre>
+<p>
+Now every new bash shell will have <span class="mono">rlwrap</span> or any
+program that you might install under <span class="mono">~/local</span>
+available straight away.
+</p>
+
+<h2 id="use-rlwrap">2. Some useful tricks with rlwrap</h2>
+<p>
+<span class="mono">rlwrap</span> is a powerful tool which allows you to perform
+file completion, keyword completion, maintenance of different command line
+history for different tasks and a very good editing environment.  The later is
+given by the readline library which, by itself, have many key bindings and
+quirks.  The most basic usage of <span class="mono">rlwrap</span> is:
+</p>
+<pre class="terminal">
+rlwrap &lt;command to wrap&gt;
+</pre>
+<p>
+For example, this is very useful to wrap around
+<a href="http://www.gnu.org/software/guile/">GNU guile</a> (an extensible
+scheme implementation).
+</p>
+<pre class="terminal">
+rlwrap guile
+</pre>
+<p><em>
+Note: Unless you're using a GNU/Linux distro GNU guile is most likely not
+installed on your system.  Read the next sections for other examples.
+</em></p>
+<h3 id="readline-basics">Very, very basic readline</h3>
+<p>
+The readline command line editing environment is very rich, and you can read
+about it in full in the
+<a href="http://cnswww.cns.cwru.edu/php/chet/readline/rluserman.html">user
+manual</a>.  But to get you started here are some basic commands; here a string
+like <span class="mono">C-a</span> means that you shall hold down the control
+key (Ctrl) and press the letter A, and <span class="mono">M-f</span> means that
+you shall hold the meta key (normally labeled Alt on keyboards) and press the
+letter F.
+</p>
+<ul>
+  <li>
+    <span class="mono">C-a</span> moves to the beginning of the command line.
+  </li>
+  <li>
+    <span class="mono">C-e</span> moves to the end of the command line.
+  </li>
+  <li><span class="mono">M-f</span> moves one word forward.</li>
+  <li><span class="mono">M-b</span> moves one word backward.</li>
+  <li><span class="mono">C-l</span> clears the screen.</li>
+  <li>
+    <span class="mono">C-_</span> or <span class="mono">C-x C-u</span> undoes
+    the last command editing the line.
+  </li>
+</ul>
+<h3 id="file-completion">File name completion</h3>
+<p>
+<span class="mono">rlwrap</span> itself has many useful features too.  For a
+good example let's take the very old <span class="mono">sqlplus</span> SQL
+client; the history and command line editing provided by readline already make
+a big difference when running <span class="mono">sqlplus</span> under
+<span class="mono">rlwrap</span>, but we can get even more from it.  Lets say
+that the basic way of running <span class="mono">sqlplus</span> with
+<span class="mono">rlwrap</span> is:
+</p>
+<pre class="terminal">
+rlwrap sqlplus &lt;username&gt;/&lt;password&gt;
+</pre>
+<p>
+And lets say that we have a file called <span class="mono">myscript.sql</span>
+in the current folder.  We execute that file from
+<span class="mono">sqlplus</span> by typing:
+</p>
+<pre class="terminal">
+SQL&gt; @myscript
+</pre>
+<p>
+or
+</p>
+<pre class="terminal">
+SQL&gt; @myscript.sql
+</pre>
+<p>
+But if we add the option <span class="mono">-c</span> to
+<span class="mono">rlwrap</span> it gives us filename completion, so we can
+perform this by pressing the Tab key after the first letter of the file:
+</p>
+<pre class="terminal">
+rlwrap -c sqlplus &lt;username&gt;/&lt;password&gt;
+SQL&gt; @m&lt;TAB&gt;
+</pre>
+<p>
+And the line completes to:
+</p>
+<pre class="terminal">
+SQL&gt; @myscript.sql
+</pre>
+<h3 id="keyword-completion">Keyword completion</h3>
+<p>
+We can do even more completions with <span class="mono">rlwrap</span>, we can
+set a number of keywords for <span class="mono">rlwrap</span> to use.  Still
+with the <span class="mono">sqlplus</span> as an example lets create a file
+that we will call <span class="mono">~/sql_keywords</span> and add this to its
+content:
+</p>
+<pre class="terminal">
+select from where and or group having by create table view drop
+SELECT FROM WHERE AND OR GROUP HAVING BY CREATE TABLE VIEW DROP
+</pre>
+<p>
+This file lists a good amount of SQL keywords, but you're not limited to
+keywords; you can add table names, or procedure names, or whatever word you
+might want as a completion word.  In the file every word is considered as a
+completion keyword and every whitespace (including tabs and newlines) as a word
+separator, you can have multiple keyword files for different programs.  Now run
+<span class="mono">rlwrap</span> with the <span class="mono">-f</span>
+parameter, using the file just creates as its argument:
+</p>
+<pre class="terminal">
+rlwrap -f ~/sql_keywords -c sqlplus &lt;username&gt;/&lt;password&gt;
+</pre>
+<p>
+All keywords in the <span class="mono">~/sql_keywords</span> file are now used
+in Tab completion.  For example we can type a query like:
+</p>
+<pre class="terminal">
+SQL&gt; se&lt;TAB&gt; first_name f&lt;TAB&gt; employee;
+</pre>
+<p>
+And the result will be:
+</p>
+<pre class="terminal">
+SQL&gt; select first_name from employee;
+</pre>
+<p>There are more options to <span class="mono">rlwrap</span> in it's man page,
+which you can access by exporting the <span class="mono">MANPATH</span>
+environment variable and then typing <span class="mono">man rlwrap</span>:
+</p>
+<pre class="terminal">
+export MANPATH=$HOME/local/share/man:$MANPATH
+man rlwrap
+</pre>
+<p>
+Or you can read the man page
+<a href="http://utopia.knoware.nl/~hlub/rlwrap/rlwrap.html">online</a>,
+although that one is a little dated.
+</p>
+<h2 id="bbk-notes">Extra notes for Birkbeck DCS students</h2>
+<p>
+At the Birkbeck DCS computer labs the common way to access the *nix machines
+is to login to hermes.dcs.bbk.ac.uk (with the dcs username).  Once on hermes it
+is better to use the bash shell rather than the default Solaris korn shell
+(ksh).  Yet, some functionality is lost when you enter the bash shell by
+typing:
+</p>
+<pre class="terminal">
+bash
+</pre>
+<p>
+To solve this I'll suggest for you to extend your
+<span class="mono">~/.bashrc</span> file with the following code:
+</p>
+<pre class="terminal">
+# bashrc - loaded the beginning of every bash shell
+if [ -r /bbkdcs/Startup/profile ]; then
+  . /bbkdcs/Startup/profile
+fi
+
+export EDITOR=vim
+export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
+export PATH=$HOME/local/bin:$PATH
+export MANPATH=$HOME/local/share/man:$MANPATH
+</pre>
+<p>
+This executes the extra configuration used in the korn shell and allows you to
+use the specific DCS commands like <span class="mono">use</span>.
+</p>
+<p>
+Also, on the DCS labs the most useful command to use
+<span class="mono">rlwrap</span> with is <span class="mono">sqlplus</span>.
+<span class="mono">sqlplus</span> lacks a navigable command history and have no
+key bindings, but by typing:
+</p>
+<pre class="terminal">
+rlwrap sqlplus
+</pre>
+<p>
+You get the facilities of the readline library inside
+<span class="mono">sqlplus</span> without the need of a different SQL client.
+Another useful way to invoke <span class="mono">sqlplus</span> with
+<span class="mono">rlwrap</span> is:
+</p>
+<pre class="terminal">
+rlwrap sqlplus &lt;username&gt;/&lt;password&gt;
+</pre>
+<p>
+If you struggle to edit the files like <span class="mono">.bashrc</span> on
+*nix, you can use the following technique to print directly from the command
+line to the file.  To build your <span class="mono">.bashrc</span> copy and
+paste the following exactly as it is shown into the terminal:
+</p>
+<pre class="terminal">
+cat &gt;~/.bashrc &lt;&lt;EOF
+# bashrc - loaded the beginning of every bash shell
+if [ -r /bbkdcs/Startup/profile ]; then
+  . /bbkdcs/Startup/profile
+fi
+
+export EDITOR=vim
+export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
+export PATH=$HOME/local/bin:$PATH
+export MANPATH=$HOME/local/share/man:$MANPATH
+EOF
+</pre>
+<p>
+To build a reasonable SQL keyword file copy and paste the following:
+</p>
+<pre class="terminal">
+cat &gt;~/sql_keywords &lt;&lt;EOF
+select from where and or not exists in group by having union all natural join
+SELECT FROM WHERE AND OR NOT EXISTS IN GROUP BY HAVING UNION ALL NATURAL JOIN
+update insert delete create drop table view index trigger procedure if for end
+UPDATE INSERT DELETE CREATE DROP TABLE VIEW INDEX TRIGGER PROCEDURE IF FOR END
+EOF
+</pre>
+<p>
+Finally, other prompts that vastly benefit from
+<span class="mono">rlwrap</span> are clojure, prolog, scheme and clisp.
+</p>
+
+<h2>Contact</h2>
+<p>
+If you notice broken links, typos or some inconsistencies feel free to email me
+on grochmal at fsf dot member dot org
+</p>
+<p>
+This page is under a very slow migration (as I find time to do it) from the
+defunct geosites.  And, to make things worse, I'm adding new things to the page
+at the same time as migrating it.  Therefore, I am sure there are lots of typos
+and inconsistencies on this and other articles hosted here.  Thanks in advance
+for pointing them out.
+</p>
+
+</div>
+
+<div id="bottom">
+<hr />
+<div>
+<a href="http://validator.w3.org/">
+<img src="http://www.w3.org/Icons/valid-xhtml10.png"
+     alt="| Valid XHTML 1.0 Strict |" class="bot_img" /></a>
+<a href="http://jigsaw.w3.org/css-validator/">
+<img src="http://jigsaw.w3.org/css-validator/images/vcss.png"
+     alt="| Valid CSS! |" class="bot_img" /></a>
+<a href="http://www.vim.org/">
+<img src="../written_with_vim_128x31.png"
+     alt="| page written with vim |" class="bot_img" /></a>
+<a href="http://www.gimp.org/">
+<img src="../gimp_graphics_80x31.png"
+       alt="| graphics made with gimp |" class="bot_img" /></a>
+<a href="http://www.libpng.org/">
+<img src="../using_png_80x31.png"
+     alt="| using png |" class="bot_img" /></a>
+<a href="http://www.fsf.org/campaigns/freejs">
+<img src="../free_js_only_128x31.png"
+     alt="| providing free JavaScript only |" class="bot_img" /></a>
+<a href="http://www.mozilla.org/">
+<img src="../mozilla_best_view_128x31.png"
+     alt="| best viewed with a mozilla browser |" class="bot_img" /></a>
+<a href="http://lynx.browser.org/">
+<img src="../text_browser_friendly_128x31.png"
+     alt="| text browser friendly |" class="bot_img" /></a>
+</div>
+<p>
+Last modified 2014-01-27T23:53:38Z
+</p>
+</div>
+<script type="text/javascript">
+//<!--
+pgbase = urlup(document.location.href, 2)+"/";
+build_menus(pgbase, pgbase+"topmenu.json")
+//-->
+</script>
+</body>
+</html>
+

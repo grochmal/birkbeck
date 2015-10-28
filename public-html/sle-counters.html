@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<title>Store Load and Extend Counters</title>
+<style>
+body { background-color : #d6d6d6; }
+.button { background      : #c6c6c6;
+          border          : 1px solid white;
+          text-decoration : none;
+          color           : black;
+          cursor          : default;
+          padding         : 3px;
+}
+.count_div { cursor : default; }
+.invlink { visibility : hidden; }
+</style>
+<script type="text/javascript">
+//var arrmethods = Object.getOwnPropertyNames(Array.prototype);
+//arrmethods.forEach(function(method) {
+//  HTMLCollection.prototype[method] = Array.prototype[method];
+//});
+HTMLCollection.prototype.forEach = Array.prototype.forEach;
+FileList.prototype.forEach = Array.prototype.forEach;
+function add(div,e) {
+  var next = parseInt(div.firstChild.nodeValue) + 1;
+  div.firstChild.nodeValue = String(next);
+  localStorage.setItem(div.id, next);
+}
+function recvr(div,_,_) {
+  if (localStorage.getItem(div.id))
+    div.firstChild.nodeValue = localStorage.getItem(div.id);
+}
+function readFile(e,id) {
+  var files = document.getElementById(id).files;
+  if (0 === files.length) return;
+  var read = new FileReader();
+  files.forEach(function(f) {
+    read.readAsText(f);
+    read.onloadend = function() {
+      console.log(read.result);
+    //var data = JSON.parse(read.result);
+    //for (var key in data) {
+    //  localStorage[key] = data[key];
+    //}
+    };
+  });
+  e.preventDefault();
+}
+function export_storage(id) {
+  a = document.getElementById(id);
+  a.href  =  "data:application/octet-stream;base64,";
+  a.href += btoa(unescape(encodeURIComponent(JSON.stringify(localStorage))));
+  a.click();
+  a.href  = "#";
+}
+function show_size(sz) {
+  var mults = ["Bs","KBs","MBs","GBs","TBs","PBs","EBs","ZBs","YBs"],
+      out   = null;
+  for (var m = 0, approx = sz; approx >= 1; approx /= 1024, m++)
+    out = approx.toFixed(2) + " " + mults[m];
+  return out;
+}
+</script>
+</head><body>
+<div id="cmds">
+  <input class="button" id="load_textbox" type="file"
+         accept="application/json" size="40" name="load_textbox"></input>
+  <span class="button" id="load_button"
+        onclick="readFile('load_textbox')">add this extension</span>
+  <span class="button">
+    <a class="invlink" href='#' id="export"
+       download="character.json" style="visibility:hidden"></a>
+    <span onclick="export_storage('export')">download save</span>
+  </span>
+</div>
+<div>
+  <input class="button" id="fancy_textbox" type="text"
+         name="fancy_textbox" value="" size="40" disabled="true"></input>
+  <a class="button" href="load file" onclick="readFile(event,'load_textbox')">browse...</a>
+</div>
+<div class="count_div" id="count1" onclick="add(this,event);">0</div>
+<div class="count_div" id="count2" onclick="add(this,event);">0</div>
+<div class="count_div" id="count3" oncLick="add(this,event);">0</div>
+<script type="text/javascript">
+var elems = document.getElementsByClassName('count_div');
+elems.forEach(recvr);
+</script>
+</body></html>
+

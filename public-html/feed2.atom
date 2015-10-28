@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"
+      xml:base="http://www.dcs.bbk.ac.uk/~mgroch01/">
+  <title>Michal Grochmal's personal page</title>
+  <id>http://www.dcs.bbk.ac.uk/~mgroch01/feed.atom</id>
+  <updated>2013-11-20T06:30:02Z</updated>
+  <author>
+    <name>Michal Grochmal</name>
+    <uri>about/index.html</uri>
+  </author>
+  <link rel="self" href="http://www.dcs.bbk.ac.uk/~mgroch01/feed2.atom" />
+  <link rel="alternate" type="text/html" href="index.html" />
+  <entry>
+    <id>http://www.dcs.bbk.ac.uk/~mgroch01/hack/index.html</id>
+    <title>What is hacking?</title>
+    <updated>2013-11-20T06:30:01Z</updated>
+    <link rel="alternate" type="text/html" href="hack/index.html"/>
+    <summary>
+Hacking is often misconcepted as the activity of breaking the security of
+computer systems.  Is also mistakenly associated with viruses and other kind
+of malware.  What hacking actually means for it's practicioners is a form
+of motivation towards finding clever solutions.  It is the pleasure of finding
+a clever solution to a complex problem.
+    </summary>
+    <published>2013-11-20T06:30:01Z</published>
+  </entry>
+</feed>
+

@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns="http://www.owl-ontologies.com/Ontology1193489291.owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://www.owl-ontologies.com/Ontology1193489291.owl">
+  <owl:Ontology rdf:about=""/>
+  <owl:Class rdf:ID="techSupportStaff"/>
+  <owl:Class rdf:ID="firstYearModule">
+    <rdfs:subClassOf>
+      <owl:Class>
+        <owl:complementOf>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:ID="isTaughtBy"/>
+            </owl:onProperty>
+            <owl:someValuesFrom>
+              <owl:Class rdf:ID="phdStudent"/>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+        </owl:complementOf>
+      </owl:Class>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isTaughtBy"/>
+        </owl:onProperty>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="professor"/>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:ID="personAtUni">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:ID="staff"/>
+          <owl:Class rdf:ID="student"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="mscModule"/>
+  <owl:Class rdf:about="#staff">
+    <owl:disjointWith>
+      <owl:Class rdf:ID="module"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:ID="department">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >30</owl:maxCardinality>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasMember"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >10</owl:minCardinality>
+        <owl:onProperty rdf:resource="#hasMember"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:ID="academicStaff">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="teaches"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="undergraduateModule"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:ID="lecturer"/>
+          <owl:Class rdf:ID="seniorLecturer"/>
+          <owl:Class rdf:ID="reader"/>
+          <owl:Class rdf:about="#professor"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="adminStaff">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#staff"/>
+          <owl:Class>
+            <owl:complementOf rdf:resource="#academicStaff"/>
+          </owl:Class>
+          <owl:Class>
+            <owl:complementOf rdf:resource="#techSupportStaff"/>
+          </owl:Class>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:about="#professor">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#mscModule"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#teaches"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#teaches"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >2</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:ID="mathsModule">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isTaughtBy"/>
+        </owl:onProperty>
+        <owl:hasValue>
+          <academicStaff rdf:ID="MZ">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+            <teaches>
+              <owl:Thing rdf:ID="SW">
+                <isTaughtBy rdf:resource="#MZ"/>
+              </owl:Thing>
+            </teaches>
+            <teaches>
+              <owl:Thing rdf:ID="MfC">
+                <isTaughtBy rdf:resource="#MZ"/>
+              </owl:Thing>
+            </teaches>
+          </academicStaff>
+        </owl:hasValue>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:about="#module">
+    <owl:disjointWith rdf:resource="#staff"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isTaughtBy"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:ID="person"/>
+  <owl:ObjectProperty rdf:about="#teaches">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#isTaughtBy"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#module"/>
+    <rdfs:domain rdf:resource="#person"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#isTaughtBy">
+    <rdfs:domain rdf:resource="#module"/>
+    <rdfs:range rdf:resource="#person"/>
+    <owl:inverseOf rdf:resource="#teaches"/>
+  </owl:ObjectProperty>
+  <academicStaff rdf:ID="PTW"/>
+  <academicStaff rdf:ID="SM"/>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.3.1, Build 430)  http://protege.stanford.edu -->
